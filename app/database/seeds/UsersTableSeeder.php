@@ -10,24 +10,24 @@ class UsersTableSeeder extends Seeder {
     {
         $faker = Faker::create();
 
-        User::create([
+       /* User::create([
             'username' => 'admin',
             'email' => 'admin@admin.com',
             'password' => "123"//,
             //'parent_id' => null
 
-        ]);
+        ]);*/
 
-      /*  foreach (range(1, 10) as $index)
+        foreach (range(1, 5) as $index)
         {
             User::create([
                 'username' => $faker->word . $index,
                 'email' => $faker->email,
-                'password' => "123",
-                'parent_id' => $faker->randomElement([1,2,3,4])
+                'password' => "123"
+                //'parent_id' => $faker->randomElement([1,2,3,4])
 
             ]);
-        }*/
+        }
 
     }
 

@@ -6,8 +6,8 @@ class DatabaseSeeder extends Seeder {
         'users','profiles', 'roles','payments'
     ];
     private $seeders = [
-        'UsersTableSeeder','RolesTableSeeder'/*,'ProfilesTableSeeder','RolesTableSeeder',
-        'UsersRolesTableSeeder'*/
+        'UsersTableSeeder','RolesTableSeeder','ProfilesTableSeeder',
+        'UsersRolesTableSeeder'
     ];
 
     /**

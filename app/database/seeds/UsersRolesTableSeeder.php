@@ -13,7 +13,7 @@ class UsersRolesTableSeeder extends Seeder {
 
         $usersIds = User::lists('id');
         $rolesIds = Role::lists('id');
-        foreach(range(1, 10) as $index)
+        foreach(range(1, 5) as $index)
         {
 
             DB::table('role_user')->insert([
