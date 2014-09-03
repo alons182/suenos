@@ -70,7 +70,7 @@ App::error(function(Laracasts\Validation\FormValidationException $exception, $co
 |
 */
 
-/*App::error(function(Illuminate\Database\Eloquent\ModelNotFoundException $exception, $code)
+App::error(function(Illuminate\Database\Eloquent\ModelNotFoundException $exception, $code)
 {
 
     if (Auth::guest()) return Redirect::home();
@@ -78,7 +78,7 @@ App::error(function(Laracasts\Validation\FormValidationException $exception, $co
     //if (Auth::user()->user_type != "admin")	return Redirect::home();
 
     return Redirect::home();
-});*/
+});
 
 /*
 |--------------------------------------------------------------------------
