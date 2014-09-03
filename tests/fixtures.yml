@@ -1,0 +1,32 @@
+Suenos\Users\User:
+  username: $string$integer
+  email: $string$integer@example.com
+  password: $string
+
+  lft:  $integer
+  rgt:  $integer
+  depth:  $integer
+  created_at: $date
+  updated_at: $date
+
+Suenos\Profiles\Profile:
+  user_id:
+    type: Suenos\Users\User
+  first_name: $string
+  last_name: $string
+  ide: $string
+  address: $string
+  code_zip: $string
+  telephone: $string
+  country: $string
+  estate: $string
+  city: $string
+  bank: $string
+  type_account: $string
+  number_account: $string
+  nit: $string
+  skype: $string
+  created_at: $date
+  updated_at: $date
+
+  Suenos\Roles\Role:
