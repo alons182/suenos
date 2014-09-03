@@ -7,6 +7,5 @@ composer.lock
 .DS_Store
 Thumbs.db
 Gulpfile.js
-.idea
 /node_modules
 tests/_output/*
