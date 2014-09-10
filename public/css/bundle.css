@@ -128,7 +128,7 @@ footer{border-top:1px solid #eae8e7;padding-bottom:2em}
 .menu .sub-menu li a{border:none}
 .menu .sub-menu li a:hover{color:#98ba33}
 .wrapp{max-width:1000px;margin:1.5em auto;padding:1em;background:#fff;border:1px solid #eae8e7}
-.section-top{border-bottom:1px solid #eae8e7;padding:1em 0;font-size:0}
+.section-top{border-bottom:1px solid #eae8e7;padding:1em 0}
 .section-bottom{border-top:1px solid #eae8e7;padding:1em 0}
 .main{min-height:400px;overflow:hidden;margin-bottom:20px}
 .contact-address{text-align:center;margin-bottom:10px}
@@ -140,14 +140,14 @@ small{font-weight:400;font-size:16px;color:#fff;padding:.3em;background:#372f4a}
 .featured-products .product .price{color:#98ba33;margin-bottom:1em}
 .featured-products .product img{width:100%}
 .featured-products figure{border:1px solid #eae8e7}
-.box-info{display:inline-block;vertical-align:top;width:288px;height:158px;background:center center/cover no-repeat,center center/cover no-repeat red;margin-right:1em;-webkit-background-size:cover,cover;-moz-background-size:cover,cover;color:#fff;padding:1em;position:relative;font-size:1rem}
+.box-info{display:inline-block;vertical-align:top;width:288px;height:158px;background:center center/cover no-repeat,center center/cover no-repeat red;margin-right:.8em;-webkit-background-size:cover,cover;-moz-background-size:cover,cover;color:#fff;padding:1em;position:relative}
 .box-info h1{text-transform:uppercase;font-weight:700;font-size:1.8em;margin-top:0;color:#fff}
 .box-info h1 .light{font-size:18px;font-weight:400}
 .box-info i{position:absolute;bottom:.6em;right:.6em;font-size:1.5em;background:#fff;color:#372f4a;-webkit-border-radius:50%;border-radius:50%}
 .familia{background-image:url(../img/img-info.jpg)}
 .canasta{background-image:url(../img/img-info2.jpg)}
 .ingresos{background-image:url(../img/img-info3.jpg);margin-right:0}
-.gift,.online,.shipping{display:inline-block;vertical-align:top;width:288px;height:50px;background:red;margin-right:1em;color:#fff;padding:1em;position:relative;text-transform:uppercase;text-align:center;line-height:25px}
+.gift,.online,.shipping{display:inline-block;vertical-align:top;width:288px;height:50px;background:red;margin-right:.8em;color:#fff;padding:1em;position:relative;text-transform:uppercase;text-align:center;line-height:25px}
 .shipping{background:#98ba33}
 .online{border:5px solid #eae8e7;background:#fff;color:#372f4a;width:278px;height:40px}
 .gift{background:#372f4a;margin-right:0}
