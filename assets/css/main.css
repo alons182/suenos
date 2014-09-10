@@ -745,6 +745,7 @@ footer {
 .section-top {
   border-bottom: 1px solid #eae8e7;
   padding: 1em 0;
+  font-size: 0;
 }
 .section-bottom {
   border-top: 1px solid #eae8e7;
@@ -807,6 +808,7 @@ small {
   color: #fff;
   padding: 1em;
   position: relative;
+  font-size: 1rem;
 }
 .box-info h1 {
   text-transform: uppercase;
