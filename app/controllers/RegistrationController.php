@@ -23,10 +23,7 @@ class RegistrationController extends \BaseController {
      */
 	public function create($username = null)
 	{
-        if($username)
-            $user = $this->userRepository->findByUsername($username);
-        else
-            $user = null;
+        $user = ($username) ? $this->userRepository->findByUsername($username) : null;
 
         return View::make('registration.create')->withParent_user($user);
 	}

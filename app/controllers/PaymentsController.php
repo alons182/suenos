@@ -21,7 +21,6 @@ class PaymentsController extends \BaseController {
         $this->userRepository = $userRepository;
         $this->paymentRepository = $paymentRepository;
         $this->paymentForm = $paymentForm;
-        $this->limit = 10;
         $this->beforeFilter('auth');
     }
 
@@ -33,7 +32,7 @@ class PaymentsController extends \BaseController {
      */
 	public function index()
 	{
-        $payments = $this->paymentRepository->getPaymentsOfYourRed($this->limit);
+        $payments = $this->paymentRepository->getPaymentsOfYourRed();
 
         return View::make('payments.index')->withPayments($payments);
 	}

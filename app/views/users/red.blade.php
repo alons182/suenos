@@ -5,9 +5,20 @@
 <small>{{ $currentUser->present()->accountAge }} </small>
 
 <h2>Tu red de usuarios</h2>
-@foreach ($currentUser->descendants()->get() as $child)
-<li>{{ get_depth($child->depth)}}  {{ $child->username }} - <small>{{ $child->children->count() }}</small>  </li>
-@endforeach
+
+{{ matriz_table( $currentUser->descendants()->get()->toArray(), $currentUser->descendants()->count() ) }}
+@for ($i = 1; $i <= 15 ; $i++)
+    @foreach ($currentUser->descendants()->get() as $child)
+        @if ($child->depth == $i )
+            <li class="nivel-{{ $i }}">{{ get_depth($child->depth)}}  {{ $child->username }} - <small>{{ $child->children->count() }}</small>  </li>
+        @endif
+
+    @endforeach
+    <div class="division-{{ $i }}"><br/></div>
+
+@endfor
+
+
 
 <p>
     @if ($currentUser->isCurrent())

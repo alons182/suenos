@@ -2,12 +2,12 @@
     <div class="container">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                @if (Auth::guest())
-                    <li><a href="/register">Registrarse</a></li>
-                    <li><a href="/login">Login</a></li>
+                @if (! $currentUser)
+                    <li>{{ link_to_route('registration.create','Registrate') }}</li>
+                    <li>{{ link_to_route('sessions.create','Login') }}</li>
                     <li><a href="#">Tienda</a></li>
                 @else
-                    <li>{{ link_to_route('profile.edit', 'Editar mi Perfil', Auth::user()->username) }}</li>
+                    <li>{{ link_to_route('profile.edit', 'Editar Mi Perfil',$currentUser->username) }}</li>
                     <li>{{ link_to_route('red.show', 'Red') }}</li>
                     <li><a href="#">Mis compras</a></li>
                     <li><a href="#">Mis Comisiones</a></li>

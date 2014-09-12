@@ -15,6 +15,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository{
     function __construct(Payment $model)
     {
         $this->model = $model;
+        $this->limit = 10;
     }
 
 
@@ -25,13 +26,13 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository{
         return $this->model->create($data);
     }
 
-    public function getPaymentsOfYourRed($limit)
+    public function getPaymentsOfYourRed()
     {
         $usersOfRed = Auth::user()->children()->get()->lists('id');
 
         if($usersOfRed)
         {
-            $payments = $this->model->with('users','users.profiles')->whereIn('user_id',$usersOfRed)->paginate($limit);
+            $payments = $this->model->with('users','users.profiles')->whereIn('user_id',$usersOfRed)->paginate($this->$limit);
             $gain = $this->model->whereIn('user_id',$usersOfRed)->sum('gain');
 
         }else{
@@ -54,8 +55,8 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository{
     private function prepareData($data)
     {
         $data = array_add($data, 'user_id', Auth::user()->id);
-        $data = array_add($data, 'amount', ($data['payment_type'] == "M") ? 15000 : 5000);
-        $data = array_add($data, 'gain', ($data['payment_type'] == "M") ? (15000 - 3000) : 0);
+        $data = array_add($data, 'amount', ($data['payment_type'] == "M") ? 20000 : 5000);
+        $data = array_add($data, 'gain', ($data['payment_type'] == "M") ? (20000 - 5000) : 0);
 
         return $data;
     }

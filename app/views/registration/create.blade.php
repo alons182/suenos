@@ -6,10 +6,8 @@
         <div class="col-1">
             {{ Form::open(['route' => 'registration.store']) }}
             <!-- Patrocinador Form Input -->
-            <div class="form-group">
                 {{ Form::hidden('parent_id', isset($parent_user) ? $parent_user->id : null, ['class' => 'form-control']) }}
-                {{ errors_for('parent_id',$errors) }}
-            </div>
+
             <!-- Username Form Input -->
             <div class="form-group">
                 {{ Form::label('username', 'Nombre de usuario:') }}

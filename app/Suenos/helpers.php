@@ -43,3 +43,38 @@ function build_tree($arrs, $parent_id=0, $level=0) {
     }
     return $tree;
 }
+
+function matriz_table($aray,$nr_elm)
+{
+  // dd($aray[0]);
+    // Numeric array with data that will be displayed in HTML table
+//$aray = array('http://coursesweb.net', 'www.marplo.net', 'Courses', 'Web Programming', 'PHP-MySQL');
+//$nr_elm = count($aray);        // gets number of elements in $aray
+
+// Create the beginning of HTML table, and of the first row
+    $html_table = '<table border="1 cellspacing="0" cellpadding="2""><tr>';
+    $nr_col = 15;       // Sets the number of columns
+
+// If the array has elements
+    if ($nr_elm > 0) {
+        // Traverse the array with FOR
+        for($i=0; $i<$nr_elm; $i++) {
+            $html_table .= '<td>' .json_encode($aray[$i]). '</td>';       // adds the value in column in table
+
+            // If the number of columns is completed for a row (rest of division of ($i + 1) to $nr_col is 0)
+            // Closes the current row, and begins another row
+            $col_to_add = ($i+1) % $nr_col;
+            if($col_to_add == 0) { $html_table .= '</tr><tr>'; }
+        }
+
+        // Adds empty column if the current row is not completed
+        if($col_to_add != 0) $html_table .= '<td colspan="'. ($nr_col - $col_to_add). '">&nbsp;</td>';
+    }
+
+    $html_table .= '</tr></table>';         // ends the last row, and the table
+
+// Delete posible empty row (<tr></tr>) which cand be created after last column
+    $html_table = str_replace('<tr></tr>', '', $html_table);
+
+    return $html_table;        // display the HTML table
+}
