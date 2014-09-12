@@ -6,7 +6,7 @@
 
 <h2>Tu red de usuarios</h2>
 
-{{ matriz_table( $currentUser->descendants()->get()->toArray(), $currentUser->descendants()->count() ) }}
+<!--{{ matriz_table( $currentUser->descendants()->get()->toArray(), $currentUser->descendants()->count() ) }}-->
 @for ($i = 1; $i <= 15 ; $i++)
     @foreach ($currentUser->descendants()->get() as $child)
         @if ($child->depth == $i )
