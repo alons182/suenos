@@ -32,7 +32,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository{
 
         if($usersOfRed)
         {
-            $payments = $this->model->with('users','users.profiles')->whereIn('user_id',$usersOfRed)->paginate($this->$limit);
+            $payments = $this->model->with('users','users.profiles')->whereIn('user_id',$usersOfRed)->paginate($this->limit);
             $gain = $this->model->whereIn('user_id',$usersOfRed)->sum('gain');
 
         }else{
