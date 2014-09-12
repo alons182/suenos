@@ -40,7 +40,7 @@ class ProfilesController extends \BaseController {
 	public function edit($username)
 	{
         $user = $this->userRepository->findByUsername($username);
-       
+
         return View::make('profiles.edit')->withUser($user);
 	}
 

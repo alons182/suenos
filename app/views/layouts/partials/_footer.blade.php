@@ -16,7 +16,7 @@
             <li><a href="/top-sellers">Los más vendidos</a></li>
             <li><a href="/aid-plan">Plan de ayuda</a></li>
             <li><a href="/contact">Contáctenos</a></li>
-            <li><a href="/review">Reseña</a></li>
+            <li><a href="/about">Acerca de nosotros</a></li>
             <li><a href="/terms">Términos y condiciones</a></li>
 
         </ul>
