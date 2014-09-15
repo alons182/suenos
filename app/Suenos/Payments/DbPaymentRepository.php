@@ -16,7 +16,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository{
     function __construct(Payment $model)
     {
         $this->model = $model;
-        $this->limit = 2;
+        $this->limit = 20;
     }
 
 
