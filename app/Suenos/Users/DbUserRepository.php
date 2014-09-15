@@ -46,5 +46,13 @@ class DbUserRepository extends DbRepository implements UserRepository  {
         return $this->model->with('roles')->with('profiles')->whereUsername($username)->firstOrFail();
     }
 
+    /** Find User with your profile by Username
+     * @internal param $username
+     * @return mixed
+     */
+    public function findAll()
+    {
+        return $this->model->with('roles')->with('profiles');
+    }
 
 }

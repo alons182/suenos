@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Suenos\Forms\PaymentForm;
 use Suenos\Payments\PaymentRepository;
 use Suenos\Users\UserRepository;
@@ -30,42 +31,51 @@ class PaymentsController extends \BaseController {
      *
      * @return Response
      */
-	public function index()
-	{
-        $payments = $this->paymentRepository->getPaymentsOfYourRed();
+    public function index()
+    {
+        $data = Input::all();
+        if (!isset($data['month']))
+        {
+            $data = array_add($data,'month',Carbon::now()->month);
+        }
 
-        return View::make('payments.index')->withPayments($payments);
-	}
+        $payments = $this->paymentRepository->getPaymentsOfYourRed($data);
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /balances/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
+        return View::make('payments.index')->with([
+            'payments'      => $payments,
+            'selectedMonth' =>  $data['month']
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * GET /balances/create
+     *
+     * @return Response
+     */
+    public function create()
+    {
         return View::make('payments.create');
-	}
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /balances
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$data = Input::all();
-        
+    /**
+     * Store a newly created resource in storage.
+     * POST /balances
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        $data = Input::all();
+
         $this->paymentForm->validate($data);
-        
+
         $this->paymentRepository->store($data);
 
         Flash::message('Pago agregado correctamente');
 
         return Redirect::back();
-	}
+    }
 
     /**
      * Display the specified resource.
@@ -74,10 +84,10 @@ class PaymentsController extends \BaseController {
      * @param $username
      * @return Response
      */
-	public function show($username)
-	{
+    public function show($username)
+    {
 
-	}
+    }
 
     /**
      * Display the specified resource.
@@ -89,43 +99,44 @@ class PaymentsController extends \BaseController {
     {
 
 
-        return View::make('users.red');//->withUser($user);
+        return View::make('users.red'); //->withUser($user);
 
     }
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /balances/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /balances/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+    /**
+     * Show the form for editing the specified resource.
+     * GET /balances/{id}/edit
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /balances/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    /**
+     * Update the specified resource in storage.
+     * PUT /balances/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * DELETE /balances/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 
 }

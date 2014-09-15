@@ -130,7 +130,7 @@ footer{border-top:1px solid #eae8e7;padding-bottom:2em}
 .wrapp{max-width:1000px;margin:1.5em auto;padding:1em;background:#fff;border:1px solid #eae8e7}
 .section-top{border-bottom:1px solid #eae8e7;padding:1em 0}
 .section-bottom{border-top:1px solid #eae8e7;padding:1em 0}
-.main{min-height:400px;overflow:hidden;margin-bottom:20px}
+.main{min-height:400px;overflow:hidden;margin-bottom:20px;position:relative}
 .contact-address{text-align:center;margin-bottom:10px}
 small{font-weight:400;font-size:16px;color:#fff;padding:.3em;background:#372f4a}
 .featured-products{margin-bottom:1em}
@@ -186,3 +186,8 @@ small{font-weight:400;font-size:16px;color:#fff;padding:.3em;background:#372f4a}
 .pagination li a:hover,.pagination li span:hover{background:#372f4a;color:#fff}
 .pagination .active span{background:#98ba33!important;color:#fff}
 .payments-table{font-size:13px;margin-top:20px}
+.gains-container{position:absolute;right:0;top:0}
+.gains-container small{display:block}
+.gains{background:#98ba33;padding:.5em}
+.gains h2{font-size:.9em;margin-top:0;margin-bottom:0;color:#fff;font-weight:400}
+.gains .amount{font-weight:700}

@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 class BaseController extends Controller {
 
 	/**
@@ -15,6 +17,7 @@ class BaseController extends Controller {
 		}
 
         View::share('currentUser', Auth::user());
+        View::share('currentMonth', Carbon::now()->month);
 	}
 
 

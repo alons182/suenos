@@ -31,4 +31,10 @@
         $('.alert').fadeOut(300);
     });
 
+    $('select[name="month"]').change(function() {
+
+        $('.filters').find('form').submit();
+
+    });
+
 })(jQuery);

@@ -754,6 +754,7 @@ footer {
   min-height: 400px;
   overflow: hidden;
   margin-bottom: 20px;
+  position: relative;
 }
 .contact-address {
   text-align: center;
@@ -1043,4 +1044,26 @@ small {
 .payments-table {
   font-size: 13px;
   margin-top: 20px;
+}
+.gains-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.gains-container small {
+  display: block;
+}
+.gains {
+  background: #98ba33;
+  padding: 0.5em;
+}
+.gains h2 {
+  font-size: 0.9em;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #fff;
+  font-weight: normal;
+}
+.gains .amount {
+  font-weight: bold;
 }
