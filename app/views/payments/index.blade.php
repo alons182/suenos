@@ -5,6 +5,15 @@
     <h1>Balance | <small>Movimientos en tu red de afiliados</small></h1> {{ link_to_route('payments.create', 'Realizar Pago',null,['class'=>'btn btn-primary']) }}
 
     <div class="gains-container">
+        <div class="months">
+            {{ Form::open(['route' => 'payments.index', 'method' => 'get']) }}
+            <!-- Mes Form Input -->
+            <div class="form-group">
+                {{ Form::selectMonth('month', $selectedMonth, ['class' => 'form-control']) }}
+
+            </div>
+            {{ Form::close() }}
+        </div>
         <small>Ganancias</small>
         <div class="gains">
             <h2>Bruta : <span class="amount">{{ money($payments->first(),'₡') }}</span></h2>
@@ -12,16 +21,7 @@
         </div>
 
     </div>
-    <div class="filters">
-        {{ Form::open(['route' => 'payments.index', 'method' => 'get']) }}
-        <!-- Mes Form Input -->
-        <div class="form-group">
-            {{ Form::label('Mes', 'Mes:') }}
-            {{ Form::selectMonth('month', $selectedMonth, ['class' => 'form-control']) }}
 
-        </div>
-        {{ Form::close() }}
-    </div>
 
 
     <div class="table-responsive payments-table">

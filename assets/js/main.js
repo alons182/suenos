@@ -33,7 +33,7 @@
 
     $('select[name="month"]').change(function() {
 
-        $('.filters').find('form').submit();
+        $('.months').find('form').submit();
 
     });
 

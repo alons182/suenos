@@ -1067,3 +1067,8 @@ small {
 .gains .amount {
   font-weight: bold;
 }
+.months {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+}
