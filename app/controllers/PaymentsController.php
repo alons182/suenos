@@ -34,16 +34,16 @@ class PaymentsController extends \BaseController {
     public function index()
     {
         $data = Input::all();
-        if (!isset($data['month']))
+        if (! isset($data['month']))
         {
-            $data = array_add($data,'month',Carbon::now()->month);
+            $data = array_add($data, 'month', Carbon::now()->month);
         }
 
         $payments = $this->paymentRepository->getPaymentsOfYourRed($data);
 
         return View::make('payments.index')->with([
             'payments'      => $payments,
-            'selectedMonth' =>  $data['month']
+            'selectedMonth' => $data['month']
         ]);
     }
 

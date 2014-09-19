@@ -25,25 +25,25 @@ class PagesController extends \BaseController {
 
 
     /**
-	 * Display a home page.
-	 * GET /pages
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		return View::make('pages.index');
-	}
+     * Display a home page.
+     * GET /pages
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        return View::make('pages.index');
+    }
 
-	/**
-	 * Display about page
-	 *
-	 * @return Response
-	 */
-	public function about()
-	{
-		return View::make('pages.about');
-	}
+    /**
+     * Display about page
+     *
+     * @return Response
+     */
+    public function about()
+    {
+        return View::make('pages.about');
+    }
 
     /**
      * Display oportunity page
