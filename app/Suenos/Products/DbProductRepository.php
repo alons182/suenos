@@ -95,13 +95,6 @@ class DbProductRepository extends DbRepository implements ProductRepository  {
         return  $products;
     }
 
-
-
-    public function delete($id)
-    {
-        // TODO: Implement delete() method.
-    }
-
     public function getAll($search)
     {
         if (isset($search['cat']) && ! empty($search['cat']))

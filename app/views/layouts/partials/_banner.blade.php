@@ -3,7 +3,7 @@
         <img src="img/banner.jpg" alt="Banner">
     </section>
     <section class="section-top">
-        <a href="#" class="box-info familia">
+        <a href="{{ URL::route('categories_path') }}" class="box-info familia">
             <h1><span class="light">Tienda</span><br/> Virtual</h1>
             <i class="icon-arrow-right"></i>
         </a>

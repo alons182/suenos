@@ -177,6 +177,15 @@ Route::group(['prefix' => 'store'], function ()
         'uses' => 'ProductsController@show'
     ]);
     //Route::get('search', ['as' => 'products_search', 'uses' => 'ProductsController@search']);
+    # categories
+    Route::get('categories', [
+            'as'   => 'categories_path',
+            'uses' => 'ProductsController@categories']
+    );
+    /*Route::get('categories/{category}/products/{product}', [
+        'as' => 'product_path',
+        'uses' => 'ProductsController@show'
+    ]);*/
 });
 /**
  * Password Reset

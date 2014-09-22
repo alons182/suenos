@@ -68,5 +68,10 @@ class ProductsController extends \BaseController {
         return View::make('products.show')->withProduct($product)->withOthers($others)->withCategory($category)->withPhotos($photos);//->withRelateds($relateds);
     }
 
+    public function categories()
+    {
+        return View::make('categories.index');
+    }
+
 
 }
