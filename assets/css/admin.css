@@ -107,6 +107,12 @@ textarea.form-control{
 	top: 10px;
 	left: 105px;
 }
+.main_image{
+    width: 200px;
+}
+.main_image img{
+    width: 100%;
+}
 
 	
 					
