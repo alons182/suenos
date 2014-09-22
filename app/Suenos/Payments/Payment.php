@@ -1,7 +1,5 @@
 <?php namespace Suenos\Payments;
 
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
 use Laracasts\Presenter\PresentableTrait;
 
 class Payment extends \Eloquent {

@@ -31,6 +31,37 @@ function percent($amount, $symbol = '%')
 {
     return $symbol . number_format($amount, 0, ".", ",");
 }
+
+function set_active($path, $active = 'active' )
+{
+    return Request::is($path) ? $active : '';
+}
+function dir_photos_path($dir)
+{
+    return public_path() . '/images_store/'. $dir .'/';
+}
+
+function photos_path($dir)
+{
+    return '/images_store/'. $dir .'/';
+}
+function existDataArray($data, $index)
+{
+    if(isset($data[$index]))
+    {
+        $array = array_where($data[$index], function($key, $value)
+        {
+            if(trim($value) != "")
+                return $value;
+        });
+
+    }else
+    {
+        $array = [];
+    }
+
+    return $array;
+}
 function build_tree($arrs, $parent_id=0, $level=0) {
     $tree = '';
    // $ret = '<ul>';

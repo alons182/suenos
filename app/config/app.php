@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'timezone' => 'UTC',
+    'timezone' => 'America/Costa_Rica',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -129,6 +129,7 @@ return array(
         'Baum\BaumServiceProvider',
 
 
+
 	),
 
 	/*
@@ -197,6 +198,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
         'Image'			  => 'Intervention\Image\Facades\Image',
         'Flash'           => 'Laracasts\Flash\Flash',
+
         //'NestedSet'       => 'Kalnoy\Nestedset\NestedSet',
         //'Node'            => 'Kalnoy\Nestedset\Node',
 	),

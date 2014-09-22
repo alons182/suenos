@@ -37,4 +37,7 @@
 
     });
 
+    $easyzoom = $('.easyzoom').easyZoom();
+    api = $easyzoom.data('easyZoom');
+
 })(jQuery);

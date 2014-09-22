@@ -1,8 +1,10 @@
 <?php
 
 
+use Suenos\Categories\CategoryRepository;
 use Suenos\Forms\ContactForm;
 use Suenos\Mailers\ContactMailer;
+use Suenos\Products\ProductRepository;
 
 class PagesController extends \BaseController {
 
@@ -15,12 +17,21 @@ class PagesController extends \BaseController {
      * @var Suenos\Forms\ContactForm
      */
     private $contactForm;
+    /**
+     * @var ProductRepository
+     */
+    private $productRepository;
 
-    function __construct(ContactMailer $mailer, ContactForm $contactForm)
+
+    function __construct(ContactMailer $mailer, ContactForm $contactForm, ProductRepository $productRepository)
     {
 
         $this->mailer = $mailer;
         $this->contactForm = $contactForm;
+        $this->productRepository = $productRepository;
+
+
+
     }
 
 
@@ -32,7 +43,8 @@ class PagesController extends \BaseController {
      */
     public function index()
     {
-        return View::make('pages.index');
+        $products = $this->productRepository->getFeatured();
+        return View::make('pages.index')->withProducts($products);
     }
 
     /**

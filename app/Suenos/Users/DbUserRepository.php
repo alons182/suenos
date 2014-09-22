@@ -11,6 +11,7 @@ class DbUserRepository extends DbRepository implements UserRepository  {
     function __construct(User $model)
     {
         $this->model = $model;
+        $this->limit = 10;
     }
 
     /** Save the user with a blank profile
@@ -20,12 +21,9 @@ class DbUserRepository extends DbRepository implements UserRepository  {
     public function store($data)
     {
 
-        if(!$data['parent_id'])
-        {
-            $data = array_except($data, array('parent_id'));
-        }
+        $data = $this->prepareData($data);
 
-       // dd($data);
+        // dd($data);
         $user = $this->model->create($data);
 
       //  dd($user);
@@ -33,6 +31,18 @@ class DbUserRepository extends DbRepository implements UserRepository  {
 
         $user->createProfile();
         $user->assignRole($role);
+
+        return $user;
+    }
+
+    public function update($id, $data)
+    {
+        $user = $this->model->findOrFail($id);
+        $data = $this->prepareData($data);
+
+        $user->fill($data);
+        $user->save();
+
 
         return $user;
     }
@@ -48,11 +58,44 @@ class DbUserRepository extends DbRepository implements UserRepository  {
 
     /** Find User with your profile by Username
      * @internal param $username
+     * @param null $search
      * @return mixed
      */
-    public function findAll()
+    public function findAll($search = null)
     {
-        return $this->model->with('roles')->with('profiles');
+        if (! count($search) > 0) return $this->model;
+
+        if (trim($search['q']))
+        {
+            $users = $this->model->Search($search['q']);
+        } else
+        {
+            $users = $this->model;
+        }
+
+        return $users->with('roles')->with('profiles')->paginate($this->limit);
+
     }
 
+    public function getLasts()
+    {
+        return $this->model->orderBy('users.created_at', 'desc')
+            ->limit(6)->get(['users.id', 'users.username']);
+    }
+
+    /**
+     * @param $data
+     * @return array
+     */
+    public function prepareData($data)
+    {
+        if (! $data['parent_id'])
+        {
+            $data = array_except($data, array('parent_id'));
+
+            return $data;
+        }
+
+        return $data;
+    }
 }

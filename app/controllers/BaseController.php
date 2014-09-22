@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Suenos\Categories\Category;
 
 class BaseController extends Controller {
 
@@ -18,6 +19,7 @@ class BaseController extends Controller {
 
         View::share('currentUser', Auth::user());
         View::share('currentMonth', Carbon::now()->month);
+        View::share('categories', Category::all());
 	}
 
 

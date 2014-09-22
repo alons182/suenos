@@ -9,11 +9,9 @@
         <li> <a href="/contact">Contacto</a></li>
         <li class="store parent"> <span>Tienda</span>
             <ul class="sub-menu">
-                <li><a href="#">Celulares</a></li>
-                <li><a href="#">Perfumes</a></li>
-                <li><a href="#">Ropa</a></li>
-                <li><a href="#">Zapatos</a></li>
-                <li><a href="#">Servicios</a></li>
+               @foreach($categories as $category)
+                   <li>{{ link_to_route('products_path',$category->name,$category->slug) }}</li>
+               @endforeach
             </ul>
         </li>
     </ul>
