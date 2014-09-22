@@ -23,7 +23,7 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ link_to_route('store.admin.users.edit', $user->username, $user->id) }}
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->user_type }}</td>
+                    <td>{{ $user->roles->first()->name }}</td>
                     <td>{{ $user->created_at }}</td>
                     <td>
                                              

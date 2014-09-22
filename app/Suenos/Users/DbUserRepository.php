@@ -39,10 +39,11 @@ class DbUserRepository extends DbRepository implements UserRepository  {
     {
         $user = $this->model->findOrFail($id);
         $data = $this->prepareData($data);
+        $roles[] = $data['role'];
 
         $user->fill($data);
         $user->save();
-
+        $user->roles()->sync($roles);
 
         return $user;
     }

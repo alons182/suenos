@@ -19,7 +19,7 @@
 		</div>
 		<div class="form-group">
 			{{ Form::label('role','Tipo:')}}
-			{{ Form::select('role',['1'=>'Administrator','2'=>'Regular'],null,['class'=>'form-control','required'=>'required'])}}
+			{{ Form::select('role',['1'=>'Administrator','2'=>'Regular'], (isset($user))? $user->roles->first()->id : null,['class'=>'form-control','required'=>'required'])}}
 			{{ errors_for('user_type',$errors) }}
 		</div>
 		<div class="form-group">
