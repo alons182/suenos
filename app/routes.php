@@ -182,10 +182,7 @@ Route::group(['prefix' => 'store'], function ()
             'as'   => 'categories_path',
             'uses' => 'ProductsController@categories']
     );
-    /*Route::get('categories/{category}/products/{product}', [
-        'as' => 'product_path',
-        'uses' => 'ProductsController@show'
-    ]);*/
+
 });
 /**
  * Password Reset
