@@ -200,30 +200,30 @@ small{font-weight:400;font-size:16px;color:#fff;padding:.3em;background:#372f4a}
 .productdetails h3{font-size:18px}
 .productdetails .social-share{margin-top:1em}
 .productdetails .main-image{width:100%;text-align:left;overflow:hidden;position:relative}
-.productdetails .main-image img{max-height:none;max-width:none;position:relative;min-width:100%}
-.product-inner{padding-right:60px}
-.product-name{font-size:36px;line-height:36px;color:#000;margin-bottom:20px}
-.product-description{font-size:13px}
-.product-price,.product-price-promo{margin:0 5px 15px;clear:both;display:inline-block;font-size:24px;color:#000}
-.product-price-promo{font-size:32px;position:relative}
-.icon-bookmark{position:absolute;font-size:2em;top:0;right:-65px;color:fusia}
-.discount{position:absolute;left:27%;font-size:16px;top:10px;color:#fff}
-.product-short-description{margin:0 0 15px;padding:0}
-.product-colors{display:inline-block}
-.product-colors .color{width:20px;height:20px;display:inline-block;border:1px solid #e2e2e2}
-.product-addCart{margin:.5em 0}
-.other-image{font-size:18px;color:#000;padding:5px 0}
-.additional-images{margin:10px 0}
-.additional-images img{margin-right:8px;width:50px;height:auto;max-width:100%;cursor:pointer}
-.other-products{font-size:18px;color:#000;font-weight:700;padding:5px 0}
-.related-products{position:relative;width:90%;height:200px;margin-bottom:20px}
-.related-products .related-item{position:relative;float:left;width:200px;height:100%;text-align:center;overflow:hidden;margin:.5em}
-.related-products a{margin:8px;display:block;color:#fff;text-decoration:none}
-.related-products .ca-nav{position:relative;top:55px}
-.related-products .ca-nav .ca-nav-prev{position:absolute;left:-30px}
-.related-products .ca-nav .ca-nav-next{right:-45px;position:absolute}
-.related-products .caption{position:absolute;bottom:8px;left:8px;right:8px;background:rgba(0,0,0,.8)}
-.related-products .related-name,.related-products .related-price{display:block;font-size:13px;line-height:20px}
+.productdetails .main-image img{width:100%;height:auto;max-height:none;max-width:none;position:relative;min-width:100%}
+.productdetails .product-inner{padding-right:60px}
+.productdetails .product-name{font-size:36px;line-height:36px;color:#000;margin-bottom:20px}
+.productdetails .product-description{font-size:13px}
+.productdetails .product-price,.productdetails .product-price-promo{margin:0 5px 15px;clear:both;display:inline-block;font-size:24px;color:#000}
+.productdetails .product-price-promo{font-size:32px;position:relative}
+.productdetails .icon-bookmark{position:absolute;font-size:2em;top:0;right:-65px;color:fusia}
+.productdetails .discount{position:absolute;left:27%;font-size:16px;top:10px;color:#fff}
+.productdetails .product-short-description{margin:0 0 15px;padding:0}
+.productdetails .product-colors{display:inline-block}
+.productdetails .product-colors .color{width:20px;height:20px;display:inline-block;border:1px solid #e2e2e2}
+.productdetails .product-addCart{margin:.5em 0}
+.productdetails .other-image{font-size:18px;color:#000;padding:5px 0}
+.productdetails .additional-images{margin:10px 0}
+.productdetails .additional-images img{margin-right:8px;width:50px;height:auto;max-width:100%;cursor:pointer}
+.productdetails .other-products{font-size:18px;color:#000;font-weight:700;padding:5px 0}
+.productdetails .related-products{position:relative;width:90%;height:200px;margin-bottom:20px}
+.productdetails .related-products .related-item{position:relative;float:left;width:200px;height:100%;text-align:center;overflow:hidden;margin:.5em}
+.productdetails .related-products a{margin:8px;display:block;color:#fff;text-decoration:none}
+.productdetails .related-products .ca-nav{position:relative;top:55px}
+.productdetails .related-products .ca-nav .ca-nav-prev{position:absolute;left:-30px}
+.productdetails .related-products .ca-nav .ca-nav-next{right:-45px;position:absolute}
+.productdetails .related-products .caption{position:absolute;bottom:8px;left:8px;right:8px;background:rgba(0,0,0,.8)}
+.productdetails .related-products .related-name,.productdetails .related-products .related-price{display:block;font-size:13px;line-height:20px}
 .easyzoom{position:relative;display:inline-block}
 .easyzoom img{vertical-align:bottom}
 .easyzoom.is-loading img{cursor:progress}
