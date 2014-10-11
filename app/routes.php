@@ -1,10 +1,12 @@
 <?php
+use Suenos\Users\User;
 
 App::bind('Suenos\Users\UserRepository', 'Suenos\Users\DbUserRepository');
 App::bind('Suenos\Payments\PaymentRepository', 'Suenos\Payments\DbPaymentRepository');
 App::bind('Suenos\Categories\CategoryRepository', 'Suenos\Categories\DbCategoryRepository');
 App::bind('Suenos\Products\ProductRepository', 'Suenos\Products\DbProductRepository');
 App::bind('Suenos\Photos\PhotoRepository', 'Suenos\Photos\DbPhotoRepository');
+App::bind('Suenos\Orders\OrderRepository', 'Suenos\Orders\DbOrderRepository');
 /**
  * Pages
  */
@@ -71,6 +73,41 @@ Route::resource('sessions', 'SessionsController', [
 Route::resource('payments', 'PaymentsController');
 
 /**
+ * orders user
+ */
+
+Route::resource('orders', 'OrdersController');
+
+/**
+ * Cart view
+ */
+Route::get('cart', [
+    'as'   => 'cart_path',
+    'uses' => 'OrdersController@cart'
+]);
+
+/**
+ * Cart checkout
+ */
+
+Route::get('cart/checkout', [
+    'as'   => 'cart_checkout',
+    'uses' => 'OrdersController@formCheckout'
+])->before('auth');
+
+Route::post('cart/checkoutConfirm', [
+    'as'   => 'cart_checkout.confirm',
+    'uses' => 'OrdersController@formPostCheckout'
+])->before('auth');
+
+
+Route::post('cart/checkout', [
+    'as'   => 'cart_checkout.store',
+    'uses' => 'OrdersController@checkout'
+])->before('auth');
+
+
+/**
  * Members Red
  */
 Route::get('red', [
@@ -97,35 +134,46 @@ Route::group(['prefix' => 'store/admin', 'before' => 'role:administrator'], func
 
     # Dashboard
     Route::get('/', [
-        'as' => 'dashboard',
+        'as'   => 'dashboard',
         'uses' => 'app\controllers\Admin\DashboardController@index'
     ]);
 
     # Users
     Route::get('users', [
-        'as' => 'users',
+        'as'   => 'users',
         'uses' => 'app\controllers\Admin\UsersController@index'
     ]);
     Route::get('users/register', [
-        'as' => 'user_register',
+        'as'   => 'user_register',
         'uses' => 'app\controllers\Admin\UsersController@create'
     ]);
     Route::post('users/register', [
-        'as' => 'user_register.store',
+        'as'   => 'user_register.store',
         'uses' => 'app\controllers\Admin\UsersController@store'
+    ]);
+    foreach (['active', 'inactive'] as $key)
+    {
+        Route::post('users/{user}/' . $key, array(
+            'as'   => 'users.' . $key,
+            'uses' => 'app\controllers\Admin\UsersController@' . $key,
+        ));
+    }
+    Route::get('users/excel', [
+        'as'   => 'users_excel',
+        'uses' => 'app\controllers\Admin\UsersController@exportUserList'
     ]);
     Route::resource('users', 'app\controllers\Admin\UsersController');
 
     # categories
     foreach (['up', 'down', 'pub', 'unpub', 'feat', 'unfeat'] as $key)
     {
-        Route::post('categories/{category}/'.$key, [
-            'as'   => 'categories.'.$key,
-            'uses' => 'app\controllers\Admin\CategoriesController@'.$key,
+        Route::post('categories/{category}/' . $key, [
+            'as'   => 'categories.' . $key,
+            'uses' => 'app\controllers\Admin\CategoriesController@' . $key,
         ]);
     }
     Route::get('categories', [
-        'as' => 'categories',
+        'as'   => 'categories',
         'uses' => 'app\controllers\Admin\ProductsController@index'
     ]);
     Route::resource('categories', 'app\controllers\Admin\CategoriesController');
@@ -134,32 +182,32 @@ Route::group(['prefix' => 'store/admin', 'before' => 'role:administrator'], func
 
     foreach (['pub', 'unpub', 'feat', 'unfeat'] as $key)
     {
-        Route::post('products/{product}/'.$key, array(
-            'as'   => 'products.'.$key,
-            'uses' => 'app\controllers\Admin\ProductsController@'.$key,
+        Route::post('products/{product}/' . $key, array(
+            'as'   => 'products.' . $key,
+            'uses' => 'app\controllers\Admin\ProductsController@' . $key,
         ));
     }
     Route::post('products/delete', [
-        'as' => 'destroy_multiple',
+        'as'   => 'destroy_multiple',
         'uses' => 'app\controllers\Admin\ProductsController@destroy_multiple'
     ]);
     Route::get('products/list', [
-        'as' => 'products_list',
+        'as'   => 'products_list',
         'uses' => 'app\controllers\Admin\ProductsController@list_products'
     ]);
     Route::get('products', [
-        'as' => 'products',
+        'as'   => 'products',
         'uses' => 'app\controllers\Admin\ProductsController@index'
     ]);
 
     Route::resource('products', 'app\controllers\Admin\ProductsController');
 
     Route::post('photos', [
-        'as' => 'save_photo',
+        'as'   => 'save_photo',
         'uses' => 'app\controllers\Admin\PhotosController@store'
     ]);
     Route::post('photos/{photo}', [
-        'as' => 'delete_photo',
+        'as'   => 'delete_photo',
         'uses' => 'app\controllers\Admin\PhotosController@destroy'
     ]);
 
@@ -173,7 +221,7 @@ Route::group(['prefix' => 'store'], function ()
             'uses' => 'ProductsController@index']
     );
     Route::get('categories/{category}/products/{product}', [
-        'as' => 'product_path',
+        'as'   => 'product_path',
         'uses' => 'ProductsController@show'
     ]);
     //Route::get('search', ['as' => 'products_search', 'uses' => 'ProductsController@search']);
@@ -182,6 +230,7 @@ Route::group(['prefix' => 'store'], function ()
             'as'   => 'categories_path',
             'uses' => 'ProductsController@categories']
     );
+
 
 });
 /**

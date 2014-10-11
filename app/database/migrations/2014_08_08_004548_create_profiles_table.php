@@ -23,13 +23,12 @@ class CreateProfilesTable extends Migration {
 			$table->string('address')->nullable();
 			$table->string('code_zip')->nullable();
 			$table->string('telephone')->nullable();
-			$table->string('country')->nullable();
+			$table->string('country')->default('Costa Rica')->nullable();
 			$table->string('estate')->nullable();
 			$table->string('city')->nullable();
 			$table->string('bank')->nullable();
 			$table->string('type_account')->nullable();
 			$table->string('number_account')->nullable();
-			$table->string('nit')->nullable();
 			$table->string('skype')->nullable();
 			$table->timestamps();
 		});

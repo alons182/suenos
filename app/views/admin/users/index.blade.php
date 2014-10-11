@@ -6,6 +6,8 @@
 
 	<div class="table-responsive">
         {{ link_to_route('user_register','Nuevo Usuario',null,['class'=>'btn btn-success']) }}
+        @include('admin/users/partials/_export')
+
         <table class="table table-striped  ">
         <thead>
             <tr>
@@ -27,11 +29,15 @@
                     <td>{{ $user->created_at }}</td>
                     <td>
                                              
-                       
-                    {{ Form::open(['route' => ['store.admin.users.destroy', $user->id ], 'method' => 'delete', 'data-confirm' => 'Estas seguro?']) }}
+                     @if ($user->active)
+                        <button type="submit"  class="btn btn-success btn-xs" form="form-active-inactive" formaction="{{ URL::route("users.inactive", [$user->id]) }}">Activo <i class="glyphicon glyphicon-ok"></i></button>
+                    @else
+                        <button type="submit"  class="btn btn-danger btn-xs "form="form-active-inactive" formaction="{{ URL::route("users.active", [$user->id]) }}" > Inactivo <i class="glyphicon glyphicon-remove"></i></button>
+                    @endif
+                    <!--{{ Form::open(['route' => ['store.admin.users.destroy', $user->id ], 'method' => 'delete', 'data-confirm' => 'Estas seguro?']) }}
                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                    {{ Form::close() }}
-                         
+                    {{ Form::close() }}-->
+
 
                         
                     </td>
@@ -49,5 +55,5 @@
     </table>
     </div>  
 
-
+{{ Form::open(array('method' => 'post', 'id' => 'form-active-inactive')) }}{{ Form::close() }}
 @stop

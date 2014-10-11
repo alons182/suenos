@@ -2,21 +2,30 @@
 
 @section('content')
 <h1>{{ $currentUser->username }} | <small>{{ $currentUser->profiles->present()->fullname }}</small></h1>
-<small>{{ $currentUser->present()->accountAge }} </small>
 
 <h2>Tu red de usuarios</h2>
 
-<!--{{ matriz_table( $currentUser->descendants()->get()->toArray(), $currentUser->descendants()->count() ) }}-->
-@for ($i = 1; $i <= 15 ; $i++)
-    @foreach ($currentUser->descendants()->get() as $child)
-        @if ($child->depth == $i )
-            <li class="nivel-{{ $i }}">{{ get_depth($child->depth)}}  {{ $child->username }} - <small>{{ $child->children->count() }}</small>  </li>
-        @endif
+@forelse ($currentUser->immediateDescendants()->with('payments')->get()->chunk(15) as $userSet)
+    <div class="row users">
+        @foreach ($userSet as $user)
+            <div class="col-md-3 user-block">
 
-    @endforeach
-    <div class="division-{{ $i }}"><br/></div>
+                <div class="user-icon-toggle">
+                    <i class="icon-user"></i>
+                </div>
+                 <div class="user-block-info hidden">
+                    <p><b>Usuario :</b> {{  $user->username }}</p>
+                    <p><b>Afiliados :</b>  {{ $user->children->count() }}</p>
+                   <p> <b>Pago membresia :</b>  {{ ($user->payments->count() > 0) ? money($user->payments->first()->amount, '₡') : '₡0'}}</p>
+                </div>
+            </div>
+        @endforeach
+    </div>
+@empty
+    <p>No tiene usuarios en tu red</p>
+@endforelse
 
-@endfor
+
 
 
 

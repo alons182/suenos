@@ -16,12 +16,13 @@ class CreatePaymentsTable extends Migration {
 		{
 			$table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
 			$table->string('bank');
             $table->string('transfer_number');
             $table->date('transfer_date');
             $table->double('amount', 15, 2)->default(0);
             $table->double('gain', 15, 2)->default(0);
+            $table->double('membership_cost', 15, 2)->default(0);
             $table->string('payment_type',3);
 			$table->timestamps();
 		});

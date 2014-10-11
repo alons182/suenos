@@ -1,9 +1,11 @@
 <?php namespace app\controllers\Admin;
 
+
 use Input;
 use Laracasts\Flash\Flash;
 use Suenos\Forms\UserEditForm;
 use Suenos\Forms\UserForm;
+use Suenos\Users\UserExcelExport;
 use Suenos\Users\UserRepository;
 use User;
 use Auth;
@@ -15,19 +17,25 @@ class UsersController extends \BaseController {
     protected $userForm;
     protected $userRepository;
     protected $userEditForm;
+    /**
+     * @var UserExcelExport
+     */
+    private $export;
 
     /**
      * @param UserForm $userForm
      * @param UserEditForm $userEditForm
      * @param UserRepository $userRepository
+     * @param UserExcelExport $export
      * @internal param UserEditForm $
      */
 
-    function __construct(UserForm $userForm,UserEditForm $userEditForm, UserRepository $userRepository)
+    function __construct(UserForm $userForm,UserEditForm $userEditForm, UserRepository $userRepository,UserExcelExport $export)
     {
         $this->userForm = $userForm;
         $this->userRepository = $userRepository;
         $this->userEditForm = $userEditForm;
+        $this->export = $export;
     }
 
     /**
@@ -43,12 +51,14 @@ class UsersController extends \BaseController {
         {
             $search['q'] = "";
         }
+        $search['active'] = (isset($search['active'])) ? $search['active'] : '';
 
         $users = $this->userRepository->findAll($search);
 
         return \View::make('admin.users.index')->with([
             'users'  => $users,
-            'search' => $search['q']
+            'search' => $search['q'],
+            'selectedStatus'   => $search['active']
 
         ]);
     }
@@ -115,6 +125,34 @@ class UsersController extends \BaseController {
     }
 
     /**
+     * published a Product.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function active($id)
+    {
+        $this->userRepository->update_active($id, 1);
+
+        return \Redirect::route('users');
+    }
+
+    /**
+     * Unpublished a Product.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function inactive($id)
+    {
+        $this->userRepository->update_active($id, 0);
+
+        return \Redirect::route('users');
+    }
+
+    /**
      * Remove the specified resource from storage.
      * DELETE /users/{id}
      *
@@ -130,5 +168,18 @@ class UsersController extends \BaseController {
             'flash_type'    => 'alert-success'
         ]);;
     }
+
+    public function exportUserList()
+    {
+        $month = Input::get('month');
+        $year = Input::get('year');
+
+        return $this->export->sheet('Pagos', function($sheet)use($month,$year)
+        {
+            $sheet->fromArray($this->userRepository->reportPaidsByMonth($month,$year));
+        })->export('xls');
+    }
+
+
 
 }

@@ -10,7 +10,7 @@ class ProfilesTableSeeder extends Seeder {
     {
         $faker = Faker::create();
 
-        foreach (range(1, 5) as $index)
+        foreach (range(1, 6) as $index)
         {
             Profile::create([
                 'user_id' => $index,
@@ -20,13 +20,12 @@ class ProfilesTableSeeder extends Seeder {
                 'address'=> $faker->address,
                 'code_zip'=> $faker->postcode,
                 'telephone'=> $faker->phoneNumber,
-                'country'=> $faker->country,
-                'estate'=> $faker->city,
+                'country'=> 'Costa Rica',
+                'estate'=> 'Guanacaste',
                 'city'=> $faker->city,
                 'bank'=> $faker->word,
                 'type_account'=> $faker->creditCardType,
                 'number_account'=> $faker->creditCardNumber,
-                'nit'=> $faker->word,
                 'skype'=> $faker->word
             ]);
         }

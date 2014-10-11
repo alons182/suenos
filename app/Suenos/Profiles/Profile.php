@@ -16,7 +16,7 @@ class Profile extends \Eloquent {
 
     protected $fillable = [
         'first_name','last_name','ide','address','code_zip','telephone','country','estate',
-        'city','bank','type_account','number_account','nit','skype'
+        'city','bank','type_account','number_account','skype'
     ];
 
     public function users()

@@ -3,11 +3,11 @@
 class DatabaseSeeder extends Seeder {
 
     private $tables = [
-        'users','profiles', 'roles','payments'
+        'users','profiles', 'roles','role_user','payments','categories','products','category_product','orders'
     ];
     private $seeders = [
         'UsersTableSeeder','RolesTableSeeder','ProfilesTableSeeder',
-        'UsersRolesTableSeeder'
+        'UsersRolesTableSeeder','CategoriesTableSeeder','ProductsTableSeeder','CategoriesProductsTableSeeder'
     ];
 
     /**

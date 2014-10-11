@@ -17,6 +17,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository{
     {
         $this->model = $model;
         $this->limit = 20;
+        $this->membership_cost = 20000;
     }
 
 
@@ -25,39 +26,43 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository{
         $data = $this->prepareData($data);
 
         return $this->model->create($data);
+
     }
 
     public function getPaymentsOfYourRed($data = null)
     {
-
         $usersOfRed = Auth::user()->children()->get()->lists('id');
 
-        if($usersOfRed)
-        {
-            $payments = $this->model->with('users','users.profiles')->where(function($query) use ($usersOfRed,$data)
-                {
-                    $query->whereIn('user_id', $usersOfRed)
-                          ->where(\DB::raw('MONTH(created_at)'), '=', $data['month'] );
-                })->paginate($this->limit);
+       if($usersOfRed)
+       {
+           $payments = $this->model->with('users','users.profiles')->where(function($query) use ($usersOfRed,$data)
+               {
+                   $query->whereIn('user_id', $usersOfRed)
+                         ->where(\DB::raw('MONTH(created_at)'), '=', $data['month'] )
+                         ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year );
+               });
 
-            $gain = $this->model->where(function($query) use ($usersOfRed,$data)
-            {
-                $query->whereIn('user_id', $usersOfRed)
-                    ->where(\DB::raw('MONTH(created_at)'), '=', $data['month'] );
-            })->sum('gain');
+           $gain = $payments->sum(\DB::raw('gain'));
+           $membership_cost = ($payments->count()) ? $payments->first()->membership_cost : $this->membership_cost;
 
-        }else{
-            $payments = [];
-            $gain = 0;
-        }
 
-        $data = array(
-            'gain_bruta' => $gain,
-            'gain_neta' => $gain - 20000,
-            'payments' => $payments
-            );
+           $payments = $payments->paginate($this->limit);
 
-        return new Collection($data);
+       }else{
+           $payments = [];
+           $gain = 0;
+           $membership_cost = $this->membership_cost;
+
+       }
+
+       $data = array(
+           'gain_bruta' => $gain,
+           'gain_neta' => $gain - $membership_cost,
+           'payments' => $payments
+           );
+
+       return new Collection($data);
+
     }
     public function membershipFee()
     {
@@ -67,15 +72,16 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository{
         {
             $this->model->create([
                 'user_id' => $user->id,
-                'amount' => 20000,
-                'gain' => 15000,
+                'membership_cost' => $this->membership_cost,
+                'amount' => $this->membership_cost,
+                'gain' => ($this->membership_cost - 5000),
                 'bank' => 'Cobro de membresía',
                 'transfer_number' => 'Cobro de membresía',
                 'transfer_date' =>  $this->model->timestamp(),
             ]);
         }
 
-       // return $gain_neta;
+
     }
 
     /**
@@ -85,8 +91,9 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository{
     private function prepareData($data)
     {
         $data = array_add($data, 'user_id', Auth::user()->id);
-        $data = array_add($data, 'amount', ($data['payment_type'] == "M") ? 20000 : 5000);
-        $data = array_add($data, 'gain', ($data['payment_type'] == "M") ? (20000 - 5000) : 0);
+        $data = array_add($data, 'membership_cost', $this->membership_cost);
+        $data = array_add($data, 'amount', ($data['payment_type'] == "M") ? $this->membership_cost : 5000);
+        $data = array_add($data, 'gain', ($data['payment_type'] == "M") ? ($this->membership_cost - 5000) : 0);
 
         return $data;
     }

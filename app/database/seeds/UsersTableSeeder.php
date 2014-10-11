@@ -10,14 +10,6 @@ class UsersTableSeeder extends Seeder {
     {
         $faker = Faker::create();
 
-       /* User::create([
-            'username' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => "123"//,
-            //'parent_id' => null
-
-        ]);*/
-
         foreach (range(1, 5) as $index)
         {
             User::create([
@@ -28,6 +20,14 @@ class UsersTableSeeder extends Seeder {
 
             ]);
         }
+
+        User::create([
+            'username' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => "123",
+
+
+        ]);
 
     }
 

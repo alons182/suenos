@@ -91,10 +91,16 @@ class Product extends \Eloquent {
         return $this->belongsToMany('Suenos\Categories\Category');
     }
 
+    public function details()
+    {
+        return $this->hasOne('Suenos\Orders\Detail');
+    }
+
     public function photos()
     {
         return $this->hasMany('Suenos\Photos\Photo');
     }
+
 }
 
 

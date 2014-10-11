@@ -29,10 +29,20 @@ class ProductsController extends \BaseController {
      */
     public function index($category)
     {
+        $search = Input::all();
+        $search['subcat'] = (isset($search['subcat'])) ? $search['subcat'] : '';
 
-        $products = $this->productRepository->findByCategory($category);
+        if($search['subcat']=='')
+            $products = $this->productRepository->findByCategory($category);
+        else
+            $products = $this->productRepository->findByCategory($search['subcat']);
 
-        return View::make('products.index')->withProducts($products)->withCategory($category);
+        $subcategories = $this->categoryRepository->getChildren($category);
+
+        return View::make('products.index')->withProducts($products)
+                                            ->withCategory($category)
+                                            ->withSubcategories($subcategories)
+                                            ->withSelected($search['subcat']);
     }
 
     /**

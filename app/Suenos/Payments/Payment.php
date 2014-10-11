@@ -14,12 +14,13 @@ class Payment extends \Eloquent {
     protected $presenter = 'Suenos\Payments\PaymentPresenter';
 
     protected $fillable = [
-        'user_id','bank','transfer_number','transfer_date','amount','gain','payment_type'
+        'user_id','bank','transfer_number','transfer_date','amount','gain','payment_type','membership_cost'
     ];
 
     public function users()
     {
         return $this->belongsTo('Suenos\Users\User','user_id');
     }
+
 
 } 

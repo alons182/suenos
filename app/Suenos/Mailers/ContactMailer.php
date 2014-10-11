@@ -11,6 +11,7 @@ class ContactMailer extends Mailer{
         $view = 'emails.contact.contact';
         $subject = 'Información desde formulario de contacto de Sueños de vida';
         $emailTo = $this->listLocalEmail;
+
         return $this->sendTo($emailTo, $subject, $view, $data);
     }
 } 

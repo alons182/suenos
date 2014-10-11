@@ -27,7 +27,7 @@
         <!-- Transfer_date Form Input -->
         <div class="form-group">
             {{ Form::label('transfer_date', 'Fecha realizado:') }}
-            {{ Form::text('transfer_date', null, ['class' => 'form-control']) }}
+            {{ Form::text('transfer_date', null, ['class' => 'form-control datepicker']) }}
             {{ errors_for('transfer_date',$errors) }}
         </div>
         <!-- Create Account Form Input -->

@@ -33,6 +33,7 @@ class User extends Node implements UserInterface, RemindableInterface  {
         'username','email','password','parent_id'
     ];
 
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
@@ -40,6 +41,15 @@ class User extends Node implements UserInterface, RemindableInterface  {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function($query) use ($search)
+        {
+            $query->where('username', 'like', '%'.$search.'%')
+                ->orWhere('email', 'like', '%'.$search.'%');
+        });
+    }
     /**
      * Set Hash password
      * @param $password
@@ -61,6 +71,10 @@ class User extends Node implements UserInterface, RemindableInterface  {
     {
         return $this->hasMany('User', 'parent_id');
     }*/
+    public function orders()
+    {
+        return $this->hasMany('Suenos\Orders\Order')->latest();
+    }
     public function payments()
     {
         return $this->hasMany('Suenos\Payments\Payment');

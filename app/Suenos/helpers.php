@@ -13,6 +13,10 @@ function link_to_payments($text = 'Pagos')
 {
     return link_to_route('payments.index', $text,null,['class'=>'btn-payments']);
 }
+function link_to_orders($text = 'Mis compras')
+{
+    return link_to_route('orders.index', $text,null,['class'=>'btn-orders']);
+}
 
 function get_depth($depth)
 {

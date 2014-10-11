@@ -67,6 +67,7 @@ class PaymentsController extends \BaseController {
     public function store()
     {
         $data = Input::all();
+        $data['transfer_date'] = $data['transfer_date_submit'] ;
 
         $this->paymentForm->validate($data);
 

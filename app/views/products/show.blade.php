@@ -7,21 +7,12 @@
 
 <div class="productdetails-view productdetails">
 
-    <div class="main-image">
-        @if($product->image)
-            <div class="easyzoom easyzoom--adjacent">
-                <a href="{{ photos_path('products').$product->image }}">
-                    <img src="{{ photos_path('products').'thumb_'.$product->image }}" alt="{{ $product->name }}" width="500"  height="400"/>
-                </a>
-            </div>
-        @else
-            <img src="holder.js/481x631/text:No-image" alt="{{ $product->name }}">
-        @endif
-    </div>
 
-    <div class="product-info">
+
+    <div class="product-info simpleCart_shelfItem">
         <div class="product-inner">
-            <h1 class="product-name">{{ $product->name }} </h1>
+            <span class="item_product hidden" >{{ $product->id }}</span>
+            <h1 class="product-name item_name">{{ $product->name }} </h1>
 
             <div class="clear"></div>
             @if ( $product->promo_price > 0 )
@@ -29,12 +20,12 @@
                     <span class="tachado">{{ money($product->price, '₡') }}</span>
                 </div>
                 <div class="product-price-promo">
-                    <span>{{ money($product->promo_price, '₡') }}</span>
-                    <span class="icon icon-bookmark"><span class="discount">{{ porcent($product->discount) }}</span></span>
+                    <span class="item_price">{{ money($product->promo_price, '₡') }}</span>
+                    <span class="icon icon-bookmark"><span class="discount">{{ percent($product->discount) }}</span></span>
                 </div>
             @else
                 <div class="product-price">
-                    <span>{{ money($product->price, '₡') }}</span>
+                    <span class="item_price">{{ money($product->price, '₡') }}</span>
                 </div>
             @endif
             <div class="social-share">
@@ -68,29 +59,9 @@
             </div>
             @endif
            <div class="product-addCart">
-            <a href="#" class="btn btn-purple">Agregar al carro</a>
+            <a href="javascript:;" class="btn btn-purple item_add">Agregar al carro</a>
            </div>
-            @if (count($photos)>0)
-            <div class="other-image">Más imagenes</div>
-            <div class="additional-images">
 
-                <div class="floatleft">
-                    <img src="{{ photos_path('products') }}{{ $product->image }}"
-                         data-src="{{ photos_path('products').$product->image }}" alt="{{ $product->name }}"/>
-                </div>
-                @foreach ($photos as $photo)
-                <div class="floatleft">
-                    <img src="{{ photos_path('products') }}{{ $photo->product_id }}/{{ $photo->url }}"
-                         data-src="{{ photos_path('products') }}{{ $photo->product_id }}/{{ $photo->url}}"
-                         alt="{{ $product->name }}">
-                </div>
-                @endforeach
-
-
-                <div class="clear"></div>
-
-            </div>
-            @endif
 
 
              @if (count($others)>0)
@@ -125,6 +96,39 @@
             @endif
         </div>
     </div>
+
+     <div class="main-image">
+            @if($product->image)
+                <div class="easyzoom easyzoom--adjacent">
+                    <a href="{{ photos_path('products').$product->image }}">
+                        <img src="{{ photos_path('products').'thumb_'.$product->image }}" alt="{{ $product->name }}" width="500"  height="400"/>
+                    </a>
+                </div>
+            @else
+                <img src="holder.js/481x531/text:No-image" alt="{{ $product->name }}">
+            @endif
+             @if (count($photos)>0)
+
+                <div class="additional-images">
+                    <div class="other-image">Más imagenes</div>
+                    <div class="floatleft">
+                        <img src="{{ photos_path('products') }}{{ $product->image }}"
+                             data-src="{{ photos_path('products').$product->image }}" alt="{{ $product->name }}"/>
+                    </div>
+                    @foreach ($photos as $photo)
+                    <div class="floatleft">
+                        <img src="{{ photos_path('products') }}{{ $photo->product_id }}/{{ $photo->url }}"
+                             data-src="{{ photos_path('products') }}{{ $photo->product_id }}/{{ $photo->url}}"
+                             alt="{{ $product->name }}">
+                    </div>
+                    @endforeach
+
+
+                    <div class="clear"></div>
+
+                </div>
+                @endif
+        </div>
 
 </div>
 @stop

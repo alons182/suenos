@@ -19,13 +19,14 @@ class CreateUsersTable extends Migration {
 			$table->string('email')->unique();
 			$table->string('password', 60);
 			$table->string('remember_token')->nullable();
-			$table->timestamps();
-
+            $table->boolean('active')->default(1);
+            $table->boolean('bonus')->default(0);
             $table->integer('parent_id')->nullable()->index();
             $table->integer('lft')->nullable()->index();
             $table->integer('rgt')->nullable()->index();
             $table->integer('depth')->nullable();
-            //NestedSet::columns($table);
+
+            $table->timestamps();
 		});
 	}
 

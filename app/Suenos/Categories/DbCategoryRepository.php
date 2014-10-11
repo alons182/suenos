@@ -94,6 +94,15 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository  {
 
         return $result;
     }
+    public function getChildren($category)
+    {
+
+        $category = $this->model->whereSlug($category)->first();
+        $subcategories = $category->descendants()->lists('name','name');
+
+        return $subcategories;
+    }
+
 
     /**
      * @param $data

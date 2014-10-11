@@ -43,7 +43,15 @@ class DbRepository {
 
         return $model;
     }
+    public function update_active($id, $state)
+    {
 
+        $model = $this->findById($id);
+        $model->active = $state;
+        $model->save();
+
+        return $model;
+    }
     public function update_feat($id, $feat)
     {
         $model = $this->findById($id);

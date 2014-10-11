@@ -123,7 +123,7 @@ class DbProductRepository extends DbRepository implements ProductRepository  {
     public function getFeatured()
     {
 
-        $products = $this->model->where('featured', '=', 1)->paginate($this->limit);
+        $products = $this->model->Featured()->paginate(4);
 
         return  $products;
     }

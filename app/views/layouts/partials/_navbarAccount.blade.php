@@ -9,8 +9,8 @@
                 @else
                     <li>{{ link_to_route('profile.edit', 'Editar Mi Perfil',$currentUser->username) }}</li>
                     <li>{{ link_to_route('red.show', 'Red') }}</li>
-                    <li><a href="#">Mis compras</a></li>
-                    <li><a href="#">Mis Comisiones</a></li>
+                    <li>{{ link_to_orders() }}</li>
+                    <li>{{ link_to_payments('Balance | Pagos') }}</li>
                     <li><a href="/logout">Logout</a></li>
                 @endif
             </ul>

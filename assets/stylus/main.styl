@@ -224,21 +224,26 @@ small
         color #FFF
         padding .3em
         font-weight 400
-
+.filters
+  clearfix()
 .products
     margin-bottom 1em
 
     .product
-        width 240px
+        width 200px
         display inline-block
-
+        margin 1em
         .min-description
             font-size 13px
         .price
             color verde
             margin-bottom 1em
+        figure
+          a
+            display block
         img
             width 100%
+
     figure
         border 1px solid gris2
 
@@ -299,8 +304,10 @@ small
     position relative
     text-transform uppercase
     text-align center
-    line-height 25px
-
+    line-height 16px
+    font-size .8em
+    .author
+      font-weight bold
 .shipping
     background verde
 
@@ -466,6 +473,7 @@ small
             background verde !important
             color #FFF
 .payments-table
+.orders-table
     font-size 13px
     margin-top 20px
 .gains-container
@@ -492,7 +500,34 @@ small
     right 3px
     top 3px
 // store
-
+.user-block
+  width 50px
+  display  inline-block
+  vert-align top
+  position relative
+  padding  .5em
+  text-align center
+.user-icon-toggle
+  i
+    font-size 3em
+    cursor pointer
+    &:hover
+      color verde
+.user-block-info
+  position absolute
+  background #FFFFFF
+  border 1px solid morado
+  padding .5em
+  z-index 99
+  font-size 1em
+  width 250px
+  top: 6px;
+  left: 55px;
+  text-align  left
+  p
+    margin 0
+.hidden
+  display none
 .productdetails
     background #FFF
     position relative
@@ -514,15 +549,26 @@ small
       text-align left
       overflow hidden
       position relative
-      img
-        //width 100% //auto
-        //height auto
-        max-height none
-        max-width none
-        position relative
-        min-width 100%
+
+      a
+        display block
+        width 480px
+        img
+          width 100%
+          height auto
+          max-height 400px
+      /*.easyzoom
+        img
+          max-height none
+          max-width none
+          position relative
+          min-width 100%
+          height: auto;
+          max-height 480px*/
     .product-info
       padding-top 0px
+      position relative
+      z-index 2
     .product-inner
       padding-right 60px
     .product-name
@@ -550,7 +596,7 @@ small
       font-size 2em
       top 0
       right -65px
-      color fusia
+      color rojo
 
     .discount
       position absolute
@@ -580,7 +626,8 @@ small
       color #000
       padding 5px 0
     .additional-images
-      margin 10px 0
+      margin 10px 25px
+      width 460px
 
       img
         margin-right 8px
@@ -588,6 +635,7 @@ small
         height auto
         max-width 100%
         cursor pointer
+        min-width 0 !important
     .other-products
       font-size 18px
       color #000
@@ -635,6 +683,194 @@ small
         display block
         font-size 13px
         line-height 20px
+.tachado
+  text-decoration line-through
+.floatleft
+  float left
+
+// cart style
+.cartInfo
+  float: right;
+  width: 60px;
+  background: #EFF1F4 url(../img/sprite.png) -218px -2px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #6e6e6e;
+  text-shadow: 1px 1px 0 #fff;
+  border-radius: 3px;
+  box-shadow: inset 0 0 1px 0px rgba(0,0,0,.20), 0 1px 0 #fff;
+  padding: 7px 8px 6px 33px;
+  line-height: 18px;
+  position: relative;
+  top: 0px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: background-color .2s linear;
+
+  &.open
+    background-position: -218px -26px;
+
+#cartPopover
+  position: absolute;
+  width: 218px;
+  font-size 12px
+  top: 72px;
+  right: 165px;
+  z-index: 9999;
+  display: none;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0,0,0,.8);
+  font-family: "FreightSansMedium", sans-serif;
+  border-radius: 4px;
+  border: 1px solid #000;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2),0 1px 3px rgba(0,0,0,.5);
+  background: #45484a;
+  background: linear-gradient(top, #45484a 0%,#2a2b2c 100%);
+
+  .simpleCart_increment
+    line-height: 1;
+    font-size: 1px;
+    display: block;
+    height: 5px;
+    margin-top: 3px;
+  .itemRow
+    border-bottom: 1px solid #2B2D2E;
+    border-top: 1px solid #434547;
+    padding: 10px;
+    height: 12px;
+    div
+      float: left;
+  .item-custom
+    width: 35px;
+    margin-right: 6px;
+    div
+      float: left;
+      height: 13px;
+      margin-left: 3px;
+    span
+      float: left;
+      height: 13px;
+      display: inline-block;
+      font-family: "Trebuchet MS", sans-serif;
+      width: 23px;
+      text-align: right;
+  .item-name
+    float: left;
+    width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+.left
+  float left
+
+.right
+  float right
+
+
+#cartData
+  background: morado;
+  padding: 10px;
+
+#popoverButtons
+  padding: 10px
+
+.hudbtn
+  font: bold 13px/26px "FreightSans", sans-serif;
+  color: #d9d9d9;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+  padding: 0 12px;
+  height: 24px;
+  border: 1px solid #000;
+  box-shadow: inset 0 1px 0 #6d6d6e;
+  background: #3a3a3b;
+
+
+  &.primary
+    background: verde;
+    box-shadow: inset 0 1px 0 #D8E994;
+    color: #fff;
+
+.clearfix:after {
+  clear: both;
+}
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+.simpleCart_items {
+  float: left;
+  clear: left;
+  width: 100%
+  margin: 20px;
+  font-size 13px
+
+}
+.headerRow
+  &>div
+    vertical-align: bottom;
+    border-bottom: 2px solid #DDD;
+    padding: 8px;
+    line-height: 1.42857143;
+    width 17%
+    float: left;
+    text-align  center
+    font-weight bold
+
+.itemRow
+  clear: both;
+  &>div
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
+    width 17%
+    float: left;
+    text-align  center
+  &.odd
+    &>div
+      background-color #F9F9F9
+
+.item-quantity input {
+  width: 20px;
+  border: 1px solid #CCC;
+  padding: 3px 2px;
+  margin: 0 auto;
+  display: block;
+  font-size: 11px;
+}
+.checkoutEmptyLinks {
+  float: left;
+  clear: left;
+  width: 500px;
+  padding-left: 221px;
+}
+.icons-quantity
+{
+  float: left;
+}
+.simpleCart_increment,.simpleCart_decrement
+{
+
+  padding: 5px;
+
+}
+.simpleCart_increment
+{
+  left: 0;
+}
+.simpleCart_decrement
+{
+  right: 0;
+}
+.simpleCart_grandTotal
+  float right
+  margin-right 85px
+  background verde
+  padding .2em
+  color #FFFFFF
+  margin-top -20px
 
 @import "easyzoom.styl"
 @import "responsive.styl"	

@@ -32,32 +32,20 @@
             {{ errors_for('address',$errors) }}
 
         </div>
-        <!-- Code Zip Form Input -->
-        <div class="form-group">
-            {{ Form::label('code_zip', 'Code Zip:') }}
-            {{ Form::text('code_zip', null, ['class' => 'form-control']) }}
-            {{ errors_for('code_zip',$errors) }}
-        </div>
+
         <!-- Telephone Form Input -->
         <div class="form-group">
             {{ Form::label('telephone', 'Teléfono:') }}
             {{ Form::text('telephone', null, ['class' => 'form-control']) }}
             {{ errors_for('telephone',$errors) }}
         </div>
-        <!-- Country Form Input -->
-        <div class="form-group">
-            {{ Form::label('country', 'País:') }}
-            {{ Form::text('country', null, ['class' => 'form-control']) }}
-            {{ errors_for('country',$errors) }}
-        </div>
-
 
     </div>
     <div class="col-2">
         <!-- Estate Form Input -->
         <div class="form-group">
             {{ Form::label('estate', 'Provincia:') }}
-            {{ Form::text('estate', null, ['class' => 'form-control']) }}
+            {{ Form::select('estate', ['guanacaste' => 'Guanacaste'], null,['class'=>'form-control']) }}
             {{ errors_for('estate',$errors) }}
         </div>
         <!-- City Form Input -->
@@ -73,24 +61,14 @@
             {{ Form::text('bank', null, ['class' => 'form-control']) }}
             {{ errors_for('bank',$errors) }}
         </div>
-        <!-- Type Account Form Input -->
-        <div class="form-group">
-            {{ Form::label('type_account', 'Tipo de cuenta bancaria:') }}
-            {{ Form::text('type_account', null, ['class' => 'form-control']) }}
-            {{ errors_for('type_account',$errors) }}
-        </div>
+
         <!-- Number Account Form Input -->
         <div class="form-group">
             {{ Form::label('number_account', 'Numero de cuenta bancaria:') }}
             {{ Form::text('number_account', null, ['class' => 'form-control']) }}
             {{ errors_for('number_account',$errors) }}
         </div>
-        <!-- Nit Form Input -->
-        <div class="form-group">
-            {{ Form::label('nit', 'Nit:') }}
-            {{ Form::text('nit', null, ['class' => 'form-control']) }}
-            {{ errors_for('nit',$errors) }}
-        </div>
+
         <!-- Skype Form Input -->
         <div class="form-group">
             {{ Form::label('skype', 'Skype:') }}

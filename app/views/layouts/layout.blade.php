@@ -36,11 +36,37 @@
                 <i class="icon-search"></i>
                 <input type="text" name="q" class="form-control" />
             </div>
+
             <div class="cart">
                             <span class="img-cart">
                                 <img src="/img/icon-bag.png" alt="Cart">
                             </span>
-                <a href="#" class="btn-cart">Carrito <span>(Vacio)</span></a>
+                <a href="#" class="btn-cart">Carrito
+
+                        <span class="cartInfo">
+                           <span class="simpleCart_quantity"></span> items
+                       </span>
+
+               </a>
+
+                <div id="cartPopover">
+
+                             <div id="cartData" class="clearfix">
+                                <div class="left">
+                                    <strong>Items:</strong>
+                                    <span class="simpleCart_quantity"></span>
+                                </div>
+                                <div class="right">
+                                    <strong>Total:</strong>
+                                    <span class="simpleCart_total"></span>
+                                </div>
+                             </div>
+                             <div id="popoverButtons" class="clearfix">
+                                {{ link_to_route('cart_path','Ver', null,['class' => 'hudbtn left']) }}
+                                {{ link_to_route('cart_checkout','Checkout', null,['class' => 'hudbtn primary right']) }}
+
+                             </div>
+                        </div>
             </div>
         </div>
     </header>
@@ -64,9 +90,10 @@
 
 
     <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>-->
-
+    <!--<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>-->
+    <!--<script src="/js/simpleCart.min.js"></script>-->
     <script src="/js/bundle.js"></script>
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>

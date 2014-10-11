@@ -5,6 +5,7 @@
 @section('content')
     <section class="main">
         <h1>{{ $category }}</h1>
+        @include('layouts.partials._filter_products')
         @include('layouts.partials._list_products')
     </section>
 @stop

@@ -13,15 +13,17 @@ class UsersRolesTableSeeder extends Seeder {
 
         $usersIds = User::lists('id');
         $rolesIds = Role::lists('id');
-        foreach(range(1, 5) as $index)
+        foreach(range(1, 6) as $index)
         {
 
             DB::table('role_user')->insert([
                 'role_id' => $faker->randomElement($rolesIds),
-                'user_id' => $faker->randomElement($usersIds)
+                'user_id' => $index
             ]);
 
         }
+
+
     }
 
 }

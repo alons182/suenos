@@ -32,7 +32,7 @@ class SessionsController extends \BaseController {
 	public function store()
 	{
         $this->loginForm->validate($input = Input::only('email', 'password'));
-
+        $input = array_add($input, 'active', '1');
         if (Auth::attempt($input))
         {
             return Redirect::intended('/');

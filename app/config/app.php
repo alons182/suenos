@@ -127,6 +127,7 @@ return array(
         'Intervention\Image\ImageServiceProvider',
         'Laracasts\Flash\FlashServiceProvider',
         'Baum\BaumServiceProvider',
+        'Maatwebsite\Excel\ExcelServiceProvider',
 
 
 
@@ -198,6 +199,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
         'Image'			  => 'Intervention\Image\Facades\Image',
         'Flash'           => 'Laracasts\Flash\Flash',
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 
         //'NestedSet'       => 'Kalnoy\Nestedset\NestedSet',
         //'Node'            => 'Kalnoy\Nestedset\Node',

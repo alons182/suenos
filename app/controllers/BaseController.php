@@ -19,7 +19,8 @@ class BaseController extends Controller {
 
         View::share('currentUser', Auth::user());
         View::share('currentMonth', Carbon::now()->month);
-        View::share('categories', Category::all());
+        View::share('currentYear', Carbon::now()->year);
+        View::share('categories', Category::where('depth', '=','0')->get());
 	}
 
 

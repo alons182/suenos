@@ -1,16 +1,22 @@
 <?php
 use Suenos\Forms\RegistrationForm;
+use Suenos\Mailers\UserMailer;
 use Suenos\Users\UserRepository;
 
 class RegistrationController extends \BaseController {
 
     protected $registrationForm;
     protected $userRepository;
+    /**
+     * @var UserMailer
+     */
+    private $mailer;
 
-    function __construct(RegistrationForm $registrationForm, UserRepository $userRepository)
+    function __construct(RegistrationForm $registrationForm, UserRepository $userRepository, UserMailer $mailer)
     {
         $this->registrationForm = $registrationForm;
         $this->userRepository = $userRepository;
+        $this->mailer = $mailer;
     }
 
 
@@ -44,6 +50,9 @@ class RegistrationController extends \BaseController {
         Auth::login($user);
 
         Flash::message('Complete your profile, its very important !');
+
+        $this->mailer->sendWelcomeMessageTo($user);
+
 
         return Redirect::route('profile.edit',$user->username);
 	}

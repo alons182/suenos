@@ -114,3 +114,5 @@ textarea.form-control{height:100px}
 .loading-search{position:absolute;top:10px;left:105px}
 .main_image{width:200px}
 .main_image img{width:100%}
+.export-users{float:right}
+.export-users .form-group .controls{display:inline-block;vertical-align:top}

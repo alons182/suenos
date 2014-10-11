@@ -113,6 +113,14 @@ textarea.form-control{
 .main_image img{
     width: 100%;
 }
+.export-users {
+    float: right;
+}
+.export-users .form-group .controls {
+    display: inline-block;
+    vertical-align: top;
+}
+
 
 	
 					
