@@ -107,6 +107,7 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
         }
         $data = array_add($data, 'description', $description);
         $data = array_add($data, 'total', $total);
+        $data = array_add($data, 'status', 'P');
 
         return $data;
     }
