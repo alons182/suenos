@@ -17,6 +17,7 @@ class DbRepository {
     {
         return $this->model->create($data);
     }
+
     public function destroy($id)
     {
         $model = $this->model->findOrFail($id);
@@ -29,6 +30,7 @@ class DbRepository {
     {
         return $this->model->count();
     }
+
     public function findById($id)
     {
         return $this->model->findOrFail($id);
@@ -43,6 +45,7 @@ class DbRepository {
 
         return $model;
     }
+
     public function update_active($id, $state)
     {
 
@@ -52,6 +55,7 @@ class DbRepository {
 
         return $model;
     }
+
     public function update_feat($id, $feat)
     {
         $model = $this->findById($id);

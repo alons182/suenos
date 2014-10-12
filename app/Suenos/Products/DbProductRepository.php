@@ -7,7 +7,7 @@ use Suenos\DbRepository;
 use Suenos\Photos\Photo;
 
 
-class DbProductRepository extends DbRepository implements ProductRepository  {
+class DbProductRepository extends DbRepository implements ProductRepository {
 
     protected $model;
 
@@ -137,7 +137,7 @@ class DbProductRepository extends DbRepository implements ProductRepository  {
 
         $products = $category->products()->with('categories')->where('published', '=', 1)->paginate($this->limit);
 
-        return  $products;
+        return $products;
     }
 
     /**
@@ -179,7 +179,7 @@ class DbProductRepository extends DbRepository implements ProductRepository  {
 
         $products = $this->model->Featured()->paginate(4);
 
-        return  $products;
+        return $products;
     }
 
     /**

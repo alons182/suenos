@@ -31,7 +31,6 @@ class PagesController extends \BaseController {
         $this->productRepository = $productRepository;
 
 
-
     }
 
 
@@ -44,6 +43,7 @@ class PagesController extends \BaseController {
     public function index()
     {
         $products = $this->productRepository->getFeatured();
+
         return View::make('pages.index')->withProducts($products);
     }
 

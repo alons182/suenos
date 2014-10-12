@@ -24,7 +24,7 @@ class DbPhotoRepository extends DbRepository implements PhotoRepository {
     public function store($data)
     {
         $cant = count($this->getPhotos($data['product_id']));
-        $data['url'] = ($data['photo']) ? $this->storeImage($data['photo'], 'photo_' . ++$cant, 'products/' . $data['product_id'], 50, null) : '';
+        $data['url'] = ($data['photo']) ? $this->storeImage($data['photo'], 'photo_' . ++ $cant, 'products/' . $data['product_id'], 50, null) : '';
         $data['url_thumb'] = 'thumb_' . $data['url'];
 
         $photo = $this->model->create($data);

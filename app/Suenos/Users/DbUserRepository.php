@@ -6,7 +6,7 @@ use Suenos\DbRepository;
 use Suenos\Roles\Role;
 
 
-class DbUserRepository extends DbRepository implements UserRepository  {
+class DbUserRepository extends DbRepository implements UserRepository {
 
     protected $model;
 
@@ -28,13 +28,13 @@ class DbUserRepository extends DbRepository implements UserRepository  {
 
         $user = $this->model->create($data);
 
-      //  dd($user);
+        //  dd($user);
         $role = (isset($data['role'])) ? $data['role'] : Role::whereName('member')->first();
 
         $user->createProfile();
         $user->assignRole($role);
 
-        $user = $this->bonus($user,$parent_id);
+        $user = $this->bonus($user, $parent_id);
 
         return $user;
     }
@@ -82,7 +82,7 @@ class DbUserRepository extends DbRepository implements UserRepository  {
         if (trim($search['q']))
         {
             $users = $this->model->Search($search['q']);
-        }else
+        } else
         {
             $users = $this->model;
         }
@@ -113,7 +113,7 @@ class DbUserRepository extends DbRepository implements UserRepository  {
      * @param $year
      * @return array
      */
-    public function reportPaidsByMonth($month,$year)
+    public function reportPaidsByMonth($month, $year)
     {
 
         $users = $this->model->with('profiles')->get();
@@ -123,36 +123,37 @@ class DbUserRepository extends DbRepository implements UserRepository  {
         {
             $usersOfRed = $user->children()->get()->lists('id');
 
-            if($usersOfRed)
+            if ($usersOfRed)
             {
-                $payments = Payment::where(function($query) use ($usersOfRed,$month,$year)
+                $payments = Payment::where(function ($query) use ($usersOfRed, $month, $year)
                 {
                     $query->whereIn('user_id', $usersOfRed)
-                     ->where(\DB::raw('MONTH(created_at)'), '=', $month )
-                     ->where(\DB::raw('YEAR(created_at)'), '=', $year );
+                        ->where(\DB::raw('MONTH(created_at)'), '=', $month)
+                        ->where(\DB::raw('YEAR(created_at)'), '=', $year);
                 });
                 $gain = $payments->sum('gain') - (($payments->count()) ? $payments->first()->membership_cost : $this->membership_cost);
 
 
-
-            } else{
+            } else
+            {
                 $gain = 0;
             }
 
             $userArray = array(
-                'id' => $user->id,
-                'Email' => $user->email,
+                'id'     => $user->id,
+                'Email'  => $user->email,
                 'Nombre' => $user->profiles->present()->fullname,
                 'Cedula' => $user->profiles->ide,
                 'Cuenta' => $user->profiles->number_account,
-                'Monto' => $gain,
-                'Mes' => $month,
-                'Año' => $year
+                'Monto'  => $gain,
+                'Mes'    => $month,
+                'Año'    => $year
             );
 
             $usersArray[] = $userArray;
 
         }
+
         return $usersArray;
 
     }
@@ -163,10 +164,11 @@ class DbUserRepository extends DbRepository implements UserRepository  {
      */
     public function prepareData($data)
     {
-       // if (! $data['parent_id'])
-       // {
-            $data = array_except($data, array('parent_id'));
-       // }
+        // if (! $data['parent_id'])
+        // {
+        $data = array_except($data, array('parent_id'));
+
+        // }
 
 
         return $data;
@@ -179,9 +181,9 @@ class DbUserRepository extends DbRepository implements UserRepository  {
      * @internal param $data
      * @return mixed
      */
-    public function bonus($user,$parent_id)
+    public function bonus($user, $parent_id)
     {
-        if($parent_id)
+        if ($parent_id)
         {
             $parent_user = $this->model->findOrFail($parent_id);
 
@@ -192,13 +194,12 @@ class DbUserRepository extends DbRepository implements UserRepository  {
                     $parent_user->bonus = 1;
                     $parent_user->save();
                     $this->bonus($user, $parent_user->parent_id);
-                }
-                else
+                } else
                 {
                     $user->parent_id = $parent_user->id;
                     $user->save();
                 }
-            }else
+            } else
             {
                 $user->parent_id = $parent_user->id;
                 $parent_user->bonus = 1;
@@ -210,7 +211,6 @@ class DbUserRepository extends DbRepository implements UserRepository  {
 
 
         }
-
 
 
         return $user;

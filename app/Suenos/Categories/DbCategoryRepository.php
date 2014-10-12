@@ -5,8 +5,7 @@ use Illuminate\Support\Str;
 use Suenos\DbRepository;
 
 
-
-class DbCategoryRepository extends DbRepository implements CategoryRepository  {
+class DbCategoryRepository extends DbRepository implements CategoryRepository {
 
     protected $model;
 
@@ -125,7 +124,7 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository  {
         {
             $name = $item->name;
             if ($item->depth > 0) $name = str_repeat('—', $item->depth) . ' ' . $name;
-            $result[$item->id] = $name;
+            $result[ $item->id ] = $name;
         }
 
         return $result;
@@ -140,7 +139,7 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository  {
     {
 
         $category = $this->model->whereSlug($category)->first();
-        $subcategories = $category->descendants()->lists('name','name');
+        $subcategories = $category->descendants()->lists('name', 'name');
 
         return $subcategories;
     }
@@ -152,7 +151,7 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository  {
      */
     private function prepareData($data)
     {
-        if(!$data['parent_id'])
+        if (! $data['parent_id'])
         {
             $data = array_except($data, array('parent_id'));
         }

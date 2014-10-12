@@ -44,7 +44,7 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
         for ($i = 1; $i <= $data['itemCount']; $i ++)
         {
             $detail = new Detail;
-            $detail->product_id = substr($data['item_options_'.$i], 9);
+            $detail->product_id = substr($data[ 'item_options_' . $i ], 9);
             $detail->quantity = $data[ 'item_quantity_' . $i ];
             $order->details()->save($detail);
         }
@@ -60,6 +60,7 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
     public function findAll($data)
     {
         $orders = Auth::user()->orders()->paginate($this->limit);
+
         return $orders;
     }
 
@@ -84,7 +85,7 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
             $orders = $orders->where('status', '=', $search['status']);
         }
 
-        return $orders->with('users','details')->orderBy('created_at', 'desc')->paginate($this->limit);
+        return $orders->with('users', 'details')->orderBy('created_at', 'desc')->paginate($this->limit);
     }
 
     /**
@@ -138,7 +139,7 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
         $total = 0;
         for ($i = 1; $i <= $data['itemCount']; $i ++)
         {
-            $description .= $data[ 'item_name_' . $i ].', ';
+            $description .= $data[ 'item_name_' . $i ] . ', ';
             $total += ($data[ 'item_price_' . $i ] * $data[ 'item_quantity_' . $i ]);
         }
         $data = array_add($data, 'description', $description);

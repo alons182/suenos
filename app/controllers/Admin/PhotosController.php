@@ -39,7 +39,7 @@ class PhotosController extends \BaseController {
      */
     public function destroy($id)
     {
-       return $this->photoRepository->destroy($id);;
+        return $this->photoRepository->destroy($id);;
     }
 
 }

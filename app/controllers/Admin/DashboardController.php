@@ -24,7 +24,7 @@ class DashboardController extends \BaseController {
      */
     private $orderRepository;
 
-    function __construct(CategoryRepository $categoryRepository, ProductRepository $productRepository, UserRepository $userRepository,OrderRepository $orderRepository)
+    function __construct(CategoryRepository $categoryRepository, ProductRepository $productRepository, UserRepository $userRepository, OrderRepository $orderRepository)
     {
 
         $this->categoryRepository = $categoryRepository;
@@ -34,13 +34,13 @@ class DashboardController extends \BaseController {
     }
 
     /**
-	 * Display a listing of the resource.
-	 * GET /dashboard
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+     * Display a listing of the resource.
+     * GET /dashboard
+     *
+     * @return Response
+     */
+    public function index()
+    {
         $categories = $this->categoryRepository->getLasts();
         $total_categories = $this->categoryRepository->getTotal();
         $products = $this->productRepository->getLasts();
@@ -54,8 +54,7 @@ class DashboardController extends \BaseController {
             ->withProducts($products)->withTp($total_products)
             ->withOrders($orders)->withTo($total_orders)
             ->withUsers($users)->withTu($total_users);
-	}
-
+    }
 
 
 }

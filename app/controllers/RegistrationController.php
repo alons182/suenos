@@ -27,22 +27,22 @@ class RegistrationController extends \BaseController {
      * @param null $username
      * @return Response
      */
-	public function create($username = null)
-	{
+    public function create($username = null)
+    {
         $user = ($username) ? $this->userRepository->findByUsername($username) : null;
 
         return View::make('registration.create')->withParent_user($user);
-	}
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /registration
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-        $input =   Input::only('username', 'email', 'password', 'password_confirmation','parent_id','terms');
+    /**
+     * Store a newly created resource in storage.
+     * POST /registration
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        $input = Input::only('username', 'email', 'password', 'password_confirmation', 'parent_id', 'terms');
 
         $this->registrationForm->validate($input);
         $user = $this->userRepository->store($input);
@@ -54,8 +54,8 @@ class RegistrationController extends \BaseController {
         $this->mailer->sendWelcomeMessageTo($user);
 
 
-        return Redirect::route('profile.edit',$user->username);
-	}
+        return Redirect::route('profile.edit', $user->username);
+    }
 
 
 }

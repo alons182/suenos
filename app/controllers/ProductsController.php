@@ -32,7 +32,7 @@ class ProductsController extends \BaseController {
         $search = Input::all();
         $search['subcat'] = (isset($search['subcat'])) ? $search['subcat'] : '';
 
-        if($search['subcat']=='')
+        if ($search['subcat'] == '')
             $products = $this->productRepository->findByCategory($category);
         else
             $products = $this->productRepository->findByCategory($search['subcat']);
@@ -40,9 +40,9 @@ class ProductsController extends \BaseController {
         $subcategories = $this->categoryRepository->getChildren($category);
 
         return View::make('products.index')->withProducts($products)
-                                            ->withCategory($category)
-                                            ->withSubcategories($subcategories)
-                                            ->withSelected($search['subcat']);
+            ->withCategory($category)
+            ->withSubcategories($subcategories)
+            ->withSelected($search['subcat']);
     }
 
     /**

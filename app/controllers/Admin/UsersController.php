@@ -11,7 +11,6 @@ use User;
 use Auth;
 
 
-
 class UsersController extends \BaseController {
 
     protected $userForm;
@@ -30,7 +29,7 @@ class UsersController extends \BaseController {
      * @internal param UserEditForm $
      */
 
-    function __construct(UserForm $userForm,UserEditForm $userEditForm, UserRepository $userRepository,UserExcelExport $export)
+    function __construct(UserForm $userForm, UserEditForm $userEditForm, UserRepository $userRepository, UserExcelExport $export)
     {
         $this->userForm = $userForm;
         $this->userRepository = $userRepository;
@@ -56,9 +55,9 @@ class UsersController extends \BaseController {
         $users = $this->userRepository->findAll($search);
 
         return \View::make('admin.users.index')->with([
-            'users'  => $users,
-            'search' => $search['q'],
-            'selectedStatus'   => $search['active']
+            'users'          => $users,
+            'search'         => $search['q'],
+            'selectedStatus' => $search['active']
 
         ]);
     }
@@ -82,7 +81,7 @@ class UsersController extends \BaseController {
      */
     public function store()
     {
-        $input = Input::only('username', 'email', 'password', 'password_confirmation', 'role','parent_id');
+        $input = Input::only('username', 'email', 'password', 'password_confirmation', 'role', 'parent_id');
         $this->userForm->validate($input);
         $this->userRepository->store($input);
 
@@ -178,12 +177,11 @@ class UsersController extends \BaseController {
         $month = Input::get('month');
         $year = Input::get('year');
 
-        return $this->export->sheet('Pagos', function($sheet)use($month,$year)
+        return $this->export->sheet('Pagos', function ($sheet) use ($month, $year)
         {
-            $sheet->fromArray($this->userRepository->reportPaidsByMonth($month,$year));
+            $sheet->fromArray($this->userRepository->reportPaidsByMonth($month, $year));
         })->export('xls');
     }
-
 
 
 }

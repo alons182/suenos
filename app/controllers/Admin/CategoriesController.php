@@ -25,13 +25,13 @@ class CategoriesController extends \BaseController {
 
 
     /**
-	 * Display a listing of the resource.
-	 * GET /categories
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+     * Display a listing of the resource.
+     * GET /categories
+     *
+     * @return Response
+     */
+    public function index()
+    {
         $search = Input::all();
         $search['q'] = (isset($search['q'])) ? trim($search['q']) : '';
         $search['published'] = (isset($search['published'])) ? $search['published'] : '';
@@ -43,7 +43,7 @@ class CategoriesController extends \BaseController {
             'selectedStatus' => $search['published']
 
         ]);
-	}
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -225,15 +225,17 @@ class CategoriesController extends \BaseController {
         {
             try
             {
-               ($dir === 'before') ? $category->moveLeft() : $category->moveRight();
+                ($dir === 'before') ? $category->moveLeft() : $category->moveRight();
                 Flash::message('Category moved');
+
                 return $response;
 
-            }catch (moveExp $ex){
+            } catch (moveExp $ex)
+            {
                 Flash::warning('The category did not move');
+
                 return $response;
             }
-
 
 
         }

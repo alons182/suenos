@@ -37,9 +37,9 @@ class OrdersController extends \BaseController {
         $orders = $this->orderRepository->getAll($search);
 
         return \View::make('admin.orders.index')->with([
-            'orders' => $orders,
-            'search' => $search['q'],
-            'selectedStatus'   => $search['status']
+            'orders'         => $orders,
+            'search'         => $search['q'],
+            'selectedStatus' => $search['status']
         ]);
     }
 

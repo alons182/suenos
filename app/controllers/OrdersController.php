@@ -30,65 +30,66 @@ class OrdersController extends BaseController {
 
 
     /**
-	 * Display a listing of the resource.
-	 * GET /orders
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+     * Display a listing of the resource.
+     * GET /orders
+     *
+     * @return Response
+     */
+    public function index()
+    {
         $data = Input::all();
 
         $orders = $this->orderRepository->findAll($data);
 
         return View::make('orders.index')->with([
-            'orders'      => $orders
+            'orders' => $orders
 
         ]);
-	}
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /orders
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
+    /**
+     * Store a newly created resource in storage.
+     * POST /orders
+     *
+     * @return Response
+     */
+    public function store()
+    {
         $data_cart = Input::all();
-        $data_form = json_decode(Session::get('data_form'),true);
+        $data_form = json_decode(Session::get('data_form'), true);
 
-        if($data_cart['itemCount']==0)
+        if ($data_cart['itemCount'] == 0)
         {
             Flash::message('No hay items en el carrito');
+
             return Redirect::route('cart_path');
         }
 
-        $order =  $this->orderRepository->store($data_cart);
+        $order = $this->orderRepository->store($data_cart);
 
-        $this->mailer->sendConfirmMessageOrder($order,$data_form);
+        $this->mailer->sendConfirmMessageOrder($order, $data_form);
 
-        Flash::message('Pago realizado con exito - orden '.$order->id);
+        Flash::message('Pago realizado con exito - orden ' . $order->id);
 
         return Redirect::route('orders.index');
-	}
+    }
 
-	/**
-	 * Display the specified resource.
-	 * GET /orders/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-        $order =  $this->orderRepository->findById($id);
+    /**
+     * Display the specified resource.
+     * GET /orders/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $order = $this->orderRepository->findById($id);
 
         return View::make('orders.show')->with([
-            'order'      => $order
+            'order' => $order
 
         ]);
-	}
+    }
 
     public function cart()
     {
@@ -117,16 +118,13 @@ class OrdersController extends BaseController {
         $this->orderForm->validate($data);
 
         Session::forget('data_form');
-        Session::put('data_form',json_encode($data) );
+        Session::put('data_form', json_encode($data));
 
 
         return View::make('orders.checkoutFinal')->withData($data);
 
 
     }
-
-
-
 
 
 }
