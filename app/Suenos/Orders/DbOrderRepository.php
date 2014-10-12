@@ -48,6 +48,43 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
         return $orders;
     }
 
+    public function getAll($search)
+    {
+
+        $orders = $this->model;
+
+
+        if (isset($search['q']) && ! empty($search['q']))
+        {
+            $orders = $orders->Search($search['q']);
+        }
+
+        if (isset($search['status']) && $search['status'] != "")
+        {
+            $orders = $orders->where('status', '=', $search['status']);
+        }
+
+        return $orders->with('users','details')->orderBy('created_at', 'desc')->paginate($this->limit);
+    }
+
+    public function update($id, $data)
+    {
+        $order = $this->model->findOrFail($id);
+        $order->fill($data);
+        $order->save();
+
+        return $order;
+    }
+
+    public function destroy($id)
+    {
+        $order = $this->model->findOrFail($id);
+
+        $order->delete();
+
+        return $order;
+    }
+
     public function findById($id)
     {
         return $this->model->with('details')->findOrFail($id);
@@ -72,6 +109,16 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
         $data = array_add($data, 'total', $total);
 
         return $data;
+    }
+
+    /**
+     * get last orders for the dashboard page
+     * @return mixed
+     */
+    public function getLasts()
+    {
+        return $this->model->orderBy('orders.created_at', 'desc')
+            ->limit(6)->get(['orders.id']);
     }
 
 

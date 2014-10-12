@@ -103,7 +103,7 @@ Route::post('cart/checkoutConfirm', [
 
 Route::post('cart/checkout', [
     'as'   => 'cart_checkout.store',
-    'uses' => 'OrdersController@checkout'
+    'uses' => 'OrdersController@store'
 ])->before('auth');
 
 
@@ -211,6 +211,20 @@ Route::group(['prefix' => 'store/admin', 'before' => 'role:administrator'], func
         'uses' => 'app\controllers\Admin\PhotosController@destroy'
     ]);
 
+    Route::post('orders/delete', [
+        'as'   => 'destroy_multiple',
+        'uses' => 'app\controllers\Admin\OrdersController@destroy_multiple'
+    ]);
+    Route::get('orders/list', [
+        'as'   => 'orders_list',
+        'uses' => 'app\controllers\Admin\OrdersController@list_orders'
+    ]);
+    Route::get('orders', [
+        'as'   => 'orders',
+        'uses' => 'app\controllers\Admin\OrdersController@index'
+    ]);
+
+    Route::resource('orders', 'app\controllers\Admin\OrdersController');
 
 });
 Route::group(['prefix' => 'store'], function ()

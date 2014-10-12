@@ -6,6 +6,10 @@ return array(
         'M' => 'Membership',
         'A' => 'Administrative',
     ),
+    'status' => array(
+        'P' => 'Pending',
+        'F' => 'Completed',
+    ),
 
 
 );

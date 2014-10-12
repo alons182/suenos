@@ -169,6 +169,10 @@ class UsersController extends \BaseController {
         ]);;
     }
 
+    /**
+     * Function for exported user list for payments
+     * @return mixed
+     */
     public function exportUserList()
     {
         $month = Input::get('month');

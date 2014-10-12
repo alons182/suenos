@@ -6,5 +6,9 @@ return array(
         'M' => 'Membresía',
         'A' => 'Administrativo',
     ),
+    'status' => array(
+        'P' => 'Pendiente',
+        'F' => 'Finalizada',
+    ),
 
 );

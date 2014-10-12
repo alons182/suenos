@@ -17,6 +17,7 @@
             <li class="{{ set_active('admin/users') }}">{{ link_to_route('users','Usuarios') }}</li>
             <li class="{{ set_active('admin/categories') }}">{{ link_to_route('categories','Categorias') }}</li>
             <li class="{{ set_active('admin/products') }}">{{ link_to_route('products','Productos') }}</li>
+            <li class="{{ set_active('admin/orders') }}">{{ link_to_route('orders','Ordenes') }}</li>
             <li>{{ link_to_route('logout','Logout') }}</li>
            @else 
               <li class="{{ set_active('admin/login') }}">{{ link_to_route('login','Login') }}</li>

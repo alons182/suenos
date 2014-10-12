@@ -2,6 +2,7 @@ $(function () {
 	
     var cat = $( "#cat" ),
         published = $( "#published"),
+        status = $( "#status"),
         active = $( "#active"),
         filters = $(".filtros"),
         gallery = $('#gallery'),
@@ -34,6 +35,12 @@ $(function () {
 
     published.change(function() {
         
+        filters.find('form').submit();
+
+    });
+
+    status.change(function() {
+
         filters.find('form').submit();
 
     });

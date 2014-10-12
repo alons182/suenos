@@ -36,7 +36,7 @@ class ProductsController extends \BaseController {
         $search['cat'] = (isset($search['cat'])) ? $search['cat'] : '';
         $search['published'] = (isset($search['published'])) ? $search['published'] : '';
         $categories = $this->categoryRepository->getParents();
-        $products = $this->productRepository->getAll($search);//->with('categories')->paginate($this->limit);
+        $products = $this->productRepository->getAll($search);
 
         return \View::make('admin.products.index')->with([
             'products'         => $products,

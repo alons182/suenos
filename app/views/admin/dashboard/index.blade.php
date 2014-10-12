@@ -22,6 +22,16 @@
 		 </div>
           <p><a class="btn btn-primary" href="/store/admin/products" role="button">Ver todos &raquo; <span class="badge">{{ $tp }}</a></p>
        </div>
+       <div class="col-md-4">
+         <h2>Últimas Ordenes</h2>
+         <div class="list-group">
+           @foreach ($orders as $order)
+               {{  link_to_route('store.admin.orders.edit', 'Orden #'.$order->id, $order->id,['class'=> 'list-group-item']) }}
+           @endforeach
+    
+         </div>
+         <p><a class="btn btn-primary" href="/store/admin/orders" role="button">Ver todas &raquo; <span class="badge">{{ $to }}</a></p>
+      </div>
         <div class="col-md-4">
           <h2>Últimos Usuarios</h2>
           <div class="list-group">

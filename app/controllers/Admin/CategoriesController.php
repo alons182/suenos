@@ -35,7 +35,7 @@ class CategoriesController extends \BaseController {
         $search = Input::all();
         $search['q'] = (isset($search['q'])) ? trim($search['q']) : '';
         $search['published'] = (isset($search['published'])) ? $search['published'] : '';
-        $categories = $this->categoryRepository->getAll($search);//withoutRoot()->withDepth()->orderBy('_lft')->paginate($this->limit);
+        $categories = $this->categoryRepository->getAll($search);
 
         return \View::make('admin.categories.index')->with([
             'categories'     => $categories,
@@ -69,7 +69,9 @@ class CategoriesController extends \BaseController {
         $input = Input::all();
         $this->categoryForm->validate($input);
         $this->categoryRepository->store($input);
+
         Flash::message('Category created');
+
         return \Redirect::route('categories');
     }
 

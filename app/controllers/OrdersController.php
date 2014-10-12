@@ -2,6 +2,7 @@
 
 
 use Suenos\Forms\OrderForm;
+use Suenos\Mailers\OrderMailer;
 use Suenos\Orders\OrderRepository;
 
 
@@ -15,11 +16,16 @@ class OrdersController extends BaseController {
      * @var OrderForm
      */
     private $orderForm;
+    /**
+     * @var OrderMailer
+     */
+    private $mailer;
 
-    function __construct(OrderRepository $orderRepository, OrderForm $orderForm)
+    function __construct(OrderRepository $orderRepository, OrderForm $orderForm, OrderMailer $mailer)
     {
         $this->orderRepository = $orderRepository;
         $this->orderForm = $orderForm;
+        $this->mailer = $mailer;
     }
 
 
@@ -49,7 +55,22 @@ class OrdersController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+        $data_cart = Input::all();
+        $data_form = json_decode(Session::get('data_form'),true);
+
+        if($data_cart['itemCount']==0)
+        {
+            Flash::message('No hay items en el carrito');
+            return Redirect::route('cart_path');
+        }
+
+        $order =  $this->orderRepository->store($data_cart);
+
+        $this->mailer->sendConfirmMessageOrder($order,$data_form);
+
+        Flash::message('Pago realizado con exito - orden '.$order->id);
+
+        return Redirect::route('orders.index');
 	}
 
 	/**
@@ -74,46 +95,37 @@ class OrdersController extends BaseController {
         return View::make('orders.cart');
     }
 
+    /**
+     * show the form checkout
+     * @return mixed
+     */
     public function formCheckout()
     {
         return View::make('orders.checkout');
     }
+
+    /**
+     * Post form checkout
+     * @return mixed
+     * @throws \Laracasts\Validation\FormValidationException
+     */
     public function formPostCheckout()
     {
 
-        $data = Input::all();
+        $data = array_except(Input::all(), array('_token'));
+
         $this->orderForm->validate($data);
 
         Session::forget('data_form');
         Session::put('data_form',json_encode($data) );
-        $data = array_except($data, array('_token'));
+
+
         return View::make('orders.checkoutFinal')->withData($data);
 
 
     }
 
 
-
-    public function checkout()
-    {
-        $data_cart = Input::all();
-        $data_form = json_decode(Session::get('data_form'),true);
-
-       // dd($data_form);
-
-       if($data_cart['itemCount']==0)
-       {
-           Flash::message('No hay items en el carrito');
-           return Redirect::route('cart_path');
-       }
-
-        $order =  $this->orderRepository->store($data_cart);
-
-        Flash::message('Pago realizado con exito - orden '.$order->id);
-
-        return Redirect::route('orders.index');
-
-    }
 
 
 
