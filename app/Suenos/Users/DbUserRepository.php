@@ -17,7 +17,7 @@ class DbUserRepository extends DbRepository implements UserRepository  {
         $this->membership_cost = 20000;
     }
 
-    /** Save the user with a blank profile
+    /** Save the user with a blank profile and assigned a role. Also verify a bonus system
      * @param $data
      * @return mixed
      */
@@ -40,7 +40,7 @@ class DbUserRepository extends DbRepository implements UserRepository  {
     }
 
     /**
-     * Update user
+     * Update a user
      * @param $id
      * @param $data
      * @return \Illuminate\Support\Collection|static
@@ -58,7 +58,8 @@ class DbUserRepository extends DbRepository implements UserRepository  {
         return $user;
     }
 
-    /** Find User with your profile by Username
+    /**
+     * Find User with your profile by Username
      * @param $username
      * @return mixed
      */
@@ -67,7 +68,8 @@ class DbUserRepository extends DbRepository implements UserRepository  {
         return $this->model->with('roles')->with('profiles')->whereUsername($username)->firstOrFail();
     }
 
-    /** Find User with your profile by Username
+    /**
+     * Find all the users for the admin panel
      * @internal param $username
      * @param null $search
      * @return mixed
@@ -95,12 +97,22 @@ class DbUserRepository extends DbRepository implements UserRepository  {
 
     }
 
+    /**
+     * Get the last user created for the dashboard panel
+     * @return mixed
+     */
     public function getLasts()
     {
         return $this->model->orderBy('users.created_at', 'desc')
             ->limit(6)->get(['users.id', 'users.username']);
     }
 
+    /**
+     * Generate a report with the user and your payments for month
+     * @param $month
+     * @param $year
+     * @return array
+     */
     public function reportPaidsByMonth($month,$year)
     {
 
@@ -161,6 +173,7 @@ class DbUserRepository extends DbRepository implements UserRepository  {
     }
 
     /**
+     * Verify the bonus system
      * @param $user
      * @param $parent_id
      * @internal param $data

@@ -18,6 +18,11 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
     }
 
 
+    /**
+     * Save a order
+     * @param $data
+     * @return mixed
+     */
     public function store($data)
     {
         $data = $this->prepareData($data);
@@ -29,6 +34,11 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
 
     }
 
+    /**
+     * Save the detail of the order
+     * @param $order
+     * @param $data
+     */
     public function sync_orderDetail($order, $data)
     {
         for ($i = 1; $i <= $data['itemCount']; $i ++)
@@ -42,12 +52,22 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
 
     }
 
+    /**
+     * Find all orders from one User
+     * @param $data
+     * @return mixed
+     */
     public function findAll($data)
     {
         $orders = Auth::user()->orders()->paginate($this->limit);
         return $orders;
     }
 
+    /**
+     * Get all the orders for admin panel
+     * @param $search
+     * @return mixed
+     */
     public function getAll($search)
     {
 
@@ -67,6 +87,12 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
         return $orders->with('users','details')->orderBy('created_at', 'desc')->paginate($this->limit);
     }
 
+    /**
+     * Update a order
+     * @param $id
+     * @param $data
+     * @return mixed
+     */
     public function update($id, $data)
     {
         $order = $this->model->findOrFail($id);
@@ -76,6 +102,11 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
         return $order;
     }
 
+    /**
+     * Delete a order
+     * @param $id
+     * @return mixed
+     */
     public function destroy($id)
     {
         $order = $this->model->findOrFail($id);
@@ -85,6 +116,11 @@ class DbOrderRepository extends DbRepository implements OrderRepository {
         return $order;
     }
 
+    /**
+     * Find a order by ID
+     * @param $id
+     * @return mixed
+     */
     public function findById($id)
     {
         return $this->model->with('details')->findOrFail($id);

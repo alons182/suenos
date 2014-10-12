@@ -16,6 +16,12 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository  {
         $this->limit = 10;
     }
 
+
+    /**
+     * Save a category
+     * @param $data
+     * @return static
+     */
     public function store($data)
     {
         $data = $this->prepareData($data);
@@ -24,6 +30,12 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository  {
         return $this->model->create($data);
     }
 
+    /**
+     * Update a category
+     * @param $id
+     * @param $data
+     * @return \Illuminate\Support\Collection|static
+     */
     public function update($id, $data)
     {
         $category = $this->model->findOrFail($id);
@@ -35,11 +47,22 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository  {
 
         return $category;
     }
+
+    /**
+     * Find a category by ID
+     * @param $id
+     * @return \Illuminate\Support\Collection|static
+     */
     public function findById($id)
     {
         return $this->model->findOrFail($id);
     }
 
+    /**
+     * Delete a category by ID
+     * @param $id
+     * @return \Illuminate\Support\Collection|DbCategoryRepository|static
+     */
     public function destroy($id)
     {
         $category = $this->findById($id);
@@ -53,6 +76,10 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository  {
     }
 
 
+    /**
+     * Get a list of categories for the dashboard
+     * @return mixed
+     */
     public function getLasts()
     {
         return $this->model->join('category_product', 'category_product.category_id', '=', 'categories.id')
@@ -61,6 +88,11 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository  {
             ->limit(6)->get(['categories.id', 'categories.name', \DB::raw('count(*) as products_count')]);
     }
 
+    /**
+     * get all categories from admin control
+     * @param $search
+     * @return mixed
+     */
     public function getAll($search)
     {
         if (isset($search['q']) && ! empty($search['q']))
@@ -79,6 +111,10 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository  {
         return $categories->orderBy('lft')->paginate($this->limit);
     }
 
+    /**
+     * get categories parents for the format to view the category select
+     * @return array
+     */
     public function getParents()
     {
         $all = $this->model->select('id', 'name', 'depth')->orderBy('lft')->get();
@@ -94,6 +130,12 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository  {
 
         return $result;
     }
+
+    /**
+     * Get children categories from one category
+     * @param $category
+     * @return mixed
+     */
     public function getChildren($category)
     {
 

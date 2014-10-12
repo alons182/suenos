@@ -80,64 +80,15 @@ class PaymentsController extends \BaseController {
 
     /**
      * Display the specified resource.
-     * GET /balances/{username}
-     *
-     * @param $username
-     * @return Response
-     */
-    public function show($username)
-    {
-
-    }
-
-    /**
-     * Display the specified resource.
      * GET /red
      *
      * @return Response
      */
     public function red()
     {
-
-
         return View::make('users.red'); //->withUser($user);
-
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * GET /balances/{id}/edit
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     * PUT /balances/{id}
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function update($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * DELETE /balances/{id}
-     *
-     * @param  int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
 }

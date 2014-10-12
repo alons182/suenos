@@ -21,6 +21,11 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository{
     }
 
 
+    /**
+     * Save a payment
+     * @param $data
+     * @return mixed
+     */
     public function store($data)
     {
         $data = $this->prepareData($data);
@@ -29,6 +34,11 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository{
 
     }
 
+    /**
+     * Get all payments of users of one red's user
+     * @param null $data
+     * @return Collection
+     */
     public function getPaymentsOfYourRed($data = null)
     {
         $usersOfRed = Auth::user()->children()->get()->lists('id');
@@ -64,6 +74,10 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository{
        return new Collection($data);
 
     }
+
+    /**
+     * Generate a paid for any user for month
+     */
     public function membershipFee()
     {
         $users = User::all();

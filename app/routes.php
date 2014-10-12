@@ -1,6 +1,6 @@
 <?php
-use Suenos\Users\User;
 
+#binding
 App::bind('Suenos\Users\UserRepository', 'Suenos\Users\DbUserRepository');
 App::bind('Suenos\Payments\PaymentRepository', 'Suenos\Payments\DbPaymentRepository');
 App::bind('Suenos\Categories\CategoryRepository', 'Suenos\Categories\DbCategoryRepository');
@@ -79,16 +79,12 @@ Route::resource('payments', 'PaymentsController');
 Route::resource('orders', 'OrdersController');
 
 /**
- * Cart view
+ * Cart
  */
 Route::get('cart', [
     'as'   => 'cart_path',
     'uses' => 'OrdersController@cart'
 ]);
-
-/**
- * Cart checkout
- */
 
 Route::get('cart/checkout', [
     'as'   => 'cart_checkout',
@@ -202,6 +198,7 @@ Route::group(['prefix' => 'store/admin', 'before' => 'role:administrator'], func
 
     Route::resource('products', 'app\controllers\Admin\ProductsController');
 
+    #photos
     Route::post('photos', [
         'as'   => 'save_photo',
         'uses' => 'app\controllers\Admin\PhotosController@store'
@@ -211,6 +208,7 @@ Route::group(['prefix' => 'store/admin', 'before' => 'role:administrator'], func
         'uses' => 'app\controllers\Admin\PhotosController@destroy'
     ]);
 
+    #orders
     Route::post('orders/delete', [
         'as'   => 'destroy_multiple',
         'uses' => 'app\controllers\Admin\OrdersController@destroy_multiple'
@@ -238,7 +236,7 @@ Route::group(['prefix' => 'store'], function ()
         'as'   => 'product_path',
         'uses' => 'ProductsController@show'
     ]);
-    //Route::get('search', ['as' => 'products_search', 'uses' => 'ProductsController@search']);
+
     # categories
     Route::get('categories', [
             'as'   => 'categories_path',
@@ -252,8 +250,4 @@ Route::group(['prefix' => 'store'], function ()
  */
 Route::controller('password', 'RemindersController');
 
-/*Route::get('secret', function()
-{
-    return 'private page';
-})->before('role:administrator');*/
 

@@ -16,6 +16,11 @@ class DbPhotoRepository extends DbRepository implements PhotoRepository {
 
     }
 
+    /**
+     * Save a photo in the DB
+     * @param $data
+     * @return mixed
+     */
     public function store($data)
     {
         $cant = count($this->getPhotos($data['product_id']));
@@ -28,11 +33,25 @@ class DbPhotoRepository extends DbRepository implements PhotoRepository {
     }
 
 
+    /**
+     * Get the photos from one product
+     * @param $id
+     * @return mixed
+     */
     public function getPhotos($id)
     {
         return $this->model->where('product_id', '=', $id)->get();
     }
 
+    /**
+     * Save the photo in the server
+     * @param $file
+     * @param $name
+     * @param $directory
+     * @param $thumbWidth
+     * @param null $thumbHeight
+     * @return string
+     */
     public function storeImage($file, $name, $directory, $thumbWidth, $thumbHeight = null)
     {
         $extension = pathinfo($file["name"], PATHINFO_EXTENSION);

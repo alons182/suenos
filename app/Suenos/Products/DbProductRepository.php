@@ -17,6 +17,11 @@ class DbProductRepository extends DbRepository implements ProductRepository  {
         $this->limit = 10;
     }
 
+    /**
+     * Save a product
+     * @param $data
+     * @return mixed
+     */
     public function store($data)
     {
         $data = $this->prepareData($data);
@@ -28,6 +33,13 @@ class DbProductRepository extends DbRepository implements ProductRepository  {
 
         return $product;
     }
+
+    /**
+     * Update a product
+     * @param $id
+     * @param $data
+     * @return mixed
+     */
     public function update($id, $data)
     {
         $product = $this->model->findOrFail($id);
@@ -40,12 +52,23 @@ class DbProductRepository extends DbRepository implements ProductRepository  {
 
         return $product;
     }
+
+    /**
+     * Sync the categories of the product
+     * @param $product
+     * @param $categories
+     */
     public function sync_categories($product, $categories)
     {
         $product->categories()->sync($categories);
     }
 
 
+    /**
+     * Save the photos of the product
+     * @param $product
+     * @param $data
+     */
     public function sync_photos($product, $data)
     {
         if (isset($data['new_photo_file']))
@@ -63,6 +86,11 @@ class DbProductRepository extends DbRepository implements ProductRepository  {
 
     }
 
+    /**
+     * Delete a product by ID
+     * @param $id
+     * @return mixed
+     */
     public function destroy($id)
     {
         $product = $this->findById($id);
@@ -78,14 +106,31 @@ class DbProductRepository extends DbRepository implements ProductRepository  {
     }
 
 
+    /**
+     * Find a product by ID
+     * @param $id
+     * @return mixed
+     */
     public function findById($id)
     {
         return $this->model->with('categories')->findOrFail($id);
     }
+
+    /**
+     * Find a product by Slug
+     * @param $slug
+     * @return mixed
+     */
     public function findBySlug($slug)
     {
         return $this->model->SearchSlug($slug)->first();
     }
+
+    /**
+     * Find a product by Category
+     * @param $category
+     * @return mixed
+     */
     public function findByCategory($category)
     {
         $category = Category::searchSlug($category)->firstOrFail();
@@ -95,6 +140,11 @@ class DbProductRepository extends DbRepository implements ProductRepository  {
         return  $products;
     }
 
+    /**
+     * Get all the products for the admin panel
+     * @param $search
+     * @return mixed
+     */
     public function getAll($search)
     {
         if (isset($search['cat']) && ! empty($search['cat']))
@@ -120,6 +170,10 @@ class DbProductRepository extends DbRepository implements ProductRepository  {
         return $products->with('categories')->orderBy('created_at', 'desc')->paginate($this->limit);
     }
 
+    /**
+     * Get all the featured products for the store
+     * @return mixed
+     */
     public function getFeatured()
     {
 
