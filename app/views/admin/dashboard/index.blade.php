@@ -28,7 +28,7 @@
            @foreach ($orders as $order)
                {{  link_to_route('store.admin.orders.edit', 'Orden #'.$order->id, $order->id,['class'=> 'list-group-item']) }}
            @endforeach
-    
+
          </div>
          <p><a class="btn btn-primary" href="/store/admin/orders" role="button">Ver todas &raquo; <span class="badge">{{ $to }}</a></p>
       </div>
