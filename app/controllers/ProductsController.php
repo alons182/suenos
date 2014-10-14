@@ -38,7 +38,7 @@ class ProductsController extends \BaseController {
             $products = $this->productRepository->findByCategory($search['subcat']);
 
         $subcategories = $this->categoryRepository->getChildren($category);
-        //coment
+
         return View::make('products.index')->withProducts($products)
             ->withCategory($category)
             ->withSubcategories($subcategories)

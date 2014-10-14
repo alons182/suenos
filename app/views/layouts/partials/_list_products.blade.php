@@ -21,8 +21,6 @@
        @empty
         <p>No hay articulos en esta categoria</p>
        @endforelse
-       @if ($products)
-           <div class="pagination-container">{{$products->appends(['subcat'=>$selected])->links()}}</div>
-       @endif
+
 
 </div>
