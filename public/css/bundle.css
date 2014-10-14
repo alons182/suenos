@@ -190,6 +190,7 @@ small{font-weight:400;font-size:16px;color:#fff;padding:.3em;background:#372f4a}
 .alert-info{background:#98ba33;color:#fff}
 .alert-danger{background:#d53c21;color:#fff}
 .clear{clear:both}
+.pagination-container{text-align:center}
 .pagination li{display:inline-block;vertical-align:top}
 .pagination li a,.pagination li span{display:block;padding:.5em;border:1px solid #eae8e7}
 .pagination li a:hover,.pagination li span:hover{background:#372f4a;color:#fff}

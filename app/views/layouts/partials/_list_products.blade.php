@@ -17,8 +17,12 @@
                    {{link_to_route('product_path','Ver detalles',[$product->categories->last()->slug, $product->slug],['class' => 'btn btn-purple'] )}}
 
            </div>
+
        @empty
         <p>No hay articulos en esta categoria</p>
        @endforelse
+       @if ($products)
+           <div class="pagination-container">{{$products->appends(['subcat'=>$selected])->links()}}</div>
+       @endif
 
 </div>

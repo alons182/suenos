@@ -6,15 +6,15 @@ class ProductPresenter extends Presenter {
 
     public function sizes()
     {
-        return json_decode($this->sizes);
+        return json_decode($this->entity->sizes);
     }
     public function colors()
     {
-        return json_decode($this->colors);
+        return json_decode($this->entity->colors);
     }
     public function relateds()
     {
-        return json_decode($this->relateds);
+        return json_decode($this->entity->relateds);
     }
 
 }

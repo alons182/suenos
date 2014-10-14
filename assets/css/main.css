@@ -1055,6 +1055,9 @@ small {
 .clear {
   clear: both;
 }
+.pagination-container {
+  text-align: center;
+}
 .pagination li {
   display: inline-block;
   vertical-align: top;

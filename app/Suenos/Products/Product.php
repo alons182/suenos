@@ -73,18 +73,6 @@ class Product extends \Eloquent {
     {
         $this->attributes['relateds'] = json_encode($relateds);
     }
-    public function getSizesAttribute()
-    {
-        return json_decode($this->attributes['sizes']);
-    }
-    public function getColorsAttribute()
-    {
-        return json_decode($this->attributes['colors']);
-    }
-    public function getRelatedsAttribute()
-    {
-        return json_decode($this->attributes['relateds']);
-    }
 
     public function categories()
     {
