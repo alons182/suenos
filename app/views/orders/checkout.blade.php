@@ -45,15 +45,15 @@
             </div>
              <!-- card_number Form Input -->
               <div class="form-group">
-                 {{ Form::label('card_number', 'Numero de tarjeta:') }}
-                 {{ Form::text('card_number', null, ['class' => 'form-control']) }}
-                 {{ errors_for('card_number',$errors) }}
+                 {{ Form::label('transfer_number', 'Numero de deposito o transferencia:') }}
+                 {{ Form::text('transfer_number', null, ['class' => 'form-control']) }}
+                 {{ errors_for('transfer_number',$errors) }}
               </div>
                <!-- Exp_card Form Input -->
                 <div class="form-group">
-                   {{ Form::label('exp_card', 'Vencimiento de tarjeta:') }}
-                   {{ Form::text('exp_card', null, ['class' => 'form-control','placeholder'=>'mm/yy']) }}
-                    {{ errors_for('exp_card',$errors) }}
+                   {{ Form::label('transfer_date', 'Fecha del deposito o transferencia:') }}
+                   {{ Form::text('transfer_date', null, ['class' => 'form-control datepicker']) }}
+                    {{ errors_for('transfer_date',$errors) }}
                 </div>
 
 

@@ -12,8 +12,8 @@
  <strong>Dirección:</strong> {{ $address }} <br />
  <strong>Teléfono:</strong> {{ $telephone }} <br />
  <strong>Email:</strong> {{ $email }} <br />
- <strong>Numero de tarjeta:</strong> {{ $card_number }} <br />
- <strong>Vencimiento de tarjeta:</strong> {{ $exp_card }} <br />
+ <strong>Numero de deposito:</strong> {{ $transfer_number }} <br />
+ <strong>Fecha de deposito:</strong> {{ $transfer_date }} <br />
 
 <p><strong>Orden #: {{ $orderId }}</strong></p>
  <strong>Id de usuario:</strong> {{ $user_id }} <br />

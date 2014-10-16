@@ -13,8 +13,8 @@ class OrderForm extends FormValidator{
         'address' => 'required',
         'telephone' => 'required',
         'email' => 'required|email',
-        'card_number' => 'required',
-        'exp_card' => 'required'
+        'transfer_number' => 'required',
+        'transfer_date' => 'required'
 
 
     ];
