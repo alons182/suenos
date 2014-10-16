@@ -49,7 +49,7 @@ class RegistrationController extends \BaseController {
 
         Auth::login($user);
 
-        Flash::message('Complete your profile, its very important !');
+        Flash::message('Usuario creado. se te ha enviado un correo con la información de usuario y una url para que la compartas con otros usuarios que quieras para que se agregen a tu red. Completa tu perfil por favor, es importante !');
 
         $this->mailer->sendWelcomeMessageTo($user);
 
