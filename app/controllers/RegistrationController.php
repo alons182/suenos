@@ -42,7 +42,7 @@ class RegistrationController extends \BaseController {
      */
     public function store()
     {
-        $input = Input::only('username', 'email', 'password', 'password_confirmation', 'parent_id', 'terms');
+        $input = Input::only('username', 'email','email_confirmation', 'password', 'password_confirmation', 'parent_id', 'terms');
 
         $this->registrationForm->validate($input);
         $user = $this->userRepository->store($input);

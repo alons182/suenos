@@ -1,6 +1,6 @@
 <section class="section-bottom">
     <div class="shipping">
-           La posibilidad de realizar un sueño es lo que hace que la vida es lo que hace que la vida sea interesante.
+           La posibilidad de realizar un sueño es lo que hace que la vida sea interesante.
         <span class="author">Paulo Coelho.</span>
     </div>
     <div class="online">

@@ -15,8 +15,11 @@
                 </div>
                  <div class="user-block-info hidden">
                     <p><b>Usuario :</b> {{  $user->username }}</p>
+                    <p> <b>Correo :</b>  <a href="mailto:{{ $user->email }}">{{ $user->email }}</a></p>
+                    <p> <b>Telefono :</b>  {{ $user->profiles->telephone }}</p>
                     <p><b>Afiliados :</b>  {{ $user->children->count() }}</p>
                    <p> <b>Pago membresia :</b>  {{ ($user->payments->count() > 0) ? money($user->payments->first()->amount, '₡') : '₡0'}}</p>
+
                 </div>
             </div>
         @endforeach

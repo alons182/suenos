@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Suenos\DbRepository;
+use Suenos\Users\User;
 
 class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
@@ -29,6 +30,8 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
     public function store($data)
     {
         $data = $this->prepareData($data);
+
+        if ($this->existsPaymentOfMonth()) return false;
 
         return $this->model->create($data);
 
@@ -88,11 +91,12 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
             $this->model->create([
                 'user_id'         => $user->id,
                 'membership_cost' => $this->membership_cost,
+                'payment_type'    => "M",
                 'amount'          => $this->membership_cost,
                 'gain'            => ($this->membership_cost - 5000),
                 'bank'            => 'Cobro de membresía',
                 'transfer_number' => 'Cobro de membresía',
-                'transfer_date'   => $this->model->timestamp(),
+                'transfer_date'   => Carbon::now()
             ]);
         }
 
@@ -111,6 +115,22 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         $data = array_add($data, 'gain', ($data['payment_type'] == "M") ? ($this->membership_cost - 5000) : 0);
 
         return $data;
+    }
+
+    /**
+     * Verify the payments of month for not repeat one paid
+     * @return mixed
+     */
+    public function existsPaymentOfMonth()
+    {
+        $payment = $this->model->where(function ($query)
+        {
+            $query->where('user_id', '=', Auth::user()->id)
+                ->where(\DB::raw('MONTH(created_at)'), '=', Carbon::now()->month)
+                ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year);
+        })->first();
+
+        return $payment;
     }
 
 

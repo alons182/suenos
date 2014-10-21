@@ -71,9 +71,10 @@ class PaymentsController extends \BaseController {
 
         $this->paymentForm->validate($data);
 
-        $this->paymentRepository->store($data);
-
-        Flash::message('Pago agregado correctamente');
+        if(!$this->paymentRepository->store($data))
+            Flash::error('Ya existe un pago para este mes.');
+        else
+            Flash::message('Pago agregado correctamente');
 
         return Redirect::back();
     }

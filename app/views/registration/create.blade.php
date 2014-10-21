@@ -20,6 +20,12 @@
                 {{ Form::email('email', null, ['class' => 'form-control', 'required' => 'required']) }}
                 {{ errors_for('email',$errors) }}
             </div>
+             <!-- Email Confirmation Form Input -->
+                <div class="form-group">
+                    {{ Form::label('email_confirmation', 'Confirmación de Email:') }}
+                    {{ Form::email('email_confirmation', null, ['class' => 'form-control', 'required' => 'required']) }}
+                    {{ errors_for('email_confirmation',$errors) }}
+                </div>
             <!-- Password Form Input -->
             <div class="form-group">
                 {{ Form::label('password', 'Contraseña:') }}
