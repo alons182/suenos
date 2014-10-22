@@ -109,7 +109,7 @@ footer{border-top:1px solid #eae8e7;padding-bottom:2em}
 .links-index{background:#787878}
 .links-index a{display:inline-block;font-size:13px;padding:0 .5em;color:#fff;border-right:1px solid #fff}
 .links-index a:last-child{border-right:none}
-.login-register{display:none;background:#fff;padding:.5em;position:absolute;left:0;top:34px;z-index:99;-webkit-box-shadow:0 0 5px rgba(0,0,0,.5);box-shadow:0 0 5px rgba(0,0,0,.5);width:250px}
+.login-register{display:none;background:#fff;padding:.5em;position:absolute;left:0;top:34px;-webkit-box-shadow:0 0 5px rgba(0,0,0,.5);box-shadow:0 0 5px rgba(0,0,0,.5);width:250px;z-index:110}
 .login-register h1{margin:.5em 0;font-size:1.5em;text-align:center;text-transform:uppercase}
 .logo{display:block;float:left;font-size:3em;line-height:100px;color:#372f4a}
 .logo span{color:#98ba33}

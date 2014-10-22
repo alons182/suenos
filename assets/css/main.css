@@ -644,6 +644,7 @@ footer {
   -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   width: 250px;
+  z-index: 110;
 }
 .login-register h1 {
   margin: 0.5em 0;
