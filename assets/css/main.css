@@ -854,6 +854,41 @@ small {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+.banner {
+  height: 392px;
+}
+.banner .slide {
+  width: 100%;
+  height: 392px;
+}
+.banner .slide img {
+  width: 100%;
+}
+.banner .info {
+  position: absolute;
+  top: 2em;
+  left: 2em;
+  color: #fff;
+  font-size: 3em;
+  line-height: 1em;
+}
+.banner .info.info-2 {
+  left: 1.5em;
+  font-size: 2.5em;
+}
+.banner .bold {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.banner .white {
+  color: #fff;
+}
+.banner .purple {
+  color: #372f4a;
+}
+.banner .green {
+  color: #98ba33;
+}
 .familia {
   background-image: url("../img/img-info.jpg");
 }
