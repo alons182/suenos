@@ -31,7 +31,7 @@
     </aside>
     <header>
         <div class="inner">
-            <a href="/" class="logo"><span>L</span>ogo</a>
+            <a href="/" class="logo"><img src="/img/logo.png" alt="Sueños de vida"/></a>
             <div class="search">
                 <i class="icon-search"></i>
                 <input type="text" name="q" class="form-control" />

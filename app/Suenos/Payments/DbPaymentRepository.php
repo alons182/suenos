@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Suenos\DbRepository;
+use Suenos\Mailers\PaymentMailer;
 use Suenos\Users\User;
 
 class DbPaymentRepository extends DbRepository implements PaymentRepository {
@@ -13,12 +14,17 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
      * @var Payment
      */
     protected $model;
+    /**
+     * @var PaymentMailer
+     */
+    private $mailer;
 
-    function __construct(Payment $model)
+    function __construct(Payment $model, PaymentMailer $mailer)
     {
         $this->model = $model;
         $this->limit = 20;
         $this->membership_cost = 20000;
+        $this->mailer = $mailer;
     }
 
 
@@ -85,7 +91,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
     public function membershipFee()
     {
         $users = User::all();
-
+        $users_payments = 0;
         foreach ($users as $user)
         {
             if (!$this->existsPaymentOfMonth($user->id))
@@ -100,9 +106,16 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
                     'transfer_number' => 'Cobro de membresía',
                     'transfer_date'   => Carbon::now()
                 ]);
+                $users_payments++;
+
+                //$this->mailer->sendPaymentsMembershipMessageTo($user);
             }
 
         }
+
+        $this->mailer->sendReportMembershipMessageTo($users->count(), $users_payments);
+
+
 
 
     }
