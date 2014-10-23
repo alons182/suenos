@@ -88,16 +88,20 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
         foreach ($users as $user)
         {
-            $this->model->create([
-                'user_id'         => $user->id,
-                'membership_cost' => $this->membership_cost,
-                'payment_type'    => "M",
-                'amount'          => $this->membership_cost,
-                'gain'            => ($this->membership_cost - 5000),
-                'bank'            => 'Cobro de membresía',
-                'transfer_number' => 'Cobro de membresía',
-                'transfer_date'   => Carbon::now()
-            ]);
+            if (!$this->existsPaymentOfMonth($user->id))
+            {
+                $this->model->create([
+                    'user_id'         => $user->id,
+                    'membership_cost' => $this->membership_cost,
+                    'payment_type'    => "M",
+                    'amount'          => $this->membership_cost,
+                    'gain'            => ($this->membership_cost - 5000),
+                    'bank'            => 'Cobro de membresía',
+                    'transfer_number' => 'Cobro de membresía',
+                    'transfer_date'   => Carbon::now()
+                ]);
+            }
+
         }
 
 
@@ -119,13 +123,14 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
     /**
      * Verify the payments of month for not repeat one paid
+     * @param null $user_id
      * @return mixed
      */
-    public function existsPaymentOfMonth()
+    public function existsPaymentOfMonth($user_id = null)
     {
-        $payment = $this->model->where(function ($query)
+        $payment = $this->model->where(function ($query) use ($user_id)
         {
-            $query->where('user_id', '=', Auth::user()->id)
+            $query->where('user_id', '=', ($user_id)? $user_id : Auth::user()->id)
                 ->where(\DB::raw('MONTH(created_at)'), '=', Carbon::now()->month)
                 ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year);
         })->first();

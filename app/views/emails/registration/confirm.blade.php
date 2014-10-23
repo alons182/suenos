@@ -8,6 +8,8 @@
 
 <strong>Url para compartir:</strong> {{ URL::to('/'.$username) }}
 <strong>Su Usuario es:</strong> {{ $username }}
+<strong>Su Email es:</strong> {{ $email }}
+<strong>Su contraseña es:</strong> {{ $password }}
 
 <h1>¡Felicidades ya eres parte de sueños de vida!</h1>
 

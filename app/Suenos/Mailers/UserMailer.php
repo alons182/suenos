@@ -14,7 +14,7 @@ class UserMailer extends Mailer{
         $subject = 'Bienvenido a sueños de vida!';
         $emailTo = $user->email;
         $data = $user->toArray();
-        //$data['password'] = $password;
+        $data['password'] = $password;
 
         return $this->sendTo($emailTo, $subject, $view, $data);
     }
