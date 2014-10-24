@@ -6,7 +6,7 @@
 </head>
 <body>
 
-  <p> Se realizó el cobro de membresía a {{ $users_payments }} usuario(s) de un total de {{ $users }}</p>
+  <p> Se realizó el cobro de membresía a {{ $users_payments }} usuario(s) de un total de {{ $users }} para el mes {{ $month }} del {{ $year }}</p>
 
 
 </body>

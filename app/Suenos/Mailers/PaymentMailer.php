@@ -7,7 +7,7 @@ use Suenos\Users\User;
 class PaymentMailer extends Mailer{
 
     protected $listLocalEmail = ['alonso@avotz.com'];
-    protected $listProductionEmail = ['alons182@gmail.com'];
+    protected $listProductionEmail = ['johnny100782@hotmail.com'];
 
     public function sendPaymentsMembershipMessageTo(User $user)
     {
@@ -25,9 +25,11 @@ class PaymentMailer extends Mailer{
     {
         $view = 'emails.payments.report';
         $subject = 'Cobro de membresia de sueños de vida!';
-        $emailTo = $this->listLocalEmail;
+        $emailTo = $this->listProductionEmail;
         $data['users'] =$users;
         $data['users_payments'] = $users_payments;
+        $data['month'] = Carbon::now()->month;
+        $data['year'] = Carbon::now()->year;
 
 
         return $this->sendTo($emailTo, $subject, $view, $data);
