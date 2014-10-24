@@ -14,6 +14,7 @@
                 <th>#</th>
                 <th>Username</th>
                 <th>Email</th>
+                <th>Patrocinador</th>
                 <th>Tipo</th>
                 <th>Creado</th>
                 <th><i class="icon-cog"></i></th>
@@ -25,6 +26,7 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ link_to_route('store.admin.users.edit', $user->username, $user->id) }}
                     <td>{{ $user->email }}</td>
+                    <td>{{ ($user->parent) ? $user->parent->username : 'No tiene patrocinador' }}</td>
                     <td>{{ $user->roles->first()->name }}</td>
                     <td>{{ $user->created_at }}</td>
                     <td>

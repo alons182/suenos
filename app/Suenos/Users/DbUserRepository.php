@@ -93,7 +93,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
         }
 
 
-        return $users->with('roles')->with('profiles')->paginate($this->limit);
+        return $users->with('parent')->with('roles')->with('profiles')->paginate($this->limit);
 
     }
 
