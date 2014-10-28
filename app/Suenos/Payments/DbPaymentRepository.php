@@ -90,6 +90,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
      */
     public function membershipFee()
     {
+
         $users = User::all();
         $users_payments = 0;
         foreach ($users as $user)
@@ -114,8 +115,6 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         }
 
         $this->mailer->sendReportMembershipMessageTo($users->count(), $users_payments);
-
-
 
 
     }
