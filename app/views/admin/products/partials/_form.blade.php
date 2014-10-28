@@ -68,7 +68,7 @@
 			{{ Form::label('sizes','Tallas:')}} <span class="inputbox btn btn-info btn-sm" id="add_input_size"><i class="glyphicon glyphicon-plus-sign"></i></span>
 			<div id="inputs-sizes" class="row ">
 				@if(isset($product))
-					 @foreach ($product->sizes as $size)
+					 @foreach ($product->present()->sizes as $size)
 						<div class="col-xs-3 ">
 							<span class="delete" ><i class="glyphicon glyphicon-remove"></i></span>
 							{{ Form::text('sizes[]', $size,['class'=>'form-control'])}}
@@ -100,7 +100,7 @@
 			<div id="inputs-colors" class="row ">
 				@if(isset($product))
 					 
-					 @foreach ($product->colors as $color)
+					 @foreach ($product->present()->colors as $color)
 						<div class="col-xs-3">
 							<span class="delete" ><i class="glyphicon glyphicon-remove"></i></span>
 							{{ Form::text('colors[]',$color,['class'=>'form-control colorfield'])}}
