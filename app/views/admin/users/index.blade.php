@@ -6,7 +6,7 @@
 
 	<div class="table-responsive">
         {{ link_to_route('user_register','Nuevo Usuario',null,['class'=>'btn btn-success']) }}
-        @include('admin/users/partials/_export')
+
 
         <table class="table table-striped  ">
         <thead>

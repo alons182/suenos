@@ -34,7 +34,7 @@ body{
 	left: 0;
 
 }
-.relateds li{
+.patners li{
 	display:inline-block;
 	vertical-align:top;
 	border:5px solid #fff;
@@ -43,7 +43,7 @@ body{
 	font-size: 20px
 }
 
-.relateds li .delete{
+.patners li .delete{
 	cursor:pointer;
 	position:absolute;
 	color: #FFF;
@@ -51,7 +51,7 @@ body{
 	left: 2px;
 
 }
-.relateds li .label{
+.patners li .label{
 	padding-left: 25px;
 
 }
@@ -119,6 +119,13 @@ textarea.form-control{
 .export-users .form-group .controls {
     display: inline-block;
     vertical-align: top;
+}
+.filtros{
+    float: left;
+}
+.actions
+{
+    overflow: hidden;
 }
 
 

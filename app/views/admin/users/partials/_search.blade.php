@@ -18,5 +18,6 @@
                 {{ Form::close() }}
 
             </div>
+             @include('admin/users/partials/_export')
 
 </div> 

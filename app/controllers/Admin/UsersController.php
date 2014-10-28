@@ -1,6 +1,7 @@
 <?php namespace app\controllers\Admin;
 
 
+use Carbon\Carbon;
 use Input;
 use Laracasts\Flash\Flash;
 use Suenos\Forms\UserEditForm;
@@ -177,10 +178,31 @@ class UsersController extends \BaseController {
         $month = Input::get('month');
         $year = Input::get('year');
 
-        return $this->export->sheet('Pagos', function ($sheet) use ($month, $year)
+        return $this->export->sheet('Ganancias', function ($sheet) use ($month, $year)
         {
             $sheet->fromArray($this->userRepository->reportPaidsByMonth($month, $year));
         })->export('xls');
+    }
+    /**
+     * Function for exported payments list for date
+     * @return mixed
+     */
+    public function exportPaymentsList()
+    {
+        $payment_date = Input::get('payment_date_submit');
+
+        return $this->export->sheet('Pagos diarios', function ($sheet) use ($payment_date)
+        {
+            $sheet->fromArray($this->userRepository->reportPaidsByDay($payment_date));
+        })->export('xls');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function list_patners()
+    {
+        return $this->userRepository->list_patners(input::get('exc_id'), input::get('key'));
     }
 
 

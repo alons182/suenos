@@ -1,5 +1,6 @@
 <div class="export-users">
-{{ Form::open(['route' => 'users_excel','method' => 'get']) }}
+    <div class="export-usersGains">
+        {{ Form::open(['route' => 'users_excel','method' => 'get']) }}
            <div class="form-group">
 
                 <div class="controls">
@@ -8,7 +9,22 @@
                 <div class="controls">
                    {{ Form::selectYear('year', 2014, 2020, $currentYear, ['class' => 'form-control']) }}
                 </div>
-                {{ Form::submit('Exportar Reporte',['class'=>'btn btn-info btn-report'])}}
+                {{ Form::submit('Exportar Reporte Ganacias',['class'=>'btn btn-info btn-report'])}}
             </div>
         {{ Form::close() }}
+    </div>
+    <div class="export-usersPayment">
+    {{ Form::open(['route' => 'users_payment_excel','method' => 'get']) }}
+
+
+               <div class="form-group">
+                    <div class="controls">
+                      {{ Form::text('payment_date', null, ['class' => 'form-control datepicker','placeholder'=>'Fecha']) }}
+                   </div>
+                    {{ Form::submit('Exportar Reporte Pago Diario',['class'=>'btn btn-info btn-report'])}}
+                </div>
+
+            {{ Form::close() }}
+    </div>
 </div>
+

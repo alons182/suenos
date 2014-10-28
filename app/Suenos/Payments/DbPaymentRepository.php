@@ -99,7 +99,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
                 $this->model->create([
                     'user_id'         => $user->id,
                     'membership_cost' => $this->membership_cost,
-                    'payment_type'    => "M",
+                    'payment_type'    => "MA",
                     'amount'          => $this->membership_cost,
                     'gain'            => ($this->membership_cost - 5000),
                     'bank'            => 'Cobro de membresía',
@@ -145,7 +145,8 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         {
             $query->where('user_id', '=', ($user_id)? $user_id : Auth::user()->id)
                 ->where(\DB::raw('MONTH(created_at)'), '=', Carbon::now()->month)
-                ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year);
+                ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year)
+                ->where('payment_type', '=', 'M');
         })->first();
 
         return $payment;

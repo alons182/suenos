@@ -1,3 +1,4 @@
+
 <div class="form-group">
 	{{ Form::submit(isset($buttonText) ? $buttonText : 'Crear Usuario',['class'=>'btn btn-primary'])}}
 	{{ link_to_route('users', 'Cancelar', null, ['class'=>'btn btn-default'])}}
@@ -5,7 +6,8 @@
 </div>
 <div class="col-xs-12 col-sm-6">
 		 <!-- Patrocinador Form Input -->
-        {{ Form::hidden('parent_id', isset($parent_user) ? $parent_user->id : null, ['class' => 'form-control']) }}
+        {{ Form::hidden('parent_id', isset($user) ? $user->parent_id : null, ['class' => 'form-control']) }}
+        {{ Form::hidden('user_id', isset($user) ? $user->id : null, ['class' => 'form-control']) }}
 		<div class="form-group">
 			{{ Form::label('username','Username:')}}
 			{{ Form::text('username',null,['class'=>'form-control','required'=>'required'])}}
@@ -33,5 +35,26 @@
 			{{ Form::password('password_confirmation',['class'=>'form-control'])}}
 
 		</div>
+
+		<legend>Patrocinador</legend>
+
+            @include('admin/users/partials/_addPatner')
+
+            <ul class="patners">
+                @if(isset($user->parent_id))
+
+                        <li data-id="{{ $user->parent_id }}">
+                            <span class="delete" data-id="{{ $user->parent_id }}"><i class="glyphicon glyphicon-remove"></i></span>
+
+                            <span class="label label-success">{{ $user->parent->username }}</span>
+
+
+                        </li>
+
+
+                 @endif
+            </ul>
+
+        </div>
 		
 </div>

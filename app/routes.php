@@ -1,5 +1,8 @@
 <?php
-
+/*Event::Listen('illuminate.query', function($query)
+{
+    var_dump($query);
+});*/
 #binding
 App::bind('Suenos\Users\UserRepository', 'Suenos\Users\DbUserRepository');
 App::bind('Suenos\Payments\PaymentRepository', 'Suenos\Payments\DbPaymentRepository');
@@ -157,6 +160,14 @@ Route::group(['prefix' => 'store/admin', 'before' => 'role:administrator'], func
     Route::get('users/excel', [
         'as'   => 'users_excel',
         'uses' => 'app\controllers\Admin\UsersController@exportUserList'
+    ]);
+    Route::get('users/paymentsDayExcel', [
+        'as'   => 'users_payment_excel',
+        'uses' => 'app\controllers\Admin\UsersController@exportPaymentsList'
+    ]);
+    Route::get('users/list', [
+        'as' => 'patners_list',
+        'uses' => 'app\controllers\Admin\UsersController@list_patners'
     ]);
     Route::resource('users', 'app\controllers\Admin\UsersController');
 

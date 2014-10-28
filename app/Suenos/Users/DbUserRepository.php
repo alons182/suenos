@@ -48,12 +48,17 @@ class DbUserRepository extends DbRepository implements UserRepository {
     public function update($id, $data)
     {
         $user = $this->model->findOrFail($id);
-        $data = $this->prepareData($data);
+
+        if (! $data['parent_id'])
+            $data['parent_id'] = null; //$this->prepareData($data);
+
         $roles[] = $data['role'];
 
         $user->fill($data);
         $user->save();
         $user->roles()->sync($roles);
+
+        //$this->model->rebuild();
 
         return $user;
     }
@@ -93,7 +98,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
         }
 
 
-        return $users->with('parent')->with('roles')->with('profiles')->paginate($this->limit);
+        return $users->with('parent')->with('roles')->with('profiles')->orderBy('users.created_at', 'desc')->paginate($this->limit);
 
     }
 
@@ -105,6 +110,62 @@ class DbUserRepository extends DbRepository implements UserRepository {
     {
         return $this->model->orderBy('users.created_at', 'desc')
             ->limit(6)->get(['users.id', 'users.username']);
+    }
+
+    /**
+     * Generate a report with the user and your payments for month
+     * @param $date
+     * @internal param $month
+     * @internal param $year
+     * @return array
+     */
+    public function reportPaidsByDay($date = null)
+    {
+        if ($date)
+        {
+            $today = array(
+                Carbon::parse($date)->setTime(00, 00, 00),
+                Carbon::parse($date)->setTime(23, 59, 59)
+            );
+        } else
+        {
+            $today = array(
+                Carbon::now()->setTime(00, 00, 00),
+                Carbon::now()->setTime(23, 59, 59)
+            );
+        }
+
+
+        $payments = Payment::with('users.profiles')->where(function ($query) use ($today)
+        {
+            $query->whereBetween('created_at', $today)
+                ->where('payment_type', '<>', 'MA');
+        })->get();
+
+
+        $paymentsArray = [];
+
+        foreach ($payments as $payment)
+        {
+            $paymentArray = array(
+                'id'                 => $payment->id,
+                'Usuario Registrado' => $payment->users->created_at->toDateTimeString(),
+                'Email'              => $payment->users->email,
+                'Nombre'             => $payment->users->profiles->present()->fullname,
+                'Cedula'             => $payment->users->profiles->ide,
+                'Cuenta'             => $payment->users->profiles->number_account,
+                'Monto'              => $payment->amount,
+                'Dia del pago'       => $payment->created_at->toDateTimeString()
+
+            );
+
+            $paymentsArray[] = $paymentArray;
+        }
+
+        //dd($paymentsArray);
+
+        return $paymentsArray;
+
     }
 
     /**
@@ -136,18 +197,19 @@ class DbUserRepository extends DbRepository implements UserRepository {
 
             } else
             {
-                $gain = 0;
+                $gain = - 20000;
             }
 
             $userArray = array(
-                'id'     => $user->id,
-                'Email'  => $user->email,
-                'Nombre' => $user->profiles->present()->fullname,
-                'Cedula' => $user->profiles->ide,
-                'Cuenta' => $user->profiles->number_account,
-                'Monto'  => $gain,
-                'Mes'    => $month,
-                'Año'    => $year
+                'id'                 => $user->id,
+                'Usuario Registrado' => $user->created_at->toDateTimeString(),
+                'Email'              => $user->email,
+                'Nombre'             => $user->profiles->present()->fullname,
+                'Cedula'             => $user->profiles->ide,
+                'Cuenta'             => $user->profiles->number_account,
+                'Monto'              => $gain,
+                'Mes'                => $month,
+                'Año'                => $year
             );
 
             $usersArray[] = $userArray;
@@ -215,4 +277,17 @@ class DbUserRepository extends DbRepository implements UserRepository {
 
         return $user;
     }
+
+    //List of patners user for the modal view of user.
+
+    public function list_patners($value = null, $search = null)
+    {
+        if ($search)
+            $patners = ($value) ? $this->model->where('id', '<>', $value)->search($search)->paginate(8) : $this->model->paginate(8);
+        else
+            $patners = ($value) ? $this->model->where('id', '<>', $value)->paginate(8) : $this->model->paginate(8);
+
+        return $patners;
+    }
+
 }
