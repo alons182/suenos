@@ -672,11 +672,16 @@ footer {
   margin-right: 2.5em;
 }
 .search i {
+  color: #fff;
+}
+.btn-icon-search {
   position: absolute;
   right: -38px;
   background: #98ba33;
   color: #fff;
-  padding: 0.55em 0.7em;
+  padding: 0.48em 0.7em;
+  outline: none;
+  border: 0;
 }
 .cart {
   margin-right: 3em;

@@ -115,7 +115,8 @@ footer{border-top:1px solid #eae8e7;padding-bottom:2em}
 .logo span{color:#98ba33}
 .cart,.search{float:right;margin-top:2em}
 .search{position:relative;margin-right:2.5em}
-.search i{position:absolute;right:-38px;background:#98ba33;color:#fff;padding:.55em .7em}
+.search i{color:#fff}
+.btn-icon-search{position:absolute;right:-38px;background:#98ba33;color:#fff;padding:.48em .7em;outline:0;border:0}
 .cart{margin-right:3em}
 .cart .img-cart{float:left;margin-right:.8em}
 .cart .btn-cart{font-size:14px;color:#372f4a}
