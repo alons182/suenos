@@ -53,10 +53,14 @@ class ProductsController extends \BaseController {
      */
     public function search()
     {
-        $search = Input::all();
-        $products = Search::products($search);
 
-        return View::make('products.index')->withProducts($products)->withSearch($search['q']);
+        $search = array_add(Input::all(), 'published', 1);
+
+        if ($search['q'] == '') return View::make('categories.index');
+
+        $products = $this->productRepository->getall($search);
+
+        return View::make('products.search')->withProducts($products)->withSearch($search['q']);
     }
 
     /**

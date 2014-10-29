@@ -247,6 +247,10 @@ Route::group(['prefix' => 'store'], function ()
         'as'   => 'product_path',
         'uses' => 'ProductsController@show'
     ]);
+    Route::get('search', [
+        'as' => 'products_search',
+        'uses' => 'ProductsController@search'
+    ]);
 
     # categories
     Route::get('categories', [

@@ -19,7 +19,7 @@
            </div>
 
        @empty
-        <p>No hay articulos en esta categoria</p>
+        <p>No se encontraron articulos</p>
        @endforelse
 
 

@@ -32,10 +32,9 @@
     <header>
         <div class="inner">
             <a href="/" class="logo"><img src="/img/logo.png" alt="Sueños de vida"/></a>
-            <div class="search">
-                <i class="icon-search"></i>
-                <input type="text" name="q" class="form-control" />
-            </div>
+
+            @include('layouts/partials/_search')
+
 
             <div class="cart">
                             <span class="img-cart">

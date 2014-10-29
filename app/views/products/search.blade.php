@@ -4,11 +4,10 @@
 @stop
 @section('content')
     <section class="main">
-        <h1>{{ (isset($category)) ? $category : 'Busqueda' }}</h1>
-        @include('layouts.partials._filter_products')
+        <h1>Busqueda: {{ $search }}</h1>
         @include('layouts.partials._list_products')
         @if ($products)
-           <div class="pagination-container">{{$products->appends(['subcat'=>$selected])->links()}}</div>
+           <div class="pagination-container">{{$products->appends(['q'=>$search])->links()}}</div>
        @endif
     </section>
 @stop
