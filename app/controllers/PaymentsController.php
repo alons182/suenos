@@ -87,7 +87,7 @@ class PaymentsController extends \BaseController {
      */
     public function red()
     {
-        return View::make('users.red'); //->withUser($user);
+        return View::make('users.red')->withMonth(Carbon::now()->month)->withYear(Carbon::now()->year);
     }
 
 

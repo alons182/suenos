@@ -54,22 +54,35 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
         if ($usersOfRed)
         {
-            $payments = $this->model->with('users', 'users.profiles')->where(function ($query) use ($usersOfRed, $data)
+            $paymentsOfRed = $this->model->with('users', 'users.profiles')->where(function ($query) use ($usersOfRed, $data)
             {
                 $query->whereIn('user_id', $usersOfRed)
                     ->where(\DB::raw('MONTH(created_at)'), '=', $data['month'])
                     ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year);
             });
 
-            $gain = $payments->sum(\DB::raw('gain'));
-            $membership_cost = ($payments->count()) ? $payments->first()->membership_cost : $this->membership_cost;
+            $gain = $paymentsOfRed->sum(\DB::raw('gain'));
+
+            $paymentsOfUser = $this->model->where(function ($query) use ($usersOfRed, $data)
+            {
+                $query->where('user_id','=', Auth::user()->id)
+                    ->where(\DB::raw('MONTH(created_at)'), '=', $data['month'])
+                    ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year);
+            });
+            $paymentOfUser = $paymentsOfUser->sum(\DB::raw('amount'));
+            //dd($paymentOfUser);
 
 
-            $payments = $payments->paginate($this->limit);
+            $membership_cost = ($paymentsOfRed->count()) ? $paymentsOfRed->first()->membership_cost : $this->membership_cost;
+
+
+            $payments = $paymentsOfRed->paginate($this->limit);
+            $paymentsOfUser = $paymentsOfUser->paginate($this->limit);
 
         } else
         {
             $payments = [];
+            $paymentsOfUser = [];
             $gain = 0;
             $membership_cost = $this->membership_cost;
 
@@ -77,8 +90,9 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
         $data = array(
             'gain_bruta' => $gain,
-            'gain_neta'  => $gain - $membership_cost,
-            'payments'   => $payments
+            'gain_neta'  => ($gain + $paymentOfUser) - $membership_cost,
+            'payments'   => $payments,
+            'paymentsOfUser'   => $paymentsOfUser
         );
 
         return new Collection($data);
@@ -145,7 +159,11 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
             $query->where('user_id', '=', ($user_id)? $user_id : Auth::user()->id)
                 ->where(\DB::raw('MONTH(created_at)'), '=', Carbon::now()->month)
                 ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year)
-                ->where('payment_type', '=', 'M');
+                ->where(function ($query)
+                {
+                    $query->where('payment_type', '=', 'M')
+                        ->orWhere('payment_type', '=', 'A');
+                });
         })->first();
 
         return $payment;

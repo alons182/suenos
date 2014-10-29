@@ -5,7 +5,12 @@
 
 <h2>Tu red de usuarios</h2>
 
-@forelse ($currentUser->immediateDescendants()->with('payments')->get()->chunk(15) as $userSet)
+@forelse ($currentUser->immediateDescendants()->with(array('payments' => function($query) use ($month, $year)
+                                                     {
+                                                          $query->where(\DB::raw('MONTH(created_at)'), '=', $month)
+                                                            ->where(\DB::raw('YEAR(created_at)'), '=', $year);
+
+                                                  }))->with('profiles','children')->get()->chunk(15) as $userSet)
     <div class="row users">
         @foreach ($userSet as $user)
             <div class="col-md-3 user-block">

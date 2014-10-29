@@ -63,7 +63,7 @@
             <tfoot>
 
             @if ($payments['payments'])
-                <td  colspan="7" class="pagination-container">{{$payments['payments']->appends(['month' => $selectedMonth])->links()}}</td>
+                <td  colspan="8" class="pagination-container">{{$payments['payments']->appends(['month' => $selectedMonth])->links()}}</td>
             @endif
 
 
@@ -72,6 +72,47 @@
 
 
     </div>
+    <h1><small>Tus Movimientos de pago</small></h1>
+    <div class="table-responsive payments-table">
+
+            <table class="table table-striped  ">
+                <thead>
+                <tr>
+
+                    <th>#</th>
+                    <th># Transferencia</th>
+                    <th>Monto</th>
+                    <th>Tipo de pago</th>
+                    <th>Fecha</th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse ($payments['paymentsOfUser'] as $payment)
+                <tr>
+
+                    <td>{{ $payment->id }}</td>
+                    <td>{{ $payment->transfer_number }}</td>
+                    <td>{{ money($payment->amount,'₡') }}</td>
+                    <td> {{ $payment->present()->paymentType }}</td>
+                    <td> {{ $payment->created_at }}</td>
+
+                </tr>
+                @empty
+                 <tr><td colspan="5" style="text-align: center;">No hay movimientos de pagos</td></tr>
+                @endforelse
+                </tbody>
+                <tfoot>
+
+                @if ($payments['paymentsOfUser'])
+                    <td  colspan="5" class="pagination-container">{{$payments['paymentsOfUser']->appends(['month' => $selectedMonth])->links()}}</td>
+                @endif
+
+
+                </tfoot>
+            </table>
+
+
+        </div>
 </section>
 
 @stop

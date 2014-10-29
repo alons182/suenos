@@ -154,7 +154,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
                 'Nombre'             => $payment->users->profiles->present()->fullname,
                 'Cedula'             => $payment->users->profiles->ide,
                 'Cuenta'             => $payment->users->profiles->number_account,
-                'Monto'              => $payment->amount,
+                'Monto pago'              => $payment->amount,
                 'Dia del pago'       => $payment->created_at->toDateTimeString()
 
             );
@@ -186,18 +186,33 @@ class DbUserRepository extends DbRepository implements UserRepository {
 
             if ($usersOfRed)
             {
-                $payments = Payment::where(function ($query) use ($usersOfRed, $month, $year)
+                $paymentsOfRed =Payment::where(function ($query) use ($usersOfRed, $month, $year)
                 {
                     $query->whereIn('user_id', $usersOfRed)
                         ->where(\DB::raw('MONTH(created_at)'), '=', $month)
                         ->where(\DB::raw('YEAR(created_at)'), '=', $year);
                 });
-                $gain = $payments->sum('gain') - (($payments->count()) ? $payments->first()->membership_cost : $this->membership_cost);
+
+                $gain = $paymentsOfRed->sum(\DB::raw('gain'));
+
+                $paymentsOfUser =Payment::where(function ($query) use ($user, $month, $year)
+                {
+                    $query->where('user_id','=', $user->id)
+                        ->where(\DB::raw('MONTH(created_at)'), '=', $month)
+                        ->where(\DB::raw('YEAR(created_at)'), '=', $year);
+                });
+                $paymentOfUser = $paymentsOfUser->sum(\DB::raw('amount'));
+
+                $membership_cost = ($paymentsOfRed->count()) ? $paymentsOfRed->first()->membership_cost : $this->membership_cost;
+
 
 
             } else
             {
-                $gain = - 20000;
+                $gain = 0;
+                $paymentOfUser = 0;
+                $membership_cost = $this->membership_cost;
+
             }
 
             $userArray = array(
@@ -207,7 +222,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
                 'Nombre'             => $user->profiles->present()->fullname,
                 'Cedula'             => $user->profiles->ide,
                 'Cuenta'             => $user->profiles->number_account,
-                'Monto'              => $gain,
+                'Ganancia'              => (string)(($gain + $paymentOfUser) - $membership_cost),
                 'Mes'                => $month,
                 'Año'                => $year
             );
@@ -215,6 +230,8 @@ class DbUserRepository extends DbRepository implements UserRepository {
             $usersArray[] = $userArray;
 
         }
+
+        //dd($usersArray);
 
         return $usersArray;
 
