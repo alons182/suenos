@@ -83,6 +83,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         {
             $payments = [];
             $paymentsOfUser = [];
+            $paymentOfUser = 0;
             $gain = 0;
             $membership_cost = $this->membership_cost;
 
