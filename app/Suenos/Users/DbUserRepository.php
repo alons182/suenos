@@ -225,7 +225,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
                 'Nombre'             => $user->profiles->present()->fullname,
                 'Cedula'             => $user->profiles->ide,
                 'Cuenta'             => $user->profiles->number_account,
-                'Ganancia'              => (string)(($gain) - $membership_cost),
+                'Ganancia'           => $gain - $membership_cost,
                 'Mes'                => $month,
                 'Año'                => $year
             );

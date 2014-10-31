@@ -1,12 +1,11 @@
 <?php namespace app\controllers\Admin;
 
 
-use Carbon\Carbon;
 use Input;
 use Laracasts\Flash\Flash;
+use Maatwebsite\Excel\Facades\Excel;
 use Suenos\Forms\UserEditForm;
 use Suenos\Forms\UserForm;
-use Suenos\Users\UserExcelExport;
 use Suenos\Users\UserRepository;
 use User;
 use Auth;
@@ -17,25 +16,21 @@ class UsersController extends \BaseController {
     protected $userForm;
     protected $userRepository;
     protected $userEditForm;
-    /**
-     * @var UserExcelExport
-     */
-    private $export;
+
 
     /**
      * @param UserForm $userForm
      * @param UserEditForm $userEditForm
      * @param UserRepository $userRepository
-     * @param UserExcelExport $export
      * @internal param UserEditForm $
      */
 
-    function __construct(UserForm $userForm, UserEditForm $userEditForm, UserRepository $userRepository, UserExcelExport $export)
+    function __construct(UserForm $userForm, UserEditForm $userEditForm, UserRepository $userRepository)
     {
         $this->userForm = $userForm;
         $this->userRepository = $userRepository;
         $this->userEditForm = $userEditForm;
-        $this->export = $export;
+
     }
 
     /**
@@ -178,11 +173,22 @@ class UsersController extends \BaseController {
         $month = Input::get('month');
         $year = Input::get('year');
 
-        return $this->export->sheet('Ganancias', function ($sheet) use ($month, $year)
+        Excel::create('Ganancias', function ($excel) use ($month, $year)
         {
-            $sheet->fromArray($this->userRepository->reportPaidsByMonth($month, $year));
+
+            $excel->sheet('Ganancias', function ($sheet) use ($month, $year)
+            {
+                $sheet->fromArray($this->userRepository->reportPaidsByMonth($month, $year), null, 'A1', true);
+
+            });
+
+
         })->export('xls');
+
+
+
     }
+
     /**
      * Function for exported payments list for date
      * @return mixed
@@ -191,10 +197,18 @@ class UsersController extends \BaseController {
     {
         $payment_date = Input::get('payment_date_submit');
 
-        return $this->export->sheet('Pagos diarios', function ($sheet) use ($payment_date)
+        Excel::create('Pagos', function ($excel) use ($payment_date)
         {
-            $sheet->fromArray($this->userRepository->reportPaidsByDay($payment_date));
+
+            $excel->sheet('Pagos diarios', function ($sheet) use ($payment_date)
+            {
+                $sheet->fromArray($this->userRepository->reportPaidsByDay($payment_date), null, 'A1', true);
+
+            });
+
+
         })->export('xls');
+
     }
 
     /**
