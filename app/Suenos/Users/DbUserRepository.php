@@ -135,7 +135,6 @@ class DbUserRepository extends DbRepository implements UserRepository {
             );
         }
 
-
         $payments = Payment::with('users.profiles')->where(function ($query) use ($today)
         {
             $query->whereBetween('created_at', $today)
