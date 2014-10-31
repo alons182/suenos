@@ -157,12 +157,12 @@ Route::group(['prefix' => 'store/admin', 'before' => 'role:administrator'], func
             'uses' => 'app\controllers\Admin\UsersController@' . $key,
         ));
     }
-    Route::get('users/excel', [
-        'as'   => 'users_excel',
-        'uses' => 'app\controllers\Admin\UsersController@exportUserList'
+    Route::get('users/gainsExcel', [
+        'as'   => 'users_gains_excel',
+        'uses' => 'app\controllers\Admin\UsersController@exportGainsList'
     ]);
     Route::get('users/paymentsDayExcel', [
-        'as'   => 'users_payment_excel',
+        'as'   => 'users_payments_excel',
         'uses' => 'app\controllers\Admin\UsersController@exportPaymentsList'
     ]);
     Route::get('users/list', [

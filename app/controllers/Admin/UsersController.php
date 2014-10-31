@@ -165,10 +165,10 @@ class UsersController extends \BaseController {
     }
 
     /**
-     * Function for exported user list for payments
+     * Function for exported gains for user list
      * @return mixed
      */
-    public function exportUserList()
+    public function exportGainsList()
     {
         $month = Input::get('month');
         $year = Input::get('year');

@@ -1,6 +1,6 @@
 <div class="export-users">
     <div class="export-usersGains">
-        {{ Form::open(['route' => 'users_excel','method' => 'get']) }}
+        {{ Form::open(['route' => 'users_gains_excel','method' => 'get']) }}
            <div class="form-group">
 
                 <div class="controls">
@@ -14,7 +14,7 @@
         {{ Form::close() }}
     </div>
     <div class="export-usersPayment">
-    {{ Form::open(['route' => 'users_payment_excel','method' => 'get']) }}
+    {{ Form::open(['route' => 'users_payments_excel','method' => 'get']) }}
 
 
                <div class="form-group">
