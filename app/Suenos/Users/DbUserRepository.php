@@ -184,14 +184,14 @@ class DbUserRepository extends DbRepository implements UserRepository {
         {
             $usersOfRed = $user->children()->get()->lists('id');
 
-            $paymentsOfUser =Payment::where(function ($query) use ($user, $month, $year)
+            /*$paymentsOfUser =Payment::where(function ($query) use ($user, $month, $year)
             {
                 $query->where('user_id','=', $user->id)
                     ->where(\DB::raw('MONTH(created_at)'), '=', $month)
                     ->where(\DB::raw('YEAR(created_at)'), '=', $year);
             });
 
-            $paymentOfUser = $paymentsOfUser->sum(\DB::raw('amount'));
+            $paymentOfUser = $paymentsOfUser->sum(\DB::raw('amount'));*/
 
             if ($usersOfRed)
             {
@@ -213,7 +213,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
             } else
             {
                 $gain = 0;
-                $paymentOfUser = 0;
+                //$paymentOfUser = 0;
                 $membership_cost = $this->membership_cost;
 
             }
