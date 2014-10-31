@@ -111,36 +111,76 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
         $users = User::all();
         $users_payments = 0;
+        $amount = 0;
+        $gain = 0;
         foreach ($users as $user)
         {
+            $usersOfRed =$user->children()->get()->lists('id');
+            $countUsersOfRed = $user->children()->count();
 
-            $usersOfRed = $user->children()->count();
 
-            if($usersOfRed > 1)
-            if (!$this->existsPaymentOfMonth($user->id))
+
+            if($countUsersOfRed)
             {
+                if (!$this->existsPaymentOfMonth($user->id))
+                {
 
-                $this->model->create([
-                    'user_id'         => $user->id,
-                    'membership_cost' => $this->membership_cost,
-                    'payment_type'    => "MA",
-                    'amount'          => $this->membership_cost,
-                    'gain'            => ($this->membership_cost - 5000),
-                    'bank'            => 'Pago de membresía Automatico',
-                    'transfer_number' => 'Pago de membresía Automatico',
-                    'transfer_date'   => Carbon::now()
-                ]);
+                    if($countUsersOfRed == 1 )
+                    {
 
-                $users_payments++;
+                        $amount = $this->userOfRedPaid($usersOfRed);
+                        $gain = 0;
 
-                //$this->mailer->sendPaymentsMembershipMessageTo($user);
+                    }else if($usersOfRed > 1 )
+                    {
+                        $amount = ($this->userOfRedPaid($usersOfRed) > 20000) ? 20000 : $this->userOfRedPaid($usersOfRed);
+                        $gain = ($amount < 20000) ? 0 : $amount - 5000;
+
+                        
+                    }
+
+                    if($amount > 0)
+                    {
+                        $this->model->create([
+                            'user_id'         => $user->id,
+                            'membership_cost' => $this->membership_cost,
+                            'payment_type'    => "MA",
+                            'amount'          => $amount,
+                            'gain'            => $gain,
+                            'bank'            => 'Pago de membresía Automático',
+                            'transfer_number' => 'Pago de membresía Automático',
+                            'transfer_date'   => Carbon::now()
+                        ]);
+                    }
+
+                    $users_payments++;
+
+                    //$this->mailer->sendPaymentsMembershipMessageTo($user);
+                }
             }
+
+
 
         }
 
         $this->mailer->sendReportMembershipMessageTo($users->count(), $users_payments);
 
 
+    }
+    private function userOfRedPaid($usersOfRed)
+    {
+        $paymentsOfRed = $this->model->where(function ($query) use ($usersOfRed)
+        {
+            $query->whereIn('user_id', $usersOfRed)
+                ->where(\DB::raw('MONTH(created_at)'), '=', Carbon::now()->subMonth()->month)
+                ->where(\DB::raw('YEAR(created_at)'), '=', (Carbon::now()->month == 1) ? Carbon::now()->subyear()->year : Carbon::now()->year);
+        });
+
+        //if($usersOfRed[0]==15)
+       //     dd($paymentsOfRed->get()->toArray());
+        $amount = $paymentsOfRed->sum(\DB::raw('gain'));
+
+        return $amount;
     }
 
     /**

@@ -3,10 +3,11 @@
 return array(
 
     'payments_type' => array(
-        'M' => 'Membresía',
-        'A' => 'Administrativo',
+        'M'  => 'Membresía',
+        'A'  => 'Administrativo',
+        'MA' => 'Membresia(A)'
     ),
-    'status' => array(
+    'status'        => array(
         'P' => 'Pendiente',
         'F' => 'Finalizada',
     ),
