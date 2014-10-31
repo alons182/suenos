@@ -1121,7 +1121,7 @@ small {
 .payments-table,
 .orders-table {
   font-size: 13px;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 .gains-container {
   position: absolute;
@@ -1144,6 +1144,9 @@ small {
 }
 .gains .amount {
   font-weight: bold;
+}
+.gains .red {
+  color: #d53c21;
 }
 .months {
   position: absolute;

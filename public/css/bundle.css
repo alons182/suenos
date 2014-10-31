@@ -205,12 +205,13 @@ small{font-weight:400;font-size:16px;color:#fff;padding:.3em;background:#372f4a}
 .pagination li a,.pagination li span{display:block;padding:.5em;border:1px solid #eae8e7}
 .pagination li a:hover,.pagination li span:hover{background:#372f4a;color:#fff}
 .pagination .active span{background:#98ba33!important;color:#fff}
-.orders-table,.payments-table{font-size:13px;margin-top:20px}
+.orders-table,.payments-table{font-size:13px;margin-top:40px}
 .gains-container{position:absolute;right:0;top:0}
 .gains-container small{display:block}
 .gains{background:#98ba33;padding:.5em}
 .gains h2{font-size:.9em;margin-top:0;margin-bottom:0;color:#fff;font-weight:400}
 .gains .amount{font-weight:700}
+.gains .red{color:#d53c21}
 .months{position:absolute;right:3px;top:3px}
 .user-block{width:50px;display:inline-block;vert-align:top;position:relative;padding:.5em;text-align:center}
 .user-icon-toggle i{font-size:3em;cursor:pointer}

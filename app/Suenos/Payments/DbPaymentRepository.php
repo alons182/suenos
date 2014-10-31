@@ -91,7 +91,8 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
         $data = array(
             'gain_bruta' => $gain,
-            'gain_neta'  => ($gain + $paymentOfUser) - $membership_cost,
+            'gain_neta'  => $gain  - $membership_cost,
+            'paymentOfUser' => (($paymentOfUser + $gain) > 20000 ? 20000 : $paymentOfUser + $gain ) ,
             'payments'   => $payments,
             'paymentsOfUser'   => $paymentsOfUser
         );
@@ -110,18 +111,24 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         $users_payments = 0;
         foreach ($users as $user)
         {
+
+            $usersOfRed = $user->children()->count();
+
+            if($usersOfRed > 1)
             if (!$this->existsPaymentOfMonth($user->id))
             {
+
                 $this->model->create([
                     'user_id'         => $user->id,
                     'membership_cost' => $this->membership_cost,
                     'payment_type'    => "MA",
                     'amount'          => $this->membership_cost,
                     'gain'            => ($this->membership_cost - 5000),
-                    'bank'            => 'Cobro de membresía',
-                    'transfer_number' => 'Cobro de membresía',
+                    'bank'            => 'Pago de membresía Automatico',
+                    'transfer_number' => 'Pago de membresía Automatico',
                     'transfer_date'   => Carbon::now()
                 ]);
+
                 $users_payments++;
 
                 //$this->mailer->sendPaymentsMembershipMessageTo($user);
