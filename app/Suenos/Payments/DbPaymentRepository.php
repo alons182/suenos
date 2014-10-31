@@ -53,7 +53,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
 
         // payments for the current user logged
-        $paymentsOfUser = $this->model->where(function ($query) use ($usersOfRed, $data)
+        $paymentsOfUser = $this->model->where(function ($query) use ($data)
         {
             $query->where('user_id','=', Auth::user()->id)
                 ->where(\DB::raw('MONTH(created_at)'), '=', $data['month'])
