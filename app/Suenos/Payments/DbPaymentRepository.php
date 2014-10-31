@@ -118,8 +118,6 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
             $usersOfRed =$user->children()->get()->lists('id');
             $countUsersOfRed = $user->children()->count();
 
-
-
             if($countUsersOfRed)
             {
                 if (!$this->existsPaymentOfMonth($user->id))
@@ -136,7 +134,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
                         $amount = ($this->userOfRedPaid($usersOfRed) > 20000) ? 20000 : $this->userOfRedPaid($usersOfRed);
                         $gain = ($amount < 20000) ? 0 : $amount - 5000;
 
-                        
+
                     }
 
                     if($amount > 0)
