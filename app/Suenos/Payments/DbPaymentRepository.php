@@ -51,7 +51,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
     public function getPaymentsOfYourRed($data = null)
     {
         $usersOfRed = Auth::user()->children()->get()->lists('id');
-
+        dd($usersOfRed);
         if ($usersOfRed)
         {
             $paymentsOfRed = $this->model->with('users', 'users.profiles')->where(function ($query) use ($usersOfRed, $data)
