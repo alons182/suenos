@@ -50,8 +50,20 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
      */
     public function getPaymentsOfYourRed($data = null)
     {
+
+
+        // payments for the current user logged
+        $paymentsOfUser = $this->model->where(function ($query) use ($usersOfRed, $data)
+        {
+            $query->where('user_id','=', Auth::user()->id)
+                ->where(\DB::raw('MONTH(created_at)'), '=', $data['month'])
+                ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year);
+        });
+        $paymentOfUser = $paymentsOfUser->sum(\DB::raw('amount'));
+        $paymentsOfUser = $paymentsOfUser->paginate($this->limit);
+
+        // payments for the users from the current user logged
         $usersOfRed = Auth::user()->children()->get()->lists('id');
-        dd($usersOfRed);
         if ($usersOfRed)
         {
             $paymentsOfRed = $this->model->with('users', 'users.profiles')->where(function ($query) use ($usersOfRed, $data)
@@ -63,27 +75,17 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
             $gain = $paymentsOfRed->sum(\DB::raw('gain'));
 
-            $paymentsOfUser = $this->model->where(function ($query) use ($usersOfRed, $data)
-            {
-                $query->where('user_id','=', Auth::user()->id)
-                    ->where(\DB::raw('MONTH(created_at)'), '=', $data['month'])
-                    ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year);
-            });
-            $paymentOfUser = $paymentsOfUser->sum(\DB::raw('amount'));
-            //dd($paymentOfUser);
 
 
             $membership_cost = ($paymentsOfRed->count()) ? $paymentsOfRed->first()->membership_cost : $this->membership_cost;
 
 
             $payments = $paymentsOfRed->paginate($this->limit);
-            $paymentsOfUser = $paymentsOfUser->paginate($this->limit);
+
 
         } else
         {
             $payments = [];
-            $paymentsOfUser = [];
-            $paymentOfUser = 0;
             $gain = 0;
             $membership_cost = $this->membership_cost;
 
