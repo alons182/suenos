@@ -184,6 +184,15 @@ class DbUserRepository extends DbRepository implements UserRepository {
         {
             $usersOfRed = $user->children()->get()->lists('id');
 
+            $paymentsOfUser =Payment::where(function ($query) use ($user, $month, $year)
+            {
+                $query->where('user_id','=', $user->id)
+                    ->where(\DB::raw('MONTH(created_at)'), '=', $month)
+                    ->where(\DB::raw('YEAR(created_at)'), '=', $year);
+            });
+
+            $paymentOfUser = $paymentsOfUser->sum(\DB::raw('amount'));
+
             if ($usersOfRed)
             {
                 $paymentsOfRed =Payment::where(function ($query) use ($usersOfRed, $month, $year)
@@ -195,13 +204,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
 
                 $gain = $paymentsOfRed->sum(\DB::raw('gain'));
 
-                $paymentsOfUser =Payment::where(function ($query) use ($user, $month, $year)
-                {
-                    $query->where('user_id','=', $user->id)
-                        ->where(\DB::raw('MONTH(created_at)'), '=', $month)
-                        ->where(\DB::raw('YEAR(created_at)'), '=', $year);
-                });
-                $paymentOfUser = $paymentsOfUser->sum(\DB::raw('amount'));
+
 
                 $membership_cost = ($paymentsOfRed->count()) ? $paymentsOfRed->first()->membership_cost : $this->membership_cost;
 
@@ -222,7 +225,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
                 'Nombre'             => $user->profiles->present()->fullname,
                 'Cedula'             => $user->profiles->ide,
                 'Cuenta'             => $user->profiles->number_account,
-                'Ganancia'              => (string)(($gain + $paymentOfUser) - $membership_cost),
+                'Ganancia'              => (string)(($gain) - $membership_cost),
                 'Mes'                => $month,
                 'Año'                => $year
             );
