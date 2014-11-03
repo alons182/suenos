@@ -3,6 +3,7 @@
 {
     var_dump($query);
 });*/
+
 #binding
 App::bind('Suenos\Users\UserRepository', 'Suenos\Users\DbUserRepository');
 App::bind('Suenos\Payments\PaymentRepository', 'Suenos\Payments\DbPaymentRepository');
