@@ -8,6 +8,5 @@ composer.lock
 .DS_Store
 Thumbs.db
 .idea
-Gulpfile.js
 /node_modules
 tests/_output/*
