@@ -28,12 +28,9 @@ audio:not([controls]) {
   display: none;
 }
 html {
-  font-size: 100%;
-/* 1 */
-  -ms-text-size-adjust: 100%;
-/* 2 */
-  -webkit-text-size-adjust: 100%;
-/* 2 */
+  font-size: 100%; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
 }
 html,
 button,
@@ -161,10 +158,8 @@ nav ol {
   list-style-image: none;
 }
 img {
-  border: 0;
-/* 1 */
-  -ms-interpolation-mode: bicubic;
-/* 2 */
+  border: 0; /* 1 */
+  -ms-interpolation-mode: bicubic; /* 2 */
 }
 svg:not(:root) {
   overflow: hidden;
@@ -181,11 +176,9 @@ fieldset {
   padding: 0.35em 0.625em 0.75em;
 }
 legend {
-  border: 0;
-/* 1 */
+  border: 0; /* 1 */
   padding: 0;
-  white-space: normal;
-/* 2 */
+  white-space: normal; /* 2 */
   *margin-left: -7px;
 /* 3 */
 }
@@ -193,12 +186,9 @@ button,
 input,
 select,
 textarea {
-  font-size: 100%;
-/* 1 */
-  margin: 0;
-/* 2 */
-  vertical-align: baseline;
-/* 3 */
+  font-size: 100%; /* 1 */
+  margin: 0; /* 2 */
+  vertical-align: baseline; /* 3 */
   *vertical-align: middle;
 /* 3 */
 }
@@ -214,10 +204,8 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  -webkit-appearance: button;
-/* 2 */
-  cursor: pointer;
-/* 3 */
+  -webkit-appearance: button; /* 2 */
+  cursor: pointer; /* 3 */
   *overflow: visible;
 /* 4 */
 }
@@ -229,21 +217,17 @@ input[type="checkbox"],
 input[type="radio"] {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
-/* 1 */
-  padding: 0;
-/* 2 */
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
   *height: 13px;
 /* 3 */
   *width: 13px;
 /* 3 */
 }
 input[type="search"] {
-  -webkit-appearance: textfield;
-/* 1 */
+  -webkit-appearance: textfield; /* 1 */
   -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-/* 2 */
+  -webkit-box-sizing: content-box; /* 2 */
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -258,10 +242,8 @@ input::-moz-focus-inner {
   padding: 0;
 }
 textarea {
-  overflow: auto;
-/* 1 */
-  vertical-align: top;
-/* 2 */
+  overflow: auto; /* 1 */
+  vertical-align: top; /* 2 */
 }
 table {
   border-collapse: collapse;
