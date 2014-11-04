@@ -11,5 +11,9 @@ return array(
         'P' => 'Pendiente',
         'F' => 'Finalizada',
     ),
+    'role'        => array(
+        'administrator' => 'Administrador',
+        'subadministrator' => 'Sub-administrador',
+    ),
 
 );

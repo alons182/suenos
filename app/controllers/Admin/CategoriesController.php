@@ -21,6 +21,7 @@ class CategoriesController extends \BaseController {
     {
         $this->categoryRepository = $categoryRepository;
         $this->categoryForm = $categoryForm;
+        $this->beforeFilter('role:administrator');
     }
 
 

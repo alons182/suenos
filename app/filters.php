@@ -98,8 +98,25 @@ Route::filter('currentUser', function ($route)
     }
 });
 
+Route::filter('authByRole', function ($route, $request)
+{
+
+    if (Auth::guest())
+    {
+        return Redirect::route('login');
+    }
+    if (! Auth::guest() and (! Auth::user()->hasRole('administrator') and ! Auth::user()->hasRole('subadministrator')))
+    {
+        return Redirect::home();
+    }
+
+
+
+});
+
 Route::filter('role', function ($route, $request, $role)
 {
+
     if (Auth::guest())
     {
         return Redirect::route('login');
@@ -108,6 +125,7 @@ Route::filter('role', function ($route, $request, $role)
     {
         return Redirect::home();
     }
+
 
 
 });

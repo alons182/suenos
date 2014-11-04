@@ -1,11 +1,13 @@
 <?php namespace app\controllers\Admin;
 
 
+use Illuminate\Support\Facades\View;
 use Input;
 use Laracasts\Flash\Flash;
 use Maatwebsite\Excel\Facades\Excel;
 use Suenos\Forms\UserEditForm;
 use Suenos\Forms\UserForm;
+use Suenos\Roles\Role;
 use Suenos\Users\UserRepository;
 use User;
 use Auth;
@@ -31,6 +33,8 @@ class UsersController extends \BaseController {
         $this->userRepository = $userRepository;
         $this->userEditForm = $userEditForm;
 
+        View::share('roles', Role::lists('name', 'id'));
+        $this->beforeFilter('role:administrator');
     }
 
     /**

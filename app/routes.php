@@ -129,19 +129,21 @@ Route::get('/{profile}', [
 /**
  * Administration Store
  */
-Route::group(['prefix' => 'store/admin', 'before' => 'role:administrator'], function ()
+Route::group(['prefix' => 'store/admin', 'before' => 'authByRole'], function ()
 {
 
     # Dashboard
     Route::get('/', [
         'as'   => 'dashboard',
         'uses' => 'app\controllers\Admin\DashboardController@index'
+
     ]);
 
     # Users
     Route::get('users', [
         'as'   => 'users',
         'uses' => 'app\controllers\Admin\UsersController@index'
+
     ]);
     Route::get('users/register', [
         'as'   => 'user_register',
