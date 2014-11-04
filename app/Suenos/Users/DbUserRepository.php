@@ -119,7 +119,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
      * @internal param $year
      * @return array
      */
-    public function reportPaidsByDay($date = null)
+    public function reportPaymentsByDay($date = null)
     {
         if ($date)
         {
@@ -173,7 +173,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
      * @param $year
      * @return array
      */
-    public function reportPaidsByMonth($month, $year)
+    public function reportPaymentsByMonth($month, $year)
     {
 
         $users = $this->model->with('profiles')->get();

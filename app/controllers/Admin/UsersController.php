@@ -182,7 +182,7 @@ class UsersController extends \BaseController {
 
             $excel->sheet('Ganancias', function ($sheet) use ($month, $year)
             {
-                $sheet->fromArray($this->userRepository->reportPaidsByMonth($month, $year), null, 'A1', true);
+                $sheet->fromArray($this->userRepository->reportPaymentsByMonth($month, $year), null, 'A1', true);
 
             });
 
@@ -206,7 +206,7 @@ class UsersController extends \BaseController {
 
             $excel->sheet('Pagos diarios', function ($sheet) use ($payment_date)
             {
-                $sheet->fromArray($this->userRepository->reportPaidsByDay($payment_date), null, 'A1', true);
+                $sheet->fromArray($this->userRepository->reportPaymentsByDay($payment_date), null, 'A1', true);
 
             });
 

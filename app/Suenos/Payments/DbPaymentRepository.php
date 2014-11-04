@@ -104,7 +104,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
     }
 
     /**
-     * Generate a paid for any user for month
+     * Generate a payment for any user for month
      */
     public function membershipFee()
     {
@@ -126,12 +126,12 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
                     if($countUsersOfRed == 1 )
                     {
 
-                        $amount = $this->userOfRedPaid($usersOfRed);
+                        $amount = $this->userOfRedPayments($usersOfRed);
                         $gain = 0;
 
                     }else if($usersOfRed > 1 )
                     {
-                        $amount = ($this->userOfRedPaid($usersOfRed) > 20000) ? 20000 : $this->userOfRedPaid($usersOfRed);
+                        $amount = ($this->userOfRedPayments($usersOfRed) > 20000) ? 20000 : $this->userOfRedPayments($usersOfRed);
                         $gain = ($amount < 20000) ? 0 : $amount - 5000;
 
 
@@ -165,7 +165,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
 
     }
-    private function userOfRedPaid($usersOfRed)
+    private function userOfRedPayments($usersOfRed)
     {
         $paymentsOfRed = $this->model->where(function ($query) use ($usersOfRed)
         {
@@ -196,7 +196,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
     }
 
     /**
-     * Verify the payments of month for not repeat one paid
+     * Verify the payments of month for not repeat one payment
      * @param null $user_id
      * @return mixed
      */
