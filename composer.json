@@ -28,7 +28,7 @@
 			"app/database/seeds",
 			"app/tests/TestCase.php"
 		],
-        "files":["app/Suenos/helpers.php"],
+        "files":["app/Suenos/helpers.php","app/Suenos/UploadHandler.php"],
         "psr-4":{
             "Suenos\\":"app/Suenos"
         }

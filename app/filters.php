@@ -105,6 +105,22 @@ Route::filter('authByRole', function ($route, $request)
     {
         return Redirect::route('login');
     }
+    if (! Auth::guest() and (! Auth::user()->hasRole('administrator') and ! Auth::user()->hasRole('subadministrator') and ! Auth::user()->hasRole('tienda')))
+    {
+        return Redirect::home();
+    }
+
+
+
+});
+
+Route::filter('authByRoleAdmins', function ($route, $request)
+{
+
+    if (Auth::guest())
+    {
+        return Redirect::route('login');
+    }
     if (! Auth::guest() and (! Auth::user()->hasRole('administrator') and ! Auth::user()->hasRole('subadministrator')))
     {
         return Redirect::home();

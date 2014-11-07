@@ -94,7 +94,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         $data = array(
             'gain_bruta' => $gain,
             'gain_neta'  => $gain  - $membership_cost,
-            'paymentOfUser' => (($paymentOfUser + $gain) > 20000 ? 20000 : $paymentOfUser + $gain ) ,
+            'paymentOfUser' => ($paymentOfUser > 20000 ? 20000 : $paymentOfUser ) ,
             'payments'   => $payments,
             'paymentsOfUser'   => $paymentsOfUser
         );
@@ -127,7 +127,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
                     {
 
                         $amount = $this->userOfRedPayments($usersOfRed);
-                        $gain = 0;
+                        $gain = $amount;
 
                     }else if($usersOfRed > 1 )
                     {

@@ -34,7 +34,7 @@ class UsersController extends \BaseController {
         $this->userEditForm = $userEditForm;
 
         View::share('roles', Role::lists('name', 'id'));
-        $this->beforeFilter('role:administrator');
+        $this->beforeFilter('authByRoleAdmins');
     }
 
     /**

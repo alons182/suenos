@@ -44,6 +44,10 @@ function dir_photos_path($dir)
 {
     return public_path() . '/images_store/'. $dir .'/';
 }
+function dir_downloads_path($dir = null)
+{
+    return ($dir) ? public_path() . '/downloads_files/'. $dir .'/' : public_path() . '/downloads_files/' ;
+}
 
 function photos_path($dir)
 {

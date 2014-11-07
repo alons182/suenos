@@ -54,6 +54,9 @@ gulp.task('js_admin', function () {
         './assets/js/vendor/legacy.js',
         './assets/js/vendor/picker.js',
         './assets/js/vendor/picker.date.js',
+
+
+
         './assets/js/admin.js'
 
     ])

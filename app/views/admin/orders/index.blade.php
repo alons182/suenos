@@ -37,9 +37,9 @@
                     <td>{{ $order->created_at }}</td>
 
                     <td>
-                    
+                     @if($currentUser->hasrole('administrator'))
                        <button type="submit" class="btn btn-danger btn-sm" form="form-delete" formaction="{{ URL::route("store.admin.orders.destroy", [$order->id]) }}">Eliminar</button>
-                                                              
+                     @endif
                     </td>
                     
                 </tr>

@@ -42,6 +42,10 @@ Route::get('terms', [
     'as'   => 'terms',
     'uses' => 'PagesController@terms'
 ]);
+Route::get('descargas', [
+    'as'   => 'downloads_path',
+    'uses' => 'DownloadsController@index'
+]);
 
 /**
  * Registration
@@ -237,6 +241,13 @@ Route::group(['prefix' => 'store/admin', 'before' => 'authByRole'], function ()
     ]);
 
     Route::resource('orders', 'app\controllers\Admin\OrdersController');
+
+    Route::post('downloads/store', [
+        'as'   => 'downloads_store_path',
+        'uses' => 'app\controllers\Admin\DownloadsController@store'
+    ]);
+
+    Route::resource('downloads', 'app\controllers\Admin\DownloadsController');
 
 });
 Route::group(['prefix' => 'store'], function ()

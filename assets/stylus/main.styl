@@ -271,12 +271,21 @@ small
     padding 1em
     position relative
 
+    &:hover
+      i
+        font-size 2em
+      .overlay
+        opacity 1
+
+
     h1
         text-transform uppercase
         font-weight 700
         font-size 1.8em
         margin-top 0
         color #FFFFFF
+        position relative
+        z-index 1
 
         .light
             font-size 18px
@@ -289,6 +298,16 @@ small
         background #FFF
         color morado
         border-radius 50%
+        transition all .2s ease
+    .overlay
+      background rgba(0,0,0,0.75);
+      position absolute
+      right 0
+      left 0
+      top 0
+      bottom 0
+      opacity 0
+      transition all .2s ease
 .banner
   height 392px
 

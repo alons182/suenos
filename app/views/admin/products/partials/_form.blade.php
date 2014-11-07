@@ -1,6 +1,13 @@
 <div class="form-group">
-			{{ Form::submit(isset($buttonText) ? $buttonText : 'Crear Producto',['class'=>'btn btn-primary'])}}
-			{{ link_to_route('products', 'Cancelar', null, ['class'=>'btn btn-default'])}}
+			 @if(isset($buttonText))
+			    @if($currentUser->hasrole('administrator'))
+			        {{ Form::submit(isset($buttonText) ? $buttonText : 'Crear Producto',['class'=>'btn btn-primary'])}}
+			    @endif
+               @else
+                    {{ Form::submit('Crear Producto',['class'=>'btn btn-primary'])}}
+                @endif
+
+			{{ link_to_route('products',  ($currentUser->hasrole('administrator') ? 'Cancelar' : 'Regresar'), null, ['class'=>'btn btn-default'])}}
 
 </div>
 <div class="col-xs-12 col-sm-6">

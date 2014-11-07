@@ -821,12 +821,22 @@ small {
   padding: 1em;
   position: relative;
 }
+.box-info:hover i {
+  font-size: 2em;
+}
+.box-info:hover .overlay {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
 .box-info h1 {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 1.8em;
   margin-top: 0;
   color: #fff;
+  position: relative;
+  z-index: 1;
 }
 .box-info h1 .light {
   font-size: 18px;
@@ -841,6 +851,27 @@ small {
   color: #372f4a;
   -webkit-border-radius: 50%;
   border-radius: 50%;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.box-info .overlay {
+  background: rgba(0,0,0,0.75);
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 .banner {
   height: 392px;

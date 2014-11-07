@@ -14,9 +14,10 @@
           <ul class="nav navbar-nav">
             <li class="{{ set_active('admin') }}">{{  link_to_route('dashboard','Inicio')  }}</li>
            @if (! Auth::guest())
-            @if ($currentUser->hasRole('administrator'))
+            @if ($currentUser->hasRole('administrator') || $currentUser->hasRole('subadministrator'))
                 <li class="{{ set_active('admin/users') }}">{{ link_to_route('users','Usuarios') }}</li>
                 <li class="{{ set_active('admin/categories') }}">{{ link_to_route('categories','Categorias') }}</li>
+                <li class="{{ set_active('admin/downloads') }}">{{ link_to_route('store.admin.downloads.index','Downloads') }}</li>
             @endif
             <li class="{{ set_active('admin/products') }}">{{ link_to_route('products','Productos') }}</li>
             <li class="{{ set_active('admin/orders') }}">{{ link_to_route('orders','Ordenes') }}</li>

@@ -50,9 +50,9 @@
                     </td>
                     
                     <td>
-                       
+                        @if($currentUser->hasrole('administrator'))
                         <button type="submit" class="btn btn-danger btn-sm" form="form-delete" formaction="{{ URL::route("store.admin.categories.destroy", [$category->id]) }}">Eliminar</button>
-                   
+                   @endif
                          
                     @if ($category->isRoot())
                        

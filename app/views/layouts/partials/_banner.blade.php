@@ -27,14 +27,18 @@
     <section class="section-top">
         <a href="{{ URL::route('categories_path') }}" class="box-info familia">
             <h1><span class="light">Tienda</span><br/> Virtual</h1>
+            <span class="overlay"></span>
             <i class="icon-arrow-right"></i>
         </a>
         <a href="/aid-plan" class="box-info canasta">
             <h1><span class="light">Plan de</span><br/> Ayuda</h1>
+             <span class="overlay"></span>
             <i class="icon-arrow-right"></i>
         </a>
-        <a href="#" class="box-info ingresos">
-            <h1><span class="light">Convierte tus gastos</span><br/> En ingresos</h1>
+        <a href="/descargas" class="box-info ingresos">
+              <span class="overlay"></span>
+            <h1><span class="light">sección de </span><br/>Descargas</h1>
+
             <i class="icon-arrow-right"></i>
         </a>
     </section>
