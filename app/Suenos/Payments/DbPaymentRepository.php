@@ -37,7 +37,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
     {
         $data = $this->prepareData($data);
 
-        if ($this->existsPaymentOfMonth()) return false;
+        if ($this->existsAutomaticPaymentOfMonth()) return false;
 
         return $this->model->create($data);
 
@@ -213,6 +213,35 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
                         ->orWhere('payment_type', '=', 'A');
                 });
         })->first();
+
+        return $payment;
+    }
+
+    /**
+     * Verify the payments of month for not repeat one payment
+     * @param null $user_id
+     * @return mixed
+     */
+    public function existsAutomaticPaymentOfMonth($user_id = null)
+    {
+        $countUsersOfRed = uth::user()->children()->count();
+        $payment = false;
+
+        if($countUsersOfRed > 1)
+        {
+            $payment = $this->model->where(function ($query) use ($user_id)
+            {
+                $query->where('user_id', '=', ($user_id)? $user_id : Auth::user()->id)
+                    ->where(\DB::raw('MONTH(created_at)'), '=', Carbon::now()->month)
+                    ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year)
+                    ->where(function ($query)
+                    {
+                        $query->where('payment_type', '=', 'MA');
+
+                    });
+            })->first();
+        }
+
 
         return $payment;
     }
