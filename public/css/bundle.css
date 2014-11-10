@@ -159,7 +159,7 @@ small{font-weight:400;font-size:16px;color:#fff;padding:.3em;background:#372f4a}
 .banner .slide{width:100%;height:392px}
 .banner .slide img{width:100%}
 .banner .info{position:absolute;top:2em;left:2em;color:#fff;font-size:3em;line-height:1em}
-.banner .info.info-2{left:1.5em;font-size:2.5em}
+.banner .info.info-2{top:3em;left:1.5em;font-size:2.5em}
 .banner .bold{text-transform:uppercase;font-weight:700}
 .banner .white{color:#fff}
 .banner .purple{color:#372f4a}

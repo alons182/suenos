@@ -9,7 +9,7 @@
                     </div>
                     <div class="slide" style="background-image: url('img/banner2.jpg');">
                         <div class="info info-2">
-                          <span class="purple">Convierte tus gastos <br/> <span class="bold green">en ingresos.</span> </span>
+                          <span>Si puedes soñarlo <br/> <span class="bold ">puedes hacerlo.</span> </span>
                         </div>
                     </div>
                     <div class="slide" style="background-image: url('img/banner3.jpg');">
