@@ -1,5 +1,5 @@
 <div class="export-users">
-     @if($currentUser->hasrole('administrador'))
+     @if($currentUser->hasrole('administrator'))
         <div class="export-usersGains">
             {{ Form::open(['route' => 'users_gains_excel','method' => 'get']) }}
                <div class="form-group">

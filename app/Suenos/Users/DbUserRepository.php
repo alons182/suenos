@@ -154,7 +154,8 @@ class DbUserRepository extends DbRepository implements UserRepository {
                 'Cedula'             => $payment->users->profiles->ide,
                 'Cuenta'             => $payment->users->profiles->number_account,
                 'Monto pago'              => $payment->amount,
-                'Dia del pago'       => $payment->created_at->toDateTimeString()
+                'Fecha del pago'       => $payment->created_at->toDateTimeString(),
+                'Fecha de la transferencia'       => $payment->transfer_date
 
             );
 
