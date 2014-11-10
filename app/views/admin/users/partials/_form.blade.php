@@ -1,6 +1,14 @@
 
 <div class="form-group">
-	{{ Form::submit(isset($buttonText) ? $buttonText : 'Crear Usuario',['class'=>'btn btn-primary'])}}
+
+	 @if(isset($buttonText))
+    @if($currentUser->hasrole('administrator'))
+        {{ Form::submit(isset($buttonText) ? $buttonText : 'Crear Usuario',['class'=>'btn btn-primary'])}}
+    @endif
+    @else
+        {{ Form::submit('Crear Usuario',['class'=>'btn btn-primary'])}}
+    @endif
+
 	{{ link_to_route('users', 'Cancelar', null, ['class'=>'btn btn-default'])}}
 
 </div>
