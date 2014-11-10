@@ -13,7 +13,7 @@
       			{{ errors_for('status',$errors) }}
 
       </div>
-      @if($currentUser->hasrole('administrator'))
+      @if($currentUser->hasrole('administrator') || $currentUser->hasrole('tienda'))
         {{ Form::submit('Actualizar',['class'=>'btn btn-primary'])}}
       @endif
      {{ link_to_route('orders', 'Regresar', null, ['class'=>'btn btn-default'])}}
