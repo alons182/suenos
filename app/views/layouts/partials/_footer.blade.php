@@ -25,7 +25,7 @@
     </div>
     <div class="column column-contact">
         <h2>Contáctenos</h2>
-        <p>8901 Liberia, Guanacaste, D04 89G</p>
+        <p><a href="mailto:info@suenosdevidacr.com">info@suenosdevidacr.com</a></p>
         <h2>Siguenos en</h2>
         <div class="redes">
             <a href="#" title="Facebook" class="facebook"><i class="icon icon-facebook"></i></a>
