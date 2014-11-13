@@ -228,7 +228,7 @@ Route::group(['prefix' => 'store/admin', 'before' => 'authByRole'], function ()
 
     #orders
     Route::post('orders/delete', [
-        'as'   => 'destroy_multiple',
+        'as'   => 'destroy_multiple_orders',
         'uses' => 'app\controllers\Admin\OrdersController@destroy_multiple'
     ]);
     Route::get('orders/list', [
