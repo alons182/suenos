@@ -5,27 +5,26 @@
 <section class="main">
     <h1>Plan de Ayuda Sueños de Vida</h1>
 
-    <h2>Misión sueños de vida</h2>
-
     <p>Sueños de vida, dentro de los beneficios que ofrece  ha creado un plan para aquellas personas que por alguna razón se les dificulte desarrollar su red, y empezar a generar beneficios económicos dentro de la empresa.</p>
 
     <p>
-      Si transcurrido el primer mes no has logrado agregar una sola persona a tu red, explicando el funcionamiento de la empresa y promoviendo los beneficios que esta ofrece, o simplemente se te dificulta expresar adecuadamente la idea de negocio que representa la empresa, entonces debes cumplir estas condiciones y seguir estos sencillos pasos:
+      Si transcurrido el segundo mes no has logrado agregar una sola persona a tu red, explicando el funcionamiento de la empresa y promoviendo los beneficios que esta ofrece, o simplemente se te dificulta expresar adecuadamente la idea de negocio que representa la empresa, entonces debes cumplir estas condiciones y seguir estos sencillos pasos:
     </p>
-        <p>Para que el plan de ayuda se pueda aplicar el siguiente mes, la fecha de  pago de la membresía debe ser anterior al 15 del mes en que se realizara la afiliación. </p>
-        <p>Por ejemplo si tu pago se efectuó el 12 de octubre calificas para solicitar el plan de ayuda en noviembre, si tu pago se realizo el 20 de octubre podrías solicitar el plan de ayuda hasta el mes de diciembre ya que tu pago se hizo después del día 15 del mes.</p>
+        <p>Para que el plan de ayuda se pueda aplicar el tercer mes, debes tener mínimo 45 días de haber registrado el pago de la membresía inicial.  </p>
+        <p>Por ejemplo si tu pago se efectuó el 12 de octubre calificas para solicitar el plan de ayuda en diciembre, ya que por la fecha de pago, en los días hábiles de diciembre para solicitar este plan, habrás cumplido con el tiempo requerido. Pero si tu pago se realiza en los últimos 9 días de octubre puedes solicitar el plan de ayuda hasta el mes de enero, ya que por la fecha de pago, en los días hábiles para solicitar este plan en diciembre, no habrás cumplido con el tiempo requerido.</p>
+        <p>Se debe hacer el pago de la membresía del mes en que se solicita.</p>
     <h2>Paso # 1</h2>
 
-    <p><b>Pide ayuda:</b>Dentro de los primeros cinco días de tu segundo mes, envía un correo electrónico a <a href="mailto:administracion@suenosdevidacr.com"><b>administracion@suenosdevidacr.com</b></a> explica la estrategia que has seguido para obtener afiliados, indica que no te ha dado resultados, solicita se te ayude a mejorarla y buscar nuevas ideas para que este pueda tener éxito y empezar a crear tu red de afiliados.
+    <p><b>Pide ayuda:</b> Dentro de los primeros cinco días de tu tercer mes, envía un correo electrónico a <a href="mailto:administracion@suenosdevidacr.com"><b>administracion@suenosdevidacr.com</b></a>  explica la estrategia que has seguido para obtener afiliados, indica que no te ha dado resultados, solicita se te ayude a mejorarla y buscar nuevas ideas para que este pueda tener éxito y empezar a crear tu red de afiliados.
     </p>
 
     <h2>Paso # 2</h2>
 
-    <p> <b>Coordina con la empresa:</b> Una vez solicitada la ayuda, la empresa, tu patrocinador o uno de los líderes de la empresa se encargara de contactarte y coordinar reuniones, visitas a las personas que deseas que formen parte de la empresa y de tu red luego buscará la forma de ayudarte a organizar la estrategia adecuada para desarrollar tu red mediante un plan de apoyo individual.</p>
+    <p> <b>Coordina con la empresa:</b> Una vez solicitada la ayuda, la empresa, tu patrocinador o uno de los líderes, se encargara de contactarte y coordinar la asistencia a reuniones virtuales que realizara la empresa, reuniones virtuales personalizadas, o de ser necesario visitas a las personas que deseas que formen parte de tu red, esto como un plan de apoyo personalizado para guiarte en el desarrollo de tu red personal.</p>
 
     <h2>Paso # 3</h2>
 
-    <p><b>Poner en marcha el plan:</b> Cuando todo este debidamente coordinado deberás seguir los pasos acordados con el representante de la empresa y   poner todo tu esfuerzo para recibir los frutos del trabajo en equipo.</p>
+    <p><b>Poner en marcha el plan:</b> Cuando todo este debidamente coordinado deberás seguir los pasos acordados con el representante de la empresa y  coordinar con las personas que deseas que contactemos.</p>
 
 
     <h2>Que pasa de acuerdo a los resultados?</h2>
@@ -35,16 +34,14 @@
         </li>
         <li>Si la empresa ingresa dos o más personas a tu red el compromiso de apoyo individual queda concluido, manteniéndose siempre el apoyo empresarial.
         </li>
-        <li>Si la empresa no logra que a tu red se una por lo menos una persona en tu segundo mes, se compromete a darte el tercer mes gratis y continuar apoyándote para desarrollar tu red.
+        <li>Si la empresa no logra que a tu red se una por lo menos una persona en el mes que se aplica el plan de ayuda, se compromete a darte el siguiente mes gratis y continuar apoyándote para desarrollar tu red.
         </li>
         <li>
-        Si la empresa no logra ayudarte a ingresar a tu red por lo menos una persona después del mes gratis  <b>(tercer mes)</b>, tendrás la posibilidad de elegir: Si quieres continuar intentándolo un mes más <b>(cuarto mes)</b>, que la empresa te otorgaría de manera gratuita, o retirarte y pedir tu baja del sistema y de la empresa.
-       Para las personas que solicitan su baja del sistema, deben hacer la solicitud mediante correo electrónico al email: <a href="mailto:administracion@suenosdevidacr.com"><b>administración@suenosdevidacr.com</b></a>.
-
-       Tanto para las personas que decidieron continuar intentándolo (en caso que no tuvieran éxito) como para quienes decidieron retirarse, la empresa se compromete el <b>quinto mes</b>, a efectuar la devolución del <b>100% de la inversión que realizaste por concepto de membrecía.</b>
-
+       Si la empresa no logra ayudarte a ingresar a tu red por lo menos una persona después del mes gratis, tendrás la posibilidad de solicitar tu baja del sistema y de la empresa, además el reintegro del 100% de  la inversión hecha por concepto de membresía, para lo que la empresa tendrá treinta días hábiles.
+       Las personas que soliciten su baja del sistema, deben hacerlo mediante correo electrónico al email: <a href="mailto:administracion@suenosdevidacr.com"><b>administración@suenosdevidacr.com</b></a>.
 
 </li>
+<li>Si el afiliado que solicita el plan de ayuda incumple con su parte de lo pactado, de apoyar al equipo, no brindando la información necesaria, a tiempo y de forma precisa este plan quedara nulo y la empresa no tendrá la obligación de devolver la inversión del afiliado.</li>
     </ul>
 
 
