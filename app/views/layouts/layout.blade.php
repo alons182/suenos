@@ -17,15 +17,15 @@
 <body>
     <aside class="header-top">
         <div class="inner">
-            @if (Auth::check())
+            @if (Auth::guest())
+                <a href="#" class="btn-login"><i class="icon-arrow-right"></i>Registrarse | login</a>
+                <div class="login-register">
+                    @include('layouts/partials/_login')
+                <div>
+            @else
                 <i class="icon-arrow-right"></i>{{ link_to_route('profile.edit', 'Perfil', Auth::user()->username)  }} |
                 <i class="icon-arrow-right"></i>{{ link_to_route('logout', 'Logout', null, ['class'=>'btn-logout']) }} |
                 <span class="HeaderTop-info">Welcome, {{  link_to_route('profile.edit', Auth::user()->username, Auth::user()->username)  }}</span>
-            @else
-                <a href="#" class="btn-login"><i class="icon-arrow-right"></i>Registrarse | login</a>
-                   <div class="login-register">
-                       @include('layouts/partials/_login')
-                   <div>
             @endif
         </div>
     </aside>
