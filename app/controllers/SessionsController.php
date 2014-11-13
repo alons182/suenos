@@ -53,6 +53,7 @@ class SessionsController extends \BaseController {
     public function destroy($id = null)
     {
         Auth::logout();
+        Session::flush();
 
         return Redirect::home();
     }
