@@ -9,7 +9,7 @@
 	<div class="table-responsive">
 
         
-        {{ Form::open(['route' =>['destroy_multiple'],'method' => 'post', 'id' =>'form-delete-chk','data-confirm' => 'Estas seguro?']) }}
+        {{ Form::open(['route' =>['destroy_multiple_orders'],'method' => 'post', 'id' =>'form-delete-chk','data-confirm' => 'Estas seguro?']) }}
         <button type="submit" class="delete-multiple btn btn-danger btn-sm "><i class="glyphicon glyphicon-trash"></i></button>     
         <table class="table table-striped  ">
         <thead>
