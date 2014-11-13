@@ -35,7 +35,7 @@ class SessionsController extends \BaseController {
         $input = array_add($input, 'active', '1');
         if (Auth::attempt($input))
         {
-            return Redirect::home();//intended('/');
+            return Redirect::intended('/');
         }
 
         Flash::error('Credenciales Invalidas');
