@@ -38,7 +38,7 @@
         </li>
         <li>
        Si la empresa no logra ayudarte a ingresar a tu red por lo menos una persona después del mes gratis, tendrás la posibilidad de solicitar tu baja del sistema y de la empresa, además el reintegro del 100% de  la inversión hecha por concepto de membresía, para lo que la empresa tendrá treinta días hábiles.
-       Las personas que soliciten su baja del sistema, deben hacerlo mediante correo electrónico al email: <a href="mailto:administracion@suenosdevidacr.com"><b>administración@suenosdevidacr.com</b></a>.
+       Las personas que soliciten su baja del sistema, deben hacerlo mediante correo electrónico al email: <a href="mailto:administracion@suenosdevidacr.com"><b>administracion@suenosdevidacr.com</b></a>.
 
 </li>
 <li>Si el afiliado que solicita el plan de ayuda incumple con su parte de lo pactado, de apoyar al equipo, no brindando la información necesaria, a tiempo y de forma precisa este plan quedara nulo y la empresa no tendrá la obligación de devolver la inversión del afiliado.</li>
