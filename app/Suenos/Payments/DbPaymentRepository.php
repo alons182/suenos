@@ -224,7 +224,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
      */
     public function existsAutomaticPaymentOfMonth($user_id = null)
     {
-        $countUsersOfRed = uth::user()->children()->count();
+        $countUsersOfRed = Auth::user()->children()->count();
         $payment = false;
 
         if($countUsersOfRed > 1)
