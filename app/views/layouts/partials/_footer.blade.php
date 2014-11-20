@@ -28,8 +28,8 @@
         <p><a href="mailto:info@suenosdevidacr.com">info@suenosdevidacr.com</a></p>
         <h2>Siguenos en</h2>
         <div class="redes">
-            <a href="#" title="Facebook" class="facebook"><i class="icon icon-facebook"></i></a>
-            <a href="#" title="Twitter" class="twitter"><i class="icon icon-twitter"></i></a>
+            <a href="https://www.facebook.com/suenosdevidacr" target="_blank" title="Facebook" class="facebook"><i class="icon icon-facebook"></i></a>
+            <a href="https://twitter.com/suenosdevidacr" target="_blank" title="Twitter" class="twitter"><i class="icon icon-twitter"></i></a>
             <a href="#" title="Google Plus" class="google"><i class="icon icon-googleplus"></i></a>
         </div>
     </div>
