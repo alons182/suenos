@@ -44,7 +44,7 @@ class MembershipPaidCommand extends Command {
      */
     public function fire()
     {
-        //$this->paymentRepository->membershipFee();
+        $this->paymentRepository->membershipFee();
         $this->info('Membership paid done!!');
     }
 
