@@ -254,6 +254,8 @@ Route::group(['prefix' => 'store/admin', 'before' => 'authByRole'], function ()
     ]);
 
     Route::resource('downloads', 'app\controllers\Admin\DownloadsController');
+    # payments
+    Route::resource('payments', 'app\controllers\Admin\PaymentsController');
 
 });
 Route::group(['prefix' => 'store'], function ()

@@ -4,6 +4,8 @@ $(function () {
         published = $( "#published"),
         status = $( "#status"),
         active = $( "#active"),
+        month = $( "#month"),
+        year = $( "#year"),
         filters = $(".filtros"),
         gallery = $('#gallery'),
         infoBox = $('#InfoBox'),
@@ -22,7 +24,8 @@ $(function () {
             return false;
         }
     });
-
+    $.fn.editable.defaults.ajaxOptions = {type: "PUT"};
+    $('.x-edit').editable();
     
      setTimeout(function(){
         $('.flash-message').fadeOut();
@@ -47,6 +50,16 @@ $(function () {
     });
 
     active.change(function() {
+
+        filters.find('form').submit();
+
+    });
+    month.change(function() {
+
+        filters.find('form').submit();
+
+    });
+    year.change(function() {
 
         filters.find('form').submit();
 
@@ -249,6 +262,7 @@ $(function () {
                {
 
                    $('input[name="parent_id"]').val(patners[i].id);
+                   $('input[name="user_id_payment"]').val(patners[i].id);
                 //    if (yaAgregado($(this).val()) == false)
                 //    {
                         $('ul.patners').append('<li data-id="' + patners[i].id +'"><span class="delete" data-id="'+ patners[i].id +'"><i class="glyphicon glyphicon-remove"></i></span>'+

@@ -55,7 +55,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         // payments for the current user logged
         $paymentsOfUser = $this->model->where(function ($query) use ($data)
         {
-            $query->where('user_id','=', Auth::user()->id)
+            $query->where('user_id', '=', Auth::user()->id)
                 ->where(\DB::raw('MONTH(created_at)'), '=', $data['month'])
                 ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year);
         });
@@ -76,7 +76,6 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
             $gain = $paymentsOfRed->sum(\DB::raw('gain'));
 
 
-
             $membership_cost = ($paymentsOfRed->count()) ? $paymentsOfRed->first()->membership_cost : $this->membership_cost;
 
 
@@ -92,16 +91,76 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         }
 
         $data = array(
-            'gain_bruta' => $gain,
-            'gain_neta'  => $gain  - $membership_cost,
-            'paymentOfUser' => ($paymentOfUser > 20000 ? 20000 : $paymentOfUser ) ,
-            'payments'   => $payments,
-            'paymentsOfUser'   => $paymentsOfUser
+            'gain_bruta'     => $gain,
+            'gain_neta'      => $gain - $membership_cost,
+            'paymentOfUser'  => ($paymentOfUser > 20000 ? 20000 : $paymentOfUser),
+            'payments'       => $payments,
+            'paymentsOfUser' => $paymentsOfUser
         );
 
         return new Collection($data);
 
     }
+
+    public function getPayments($data = null)
+    {
+
+
+        if (isset($data['q']) && ! empty($data['q']))
+        {
+
+            $usersIds = User::Search($data['q'])->get()->lists('id');
+
+            $payments = $this->model->with('users', 'users.profiles')->where(function ($query) use ($usersIds, $data)
+            {
+                $query->whereIn('user_id', (count($usersIds) > 0) ? $usersIds : [0])
+                    ->where(\DB::raw('MONTH(created_at)'), '=', $data['month'])
+                    ->where(\DB::raw('YEAR(created_at)'), '=', $data['year']);
+            });
+
+        } else
+        {
+            $payments = $this->model->with('users', 'users.profiles')->where(function ($query) use ($data)
+            {
+                $query->where(\DB::raw('MONTH(created_at)'), '=', $data['month'])
+                    ->where(\DB::raw('YEAR(created_at)'), '=', $data['year']);
+            });
+        }
+
+        return $payments->paginate($this->limit);
+
+    }
+
+    /**
+     * Update a payment
+     * @param $id
+     * @param $data
+     * @return mixed
+     */
+    public function update($id, $data)
+    {
+        $payment = $this->model->findOrFail($id);
+        $payment->fill($data);
+        $payment->save();
+
+        return $payment;
+    }
+
+    /**
+     * Delete a payment by ID
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id)
+    {
+        $payment = $this->findById($id);
+
+        $payment->delete();
+
+
+        return $payment;
+    }
+
 
     /**
      * Generate a payment for any user for month
@@ -115,21 +174,21 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         $gain = 0;
         foreach ($users as $user)
         {
-            $usersOfRed =$user->children()->get()->lists('id');
+            $usersOfRed = $user->children()->get()->lists('id');
             $countUsersOfRed = $user->children()->count();
 
-            if($countUsersOfRed)
+            if ($countUsersOfRed)
             {
-                if (!$this->existsPaymentOfMonth($user->id))
+                if (! $this->existsPaymentOfMonth($user->id))
                 {
 
-                    if($countUsersOfRed == 1 )
+                    if ($countUsersOfRed == 1)
                     {
 
                         $amount = $this->userOfRedPayments($usersOfRed);
                         $gain = $amount;
 
-                    }else if($usersOfRed > 1 )
+                    } else if ($usersOfRed > 1)
                     {
                         $amount = ($this->userOfRedPayments($usersOfRed) > 20000) ? 20000 : $this->userOfRedPayments($usersOfRed);
                         $gain = ($amount < 20000) ? 0 : $amount - 5000;
@@ -137,7 +196,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
                     }
 
-                    if($amount > 0)
+                    if ($amount > 0)
                     {
                         $this->model->create([
                             'user_id'         => $user->id,
@@ -151,12 +210,11 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
                         ]);
                     }
 
-                    $users_payments++;
+                    $users_payments ++;
 
                     //$this->mailer->sendPaymentsMembershipMessageTo($user);
                 }
             }
-
 
 
         }
@@ -165,6 +223,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
 
     }
+
     private function userOfRedPayments($usersOfRed)
     {
         $paymentsOfRed = $this->model->where(function ($query) use ($usersOfRed)
@@ -175,7 +234,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         });
 
         //if($usersOfRed[0]==15)
-       //     dd($paymentsOfRed->get()->toArray());
+        //     dd($paymentsOfRed->get()->toArray());
         $amount = $paymentsOfRed->sum(\DB::raw('gain'));
 
         return $amount;
@@ -187,7 +246,14 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
      */
     private function prepareData($data)
     {
-        $data = array_add($data, 'user_id', Auth::user()->id);
+
+        if (! isset($data['user_id']) || ! $data['user_id'] || $data['user_id'] == "")
+        {
+            $data = array_except($data, 'user_id');
+            $data = array_add($data, 'user_id', Auth::user()->id);
+        }
+
+        //$data = array_add($data, 'user_id', Auth::user()->id);
         $data = array_add($data, 'membership_cost', $this->membership_cost);
         $data = array_add($data, 'amount', ($data['payment_type'] == "M") ? $this->membership_cost : 5000);
         $data = array_add($data, 'gain', ($data['payment_type'] == "M") ? ($this->membership_cost - 5000) : 0);
@@ -204,7 +270,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
     {
         $payment = $this->model->where(function ($query) use ($user_id)
         {
-            $query->where('user_id', '=', ($user_id)? $user_id : Auth::user()->id)
+            $query->where('user_id', '=', ($user_id) ? $user_id : Auth::user()->id)
                 ->where(\DB::raw('MONTH(created_at)'), '=', Carbon::now()->month)
                 ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year)
                 ->where(function ($query)
@@ -227,11 +293,11 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         $countUsersOfRed = Auth::user()->children()->count();
         $payment = false;
 
-        if($countUsersOfRed > 1)
+        if ($countUsersOfRed > 1)
         {
             $payment = $this->model->where(function ($query) use ($user_id)
             {
-                $query->where('user_id', '=', ($user_id)? $user_id : Auth::user()->id)
+                $query->where('user_id', '=', ($user_id) ? $user_id : Auth::user()->id)
                     ->where(\DB::raw('MONTH(created_at)'), '=', Carbon::now()->month)
                     ->where(\DB::raw('YEAR(created_at)'), '=', Carbon::now()->year)
                     ->where(function ($query)

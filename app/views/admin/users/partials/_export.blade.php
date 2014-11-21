@@ -8,7 +8,7 @@
                        {{ Form::selectMonth('month', $currentMonth, ['class' => 'form-control']) }}
                     </div>
                     <div class="controls">
-                       {{ Form::selectYear('year', 2014, 2020, $currentYear, ['class' => 'form-control']) }}
+                       {{ Form::selectYear('year', date('Y')-100, date('Y'), $currentYear, ['class' => 'form-control']) }}
                     </div>
                     {{ Form::submit('Exportar Reporte Ganacias',['class'=>'btn btn-info btn-report'])}}
                 </div>

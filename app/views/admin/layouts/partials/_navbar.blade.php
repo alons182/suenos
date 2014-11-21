@@ -18,6 +18,7 @@
                 <li class="{{ set_active('admin/users') }}">{{ link_to_route('users','Usuarios') }}</li>
                 <li class="{{ set_active('admin/categories') }}">{{ link_to_route('categories','Categorias') }}</li>
                 <li class="{{ set_active('admin/downloads') }}">{{ link_to_route('store.admin.downloads.index','Downloads') }}</li>
+                <li class="{{ set_active('admin/payments') }}">{{ link_to_route('store.admin.payments.index','Pagos') }}</li>
             @endif
             <li class="{{ set_active('admin/products') }}">{{ link_to_route('products','Productos') }}</li>
             <li class="{{ set_active('admin/orders') }}">{{ link_to_route('orders','Ordenes') }}</li>
