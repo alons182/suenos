@@ -10,8 +10,12 @@ Sueños de vida | Contáctenos
     <p class="intro">"Llamános o escribínos para solucionar cualquier duda o consulta que tengas, en <b>Sueños de vida</b>
         estamos para servirle !!"</p>
     <address class="contact-address">
+        <h2>Horario de atención</h2>
+        De Lunes a Viernes de 08:00 am a 12:00 y de 1:00 pm a 5:00 pm<br/>
+        Sábados de 08:00 a 12:00 pm<br/>
+
         <span>info@sueñosdevida.com</span><br/>
-        <span>2666 6666</span>
+        <span>6251-3355</span>
     </address>
 
     <div class="col-1">
