@@ -42,9 +42,9 @@
         </div>
 
 
-        <legend>Patrocinador</legend>
+        <legend>Al Usuario:</legend>
 
-                    @include('admin/users/partials/_addPatner')
+                    @include('admin/users/partials/_addPatner',['buttonText'=>'Agregar Usuario'])
 
                     <ul class="patners">
                         @if(isset($user->parent_id))

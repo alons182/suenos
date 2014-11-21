@@ -1,4 +1,4 @@
-<a class="btn btn-info" data-toggle="modal" data-target="#modalAddPatner" id="btn-add-patner">Agregar Patrocinador</a>
+<a class="btn btn-info" data-toggle="modal" data-target="#modalAddPatner" id="btn-add-patner">{{ isset($buttonText) ? $buttonText : 'Agregar Patrocinador' }}</a>
 
 <div class="modal fade" id="modalAddPatner" tabindex="-1" role="dialog" aria-labelledby="modalAddPatnerLabel" aria-hidden="true">
   <div class="modal-dialog">
