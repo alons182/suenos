@@ -14,7 +14,7 @@ Sueños de vida | Contáctenos
         De Lunes a Viernes de 08:00 am a 12:00 y de 1:00 pm a 5:00 pm<br/>
         Sábados de 08:00 a 12:00 pm<br/>
 
-        <span>info@sueñosdevida.com</span><br/>
+        <span>info@suenosdevidacr.com</span><br/>
         <span>6251-3355</span>
     </address>
 
