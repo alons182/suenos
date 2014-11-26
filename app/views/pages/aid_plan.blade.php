@@ -8,14 +8,16 @@
     <p>Sueños de vida, dentro de los beneficios que ofrece  ha creado un plan para aquellas personas que por alguna razón se les dificulte desarrollar su red, y empezar a generar beneficios económicos dentro de la empresa.</p>
 
     <p>
-      Si transcurrido el segundo mes no has logrado agregar una sola persona a tu red, explicando el funcionamiento de la empresa y promoviendo los beneficios que esta ofrece, o simplemente se te dificulta expresar adecuadamente la idea de negocio que representa la empresa, entonces debes cumplir estas condiciones y seguir estos sencillos pasos:
+     Si transcurrido el segundo mes no has logrado agregar una persona a tu red, explicando el funcionamiento de la empresa y promoviendo los beneficios que esta ofrece, o simplemente se te dificulta expresar adecuadamente la idea de negocio que representa la empresa, entonces debes cumplir estas condiciones y seguir estos sencillos pasos:
     </p>
-        <p>Para que el plan de ayuda se pueda aplicar el tercer mes, debes tener mínimo 45 días de haber registrado el pago de la membresía inicial.  </p>
-        <p>Por ejemplo si tu pago se efectuó el 12 de octubre calificas para solicitar el plan de ayuda en diciembre, ya que por la fecha de pago, en los días hábiles de diciembre para solicitar este plan, habrás cumplido con el tiempo requerido. Pero si tu pago se realiza en los últimos 9 días de octubre puedes solicitar el plan de ayuda hasta el mes de enero, ya que por la fecha de pago, en los días hábiles para solicitar este plan en diciembre, no habrás cumplido con el tiempo requerido.</p>
-        <p>Se debe hacer el pago de la membresía del mes en que se solicita.</p>
+        <p>Para que el plan de ayuda se pueda aplicar el tercer mes, debes tener mínimo 40 días de haber registrado el pago de la membresía inicial.  </p>
+        <p>Se debe hacer el pago de la membresía del mes en que se solicita este plan, si el pago no se realiza el plan de ayuda se cancela.</p>
+        <p>Se debe registrar en el perfil una cuenta de Skype, esto con el fin de realizar charlas virtuales.</p>
     <h2>Paso # 1</h2>
 
-    <p><b>Pide ayuda:</b> Dentro de los primeros cinco días de tu tercer mes, envía un correo electrónico a <a href="mailto:administracion@suenosdevidacr.com"><b>administracion@suenosdevidacr.com</b></a>  explica la estrategia que has seguido para obtener afiliados, indica que no te ha dado resultados, solicita se te ayude a mejorarla y buscar nuevas ideas para que este pueda tener éxito y empezar a crear tu red de afiliados.
+    <p><b>Pide ayuda:</b>
+     Dentro de los primeros cinco días de tu tercer mes, envía un correo electrónico a <a href="mailto:administracion@suenosdevidacr.com"><b>administracion@suenosdevidacr.com</b></a>  explica la estrategia que has seguido para obtener afiliados, indica que no te ha dado resultados, solicita se te ayude a mejorarla y buscar nuevas ideas para que este pueda tener éxito y empezar a crear tu red de afiliados.
+
     </p>
 
     <h2>Paso # 2</h2>
@@ -30,7 +32,7 @@
     <h2>Que pasa de acuerdo a los resultados?</h2>
 
     <ul class="ul-letters">
-        <li>Si la empresa consigue que a tu red ingrese por lo menos una persona, tú te debes comprometer a pagar la comisión administrativa del siguiente mes y la empresa te seguirá brindando apoyo para para que consigas la segunda persona de tu red.
+        <li>Si la empresa consigue que a tu red ingrese por lo menos una persona, tú te debes comprometer a pagar la membresía y la empresa te seguirá brindando apoyo para para que consigas la segunda persona de tu red.
         </li>
         <li>Si la empresa ingresa dos o más personas a tu red el compromiso de apoyo individual queda concluido, manteniéndose siempre el apoyo empresarial.
         </li>
@@ -41,7 +43,7 @@
        Las personas que soliciten su baja del sistema, deben hacerlo mediante correo electrónico al email: <a href="mailto:administracion@suenosdevidacr.com"><b>administracion@suenosdevidacr.com</b></a>.
 
 </li>
-<li>Si el afiliado que solicita el plan de ayuda incumple con su parte de lo pactado, de apoyar al equipo, no brindando la información necesaria, a tiempo y de forma precisa este plan quedara nulo y la empresa no tendrá la obligación de devolver la inversión del afiliado.</li>
+<li>Si el afiliado que solicita el plan de ayuda incumple con su parte de lo pactado, de apoyar al equipo, no brindando la información necesaria, a tiempo y de forma precisa este plan quedara nulo y la empresa no tendrá la obligación de devolver la inversión al afiliado. </li>
     </ul>
 
 
