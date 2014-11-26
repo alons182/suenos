@@ -191,7 +191,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
                     } else if ($usersOfRed > 1)
                     {
                         $amount = ($this->userOfRedPayments($usersOfRed) > 20000) ? 20000 : $this->userOfRedPayments($usersOfRed);
-                        $gain = ($amount < 20000) ? 0 : $amount - 5000;
+                        $gain = ($amount < 20000) ? 0 : $amount; //- 5000;
 
 
                     }
@@ -256,7 +256,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         //$data = array_add($data, 'user_id', Auth::user()->id);
         $data = array_add($data, 'membership_cost', $this->membership_cost);
         $data = array_add($data, 'amount', ($data['payment_type'] == "M") ? $this->membership_cost : 5000);
-        $data = array_add($data, 'gain', ($data['payment_type'] == "M") ? ($this->membership_cost - 5000) : 0);
+        $data = array_add($data, 'gain', ($data['payment_type'] == "M") ? $this->membership_cost : 0); //($this->membership_cost - 5000) : 0);
 
         return $data;
     }

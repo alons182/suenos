@@ -225,6 +225,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
                 'Nombre'             => $user->profiles->present()->fullname,
                 'Cedula'             => $user->profiles->ide,
                 'Cuenta'             => $user->profiles->number_account,
+                '# Afiliados'        => $user->children()->get()->count(),
                 'Ganancia'           => $gain - $membership_cost,
                 'Pago membresia'     => $paymentOfUser,
                 'Mes'                => $month,
