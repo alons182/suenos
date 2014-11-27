@@ -13,6 +13,7 @@ class OrderMailer extends Mailer{
         $view = 'emails.orders.confirm';
         $subject = 'Orden creada';
         $emailTo =$this->listProductionEmail;
+        $emailTo[] = $data['email'];
         $data['orderId'] = $order->id;
         $data += $order->toArray();
 
