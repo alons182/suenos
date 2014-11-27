@@ -39,7 +39,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
         if ($this->existsPaymentOfMonth()) return false;
         if ($this->existsAutomaticPaymentOfMonth()) return false;
-        
+
         return $this->model->create($data);
 
     }
