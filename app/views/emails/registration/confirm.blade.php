@@ -6,10 +6,10 @@
 </head>
 <body>
 
-<strong>Url para compartir:</strong> {{ URL::to('/'.$username) }}
-<strong>Su Usuario es:</strong> {{ $username }}
-<strong>Su Email es:</strong> {{ $email }}
-<strong>Su contraseña es:</strong> {{ $password }}
+<strong>Url para compartir:</strong> {{ URL::to('/'.$username) }} <br/>
+<strong>Su Usuario es:</strong> {{ $username }}  <br/>
+<strong>Su Email es:</strong> {{ $email }}  <br/>
+<strong>Su contraseña es:</strong> {{ $password }}  <br/>
 
 <h1>¡Felicidades ya eres parte de sueños de vida!</h1>
 
