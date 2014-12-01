@@ -22,6 +22,10 @@
    <p>Si deseas patrocinar a alguna persona y sumarla a tu red, tendrás que pasarle tu link personal e indicarle que le de un clic y  complete el formulario con los datos que se le solicitan.</p>p
 
   <p> Para ingresar a tu sitio personal podrás hacerlo desde el sitio web principal de la empresa o en tu link personal da un  Clic " login" allí deberás colocar tu correo electrónico y Clave para loguearte. En tu sitio personal  Podrás llevar el control de tus regalías y movimientos de tu red de afiliados.</p>
+
+  <p>Numeros de cuenta de la empresa:</p>
+  <p><b>Banco Nacional cuenta corriente:</b> 100-01-013-005504-7 <br />
+    <b>Banco Nacional cuenta cliente:</b> 15101310010055048
 </p>
 </body>
 </html>
