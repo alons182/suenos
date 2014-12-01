@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'alonso@avotz.com', 'name' => 'Alonso Avotz'),
+	'from' => array('address' => 'info@suenosdevidacr.com', 'name' => 'Administración Sueños de vida'),
 
 	/*
 	|--------------------------------------------------------------------------
