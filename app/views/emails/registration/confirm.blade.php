@@ -19,7 +19,7 @@
 
    <p>Formaliza tu inscripción enviando la documentación que corresponde, recuerda que si no estas Activo durante el plazo preestablecido serás eliminado del Sistema.</p>
 
-   <p>Si deseas patrocinar a alguna persona y sumarla a tu red, tendrás que pasarle tu link personal e indicarle que le de un clic y  complete el formulario con los datos que se le solicitan.</p>p
+   <p>Si deseas patrocinar a alguna persona y sumarla a tu red, tendrás que pasarle tu link personal e indicarle que le de un clic y  complete el formulario con los datos que se le solicitan.</p>
 
   <p> Para ingresar a tu sitio personal podrás hacerlo desde el sitio web principal de la empresa o en tu link personal da un  Clic " login" allí deberás colocar tu correo electrónico y Clave para loguearte. En tu sitio personal  Podrás llevar el control de tus regalías y movimientos de tu red de afiliados.</p>
 
