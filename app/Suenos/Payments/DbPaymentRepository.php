@@ -23,7 +23,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
     {
         $this->model = $model;
         $this->limit = 20;
-        $this->membership_cost = 20000;
+        $this->membership_cost = 12000;
         $this->mailer = $mailer;
     }
 
@@ -94,7 +94,7 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
         $data = array(
             'gain_bruta'     => $gain,
             'gain_neta'      => $gain - $membership_cost,
-            'paymentOfUser'  => ($paymentOfUser > 20000 ? 20000 : $paymentOfUser),
+            'paymentOfUser'  => ($paymentOfUser > $this->membership_cost ? $this->membership_cost : $paymentOfUser),
             'payments'       => $payments,
             'paymentsOfUser' => $paymentsOfUser
         );
@@ -191,8 +191,8 @@ class DbPaymentRepository extends DbRepository implements PaymentRepository {
 
                     } else if ($usersOfRed > 1)
                     {
-                        $amount = ($this->userOfRedPayments($usersOfRed) > 20000) ? 20000 : $this->userOfRedPayments($usersOfRed);
-                        $gain = ($amount < 20000) ? 0 : $amount; //- 5000;
+                        $amount = ($this->userOfRedPayments($usersOfRed) > $this->membership_cost) ? $this->membership_cost : $this->userOfRedPayments($usersOfRed);
+                        $gain = ($amount < $this->membership_cost) ? 0 : $amount; //- 5000;
 
 
                     }

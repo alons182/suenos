@@ -14,7 +14,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
     {
         $this->model = $model;
         $this->limit = 10;
-        $this->membership_cost = 20000;
+        $this->membership_cost = 12000;
     }
 
     /** Save the user with a blank profile and assigned a role. Also verify a bonus system
@@ -273,6 +273,41 @@ class DbUserRepository extends DbRepository implements UserRepository {
 
             if ($parent_user->depth != 0)
             {
+                if ($parent_user->immediateDescendants()->count() == 4 && $parent_user->bonus != 1) //quinto afiliado
+                {
+                    $parent_user->bonus = 1;
+                    $parent_user->save();
+                    $this->bonus($user, $parent_user->parent_id);
+                } else if($parent_user->immediateDescendants()->count() == 9 && $parent_user->bonus != 2) //decimo afiliado
+                {
+                    $parent_user->bonus = 2;
+                    $parent_user->save();
+                    $this->bonus($user, $parent_user->parent_id);
+                } else
+                {
+                    $user->parent_id = $parent_user->id;
+                    $user->save();
+                }
+            } else
+            {
+                $user->parent_id = $parent_user->id;
+                $parent_user->bonus = 1;
+                $parent_user->save();
+                $user->save();
+
+
+            }
+
+
+        }
+
+        /*
+         *  if ($parent_id)
+        {
+            $parent_user = $this->model->findOrFail($parent_id);
+
+            if ($parent_user->depth != 0)
+            {
                 if ($parent_user->immediateDescendants()->count() == 4 && $parent_user->bonus != 1)
                 {
                     $parent_user->bonus = 1;
@@ -295,6 +330,7 @@ class DbUserRepository extends DbRepository implements UserRepository {
 
 
         }
+         * */
 
 
         return $user;

@@ -16,7 +16,7 @@
         </div>
         <small>Ganancias</small>
         <div class="gains">
-            <h2>Pago de membresia : <span class="amount {{ ($payments['paymentOfUser'] < 20000) ? 'red' : '' }}">{{ money($payments['paymentOfUser'],'₡') }}</span></h2>
+            <h2>Pago de membresia : <span class="amount {{ ($payments['paymentOfUser'] < 12000) ? 'red' : '' }}">{{ money($payments['paymentOfUser'],'₡') }}</span></h2>
             <h2>Bruta : <span class="amount">{{ money($payments->first(),'₡') }}</span></h2>
             <h2>Neta (Membresia mensual) : <span class="amount">{{ money($payments['gain_neta'],'₡') }}</span></h2>
         </div>

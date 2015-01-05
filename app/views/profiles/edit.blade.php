@@ -45,7 +45,7 @@
         <!-- Estate Form Input -->
         <div class="form-group">
             {{ Form::label('estate', 'Provincia:') }}
-            {{ Form::select('estate', ['guanacaste' => 'Guanacaste'], null,['class'=>'form-control']) }}
+            {{ Form::select('estate', ['guanacaste' => 'Guanacaste','puntarenas' => 'Puntarenas','alajuela' => 'Alajuela', 'heredia' => 'Heredia','san jose' => 'San Jose', 'cartago' => 'Cartago', 'limon' => 'Limon'], null,['class'=>'form-control']) }}
             {{ errors_for('estate',$errors) }}
         </div>
         <!-- City Form Input -->
