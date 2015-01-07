@@ -216,7 +216,7 @@ small{font-weight:400;font-size:16px;color:#fff;padding:.3em;background:#372f4a}
 .gains .amount{font-weight:700}
 .gains .red{color:#d53c21}
 .months{position:absolute;right:3px;top:3px}
-.user-block{width:50px;display:inline-block;vert-align:top;position:relative;padding:.5em;text-align:center}
+.user-block{width:50px;display:inline-block;vert-align:top;position:relative;padding:.3em;text-align:center}
 .user-icon-toggle i{font-size:3em;cursor:pointer}
 .user-icon-toggle i:hover{color:#98ba33}
 .user-block-info{position:absolute;background:#fff;border:1px solid #372f4a;padding:.5em;z-index:99;font-size:1em;width:250px;top:6px;left:55px;text-align:left}
