@@ -40,7 +40,7 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository {
         $category = $this->model->findOrFail($id);
         $data = $this->prepareData($data);
         $data['image'] = ($data['image']) ? $this->storeImage($data['image'], $data['name'], 'categories', 200, null) : $category->image;
-
+        //dd($data);
         $category->fill($data);
         $category->save();
 
@@ -155,6 +155,8 @@ class DbCategoryRepository extends DbRepository implements CategoryRepository {
         {
             $data = array_except($data, array('parent_id'));
         }
+        if($data['parent_id']== 'root')
+            $data['parent_id'] = NULL;
 
         $data['slug'] = Str::slug($data['name']);
 
